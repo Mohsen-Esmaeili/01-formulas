@@ -59,6 +59,11 @@ export class FormulaService
       return "-" + this.convertASTToFormula(astNode.expression);
     }
 
+    if (this.helper.isFunction(astNode.type))
+    {
+      return astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")";
+    }
+
     if (this.helper.isParen(astNode.type))
     {
       if (this.helper.isSubtraction(astNode.expression.type))
@@ -87,7 +92,12 @@ export class FormulaService
 
       if (this.helper.isNegation(astNode.expression.type))
       {
-        return "-" + this.convertASTToFormula(astNode.expression.expression);
+        return "(-" + this.convertASTToFormula(astNode.expression.expression) + ")";
+      }
+
+      if (this.helper.isFunction(astNode.expression.type))
+      {
+        return "(" + astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")" + ")";
       }
 
       if (this.helper.isParen(astNode.expression.type))

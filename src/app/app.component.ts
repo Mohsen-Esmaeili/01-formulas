@@ -13,8 +13,8 @@ const parse = Parser.parse;
 export class AppComponent
 {
 
-  // formula: string = "($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)";
-  formula: string = "($b - 4 - $a) - (2 -  $a)";
+  formula: string = "($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)";
+  // formula: string = "($b - 4 - $a) - (2 -  $a)";
   visualizerOutput: string = "";
   syntaxTree: any;
   syntaxTreeJson: string = "";
