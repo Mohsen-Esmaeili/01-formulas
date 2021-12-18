@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 // @ts-ignore
 import * as Parser from '../../parser/formula-parser.js';
+import { NodeModel } from './../../models/node.model';
 import { FormulaService } from './../../services/formula.service';
 
 const parse = Parser.parse;
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit
   // formula: string = "($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)";
   // formula: string = "($b - 4 - $a) - (2 -  $a)";
   visualizerOutput: string = "";
-  syntaxTree: any;
+  syntaxTree: NodeModel;
   syntaxTreeJson: string = "";
 
   form: FormGroup;

@@ -1,0 +1,23 @@
+.visualize-detail {
+  .select-control {
+    ::ng-deep .mat-form-field-infix {
+      width: 130px;
+    }
+
+    // ::ng-deep .mat-select-value-text {
+    // font-size: 30px;
+    // font-weight: 700;
+    // }
+  }
+
+  .input-control {
+    ::ng-deep .mat-form-field-infix {
+      width: 140px;
+    }
+  }
+}
+
+// ::ng-deep .mat-select-panel .mat-option-text {
+//   font-size: 30px;
+//   font-weight: 700;
+// }

@@ -1,19 +1,32 @@
-<form [formGroup]="form">
-  <h1>
-    Welcome to the formulizer!
-  </h1>
-  <hr>
-  <h3>Input formula</h3>
-  <p>
-    <mat-form-field class="w-100" appearance="fill">
-      <mat-label>Formula</mat-label>
-      <textarea matInput placeholder="Enter formula" formControlName="formula"></textarea>
-    </mat-form-field>
-  </p>
-  <p><button class="btn btn-primary" (click)="updateAstView()">Parse and update AST View</button></p>
-  <h3>Visualizer</h3>
-  <pre style="max-height: 300px; overflow-y: auto;background-color: #eeeeee;">{{syntaxTreeJson}}</pre>
-  <p><button class="btn btn-primary" (click)="convertAstToFormula()">Convert AST to Formula</button></p>
-  <h3>Visualizer-to-Formula</h3>
-  <p>{{ visualizerOutput }}</p>
+<form [formGroup]="form" class="home-content">
+  <div class="alert alert-success">
+    <h1>Welcome to the formulizer!</h1>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="d-flex flex-column">
+    <div class="m-2">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Formula</mat-label>
+        <textarea matInput placeholder="Enter formula" formControlName="formula"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="m-2">
+      <button class="btn btn-primary" (click)="updateAstView()">Parse and update AST View</button>
+    </div>
+    <div class="m-2">
+      <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
+    </div>
+    <div class="m-2">
+      <button class="btn btn-primary" (click)="convertAstToFormula()">Convert AST to Formula</button>
+    </div>
+    <div class="m-2">
+      <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
+    </div>
+    <div class="m-2">
+      <button class="btn btn-primary">Visualize Formula</button>
+    </div>
+    <div class="m-2">
+      <app-visualize [syntaxTree]="syntaxTree"></app-visualize>
+    </div>
+  </div>
 </form>
