@@ -11,6 +11,7 @@ export class ExpressionComponent implements OnInit
 {
   operatorType: string = '';
   @Input() syntaxTree: NodeModel;
+  @Input() canRemove: boolean;
   @Output() resultEmitter = new EventEmitter<number>();
   @Output() removeEmitter = new EventEmitter<string>();
 

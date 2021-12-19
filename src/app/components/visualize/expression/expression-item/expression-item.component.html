@@ -1,12 +1,21 @@
 <container-element [ngSwitch]="syntaxTree?.type" class="expression-item">
   <div *ngSwitchCase="'NUMBER'">
-    <div class="alert alert-info">{{syntaxTree?.value}}</div>
+    <div class="alert alert-info">{{ syntaxTree?.value }}</div>
   </div>
   <div *ngSwitchCase="'PI'">
     <div class="alert alert-info">PI</div>
   </div>
   <div *ngSwitchCase="'E'">
     <div class="alert alert-info">E</div>
+  </div>
+  <div *ngSwitchCase="'FUNCTION'">
+    <div class="alert alert-info">{{ syntaxTree?.name }}
+      <ng-container *ngIf="syntaxTree?.arguments && syntaxTree.arguments.length > 0">
+        <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false"
+          (removeEmitter)="RemoveNode($event)">
+        </app-expression>
+      </ng-container>
+    </div>
   </div>
   <div *ngSwitchCase="'VARIABLE'">
     <mat-form-field appearance="fill" class="input-control">

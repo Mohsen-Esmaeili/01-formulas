@@ -22,6 +22,11 @@ export class ExpressionItemComponent implements OnInit
     }
   }
 
+  RemoveNode(id: string): void
+  {
+    console.log(id);
+  }
+
   onBlurInput(event: any): void
   {
     this.valueEmitter.emit(event.target.value);

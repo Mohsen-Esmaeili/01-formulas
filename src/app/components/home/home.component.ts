@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, AfterContentInit
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
-      formula: ['(4*2)+($a-10)']
+      formula: ['($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)']
     });
   }
 
