@@ -6,13 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { ExpressionItemComponent } from './expression-item/expression-item.component';
+import { ExpressionListComponent } from './expression-list/expression-list.component';
 import { ExpressionComponent } from './expression.component';
 
-const COMPONENTS = [ExpressionComponent, ExpressionItemComponent];
+const COMPONENTS = [ExpressionComponent, ExpressionItemComponent, ExpressionListComponent];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule];
+const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatMenuModule];
 
 @NgModule({
   declarations: [

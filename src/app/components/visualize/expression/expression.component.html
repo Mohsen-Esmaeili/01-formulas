@@ -1,8 +1,6 @@
 <mat-card class="expression">
   <div class="d-flex flex-row justify-content-end">
-    <button mat-mini-fab color="primary" class="mx-1" (click)="onAddNode(syntaxTree.id)" *ngIf="canAdd">
-      <mat-icon>add</mat-icon>
-    </button>
+    <app-expression-list [visible]="canAdd" [containerId]="syntaxTree.id"></app-expression-list>
     <button mat-mini-fab color="warn" class="mx-1" (click)="RemoveNode(syntaxTree.id)" *ngIf="canRemove">
       <mat-icon>close</mat-icon>
     </button>

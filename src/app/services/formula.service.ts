@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { NodeType } from "../constants/node-type";
 import { NodeModel } from "../models/node.model";
+import { ExpressionModel } from './../models/expression.model';
 
 @Injectable()
 export class FormulaService
@@ -131,24 +132,169 @@ export class FormulaService
 
   removeNode(syntaxTree: NodeModel, idToDelete: string): void
   {
-    if (syntaxTree.left.id === idToDelete)
+    if (!syntaxTree)
     {
-      // syntaxTree.left = new NodeList();
-    } else
-    {
-      this.removeNode(syntaxTree.left, idToDelete);
+      return;
     }
+
+    if (syntaxTree.id === idToDelete)
+    {
+      syntaxTree = new NodeModel();
+      return;
+    }
+
+    if (syntaxTree.left)
+    {
+      if (syntaxTree.left.id === idToDelete)
+      {
+        syntaxTree.left = new NodeModel();
+        return;
+      } else
+      {
+        this.removeNode(syntaxTree.left, idToDelete);
+      }
+    }
+
     if (syntaxTree.right)
     {
-      this.removeNode(syntaxTree.right, idToDelete);
+      if (syntaxTree.right.id === idToDelete)
+      {
+        syntaxTree.right = new NodeModel();
+        return;
+      } else
+      {
+        this.removeNode(syntaxTree.right, idToDelete);
+      }
     }
     if (syntaxTree.expression)
     {
-      this.removeNode(syntaxTree.expression, idToDelete);
+      if (syntaxTree.expression.id === idToDelete)
+      {
+        syntaxTree.expression = new NodeModel();
+        return;
+      } else
+      {
+        this.removeNode(syntaxTree.expression, idToDelete);
+      }
     }
     if (syntaxTree.power)
     {
-      this.removeNode(syntaxTree.power, idToDelete);
+      if (syntaxTree.power.id === idToDelete)
+      {
+        syntaxTree.power = new NodeModel();
+        return;
+      } else
+      {
+        this.removeNode(syntaxTree.power, idToDelete);
+      }
     }
+  }
+
+  getExpressionData(): Array<ExpressionModel>
+  {
+    const result: Array<ExpressionModel> = [
+      {
+        id: 1,
+        title: "Aggregation",
+        children: [
+          {
+            id: 2,
+            title: "Max",
+            children: []
+          },
+          {
+            id: 3,
+            title: "Min",
+            children: []
+          },
+          {
+            id: 4,
+            title: "Count",
+            children: []
+          },
+          {
+            id: 5,
+            title: "Average",
+            children: []
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "Math Operations",
+        children: [
+          {
+            id: 6,
+            title: "Addition (+)",
+            children: []
+          },
+          {
+            id: 7,
+            title: "Subtraction (-)",
+            children: []
+          },
+          {
+            id: 8,
+            title: "Multiplication (*)",
+            children: []
+          },
+          {
+            id: 9,
+            title: "Division (/)",
+            children: []
+          },
+          {
+            id: 10,
+            title: "Power (^)",
+            children: []
+          }
+        ]
+      },
+      {
+        id: 11,
+        title: "Text operations",
+        children: [
+          {
+            id: 12,
+            title: "Concat",
+            children: []
+          }
+        ]
+      },
+      {
+        id: 13,
+        title: "Specific values",
+        children: [
+          {
+            id: 14,
+            title: "PI",
+            children: []
+          },
+          {
+            id: 15,
+            title: "E",
+            children: []
+          }
+        ]
+      },
+      {
+        id: 16,
+        title: "Specific functions",
+        children: [
+          {
+            id: 17,
+            title: "SQRT",
+            children: []
+          },
+          {
+            id: 18,
+            title: "SQR",
+            children: []
+          }
+        ]
+      }
+    ];
+
+    return result;
   }
 }
