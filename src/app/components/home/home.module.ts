@@ -1,17 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { VisualizeModule } from '../visualize/visualize.module';
+import { FormulaHelperService } from './../../services/formula-helper.service';
+import { FormulaService } from './../../services/formula.service';
 import { HomeComponent } from './home.component';
 
 
 const COMPONENTS = [HomeComponent];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule];
+const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule, MatButtonModule, MatTabsModule];
 const FORMULA_MODULES = [VisualizeModule];
+const SERVICES = [FormulaService, FormulaHelperService];
 
 @NgModule({
   declarations: [
@@ -27,6 +32,9 @@ const FORMULA_MODULES = [VisualizeModule];
     ...BASE_MODULES,
     ...MATERIAL_MODULES,
     ...FORMULA_MODULES
+  ],
+  providers: [
+    ...SERVICES
   ]
 })
 export class HomeModule { }

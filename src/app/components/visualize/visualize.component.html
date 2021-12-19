@@ -1,6 +1,6 @@
 <mat-card>
-
-  <app-visualize-detail>
-    <app-visualize-detail></app-visualize-detail>
-  </app-visualize-detail>
+  <mat-card-title>Formula visualization</mat-card-title>
+  <mat-card-subtitle>By clicking you can add your formula</mat-card-subtitle>
+  <app-expression [syntaxTree]="syntaxTree" *ngIf="syntaxTree">
+  </app-expression>
 </mat-card>

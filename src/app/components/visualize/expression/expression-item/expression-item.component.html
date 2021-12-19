@@ -1,0 +1,17 @@
+<container-element [ngSwitch]="syntaxTree?.type">
+  <div *ngSwitchCase="'NUMBER'">
+    <div class="alert alert-info">{{syntaxTree?.value}}</div>
+  </div>
+  <div *ngSwitchCase="'PI'">
+    <div class="alert alert-info">PI</div>
+  </div>
+  <div *ngSwitchCase="'E'">
+    <div class="alert alert-info">E</div>
+  </div>
+  <div *ngSwitchCase="'VARIABLE'">
+    <mat-form-field appearance="fill" class="input-control">
+      <input matInput autocomplete="off" type="number" (blur)="onBlurInput($event)">
+    </mat-form-field>
+  </div>
+  <div *ngSwitchDefault>Wrong</div>
+</container-element>

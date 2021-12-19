@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 // @ts-ignore
 import * as Parser from '../../parser/formula-parser.js';
@@ -11,7 +11,7 @@ const parse = Parser.parse;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit
+export class HomeComponent implements OnInit, AfterContentInit
 {
 
   // formula: string = "($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)";
@@ -27,8 +27,13 @@ export class HomeComponent implements OnInit
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
-      formula: ['($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)']
+      formula: ['$b + 4']
     });
+  }
+
+  ngAfterContentInit(): void
+  {
+    this.syntaxTree = parse(this.formControls["formula"].value);
   }
 
   updateAstView()

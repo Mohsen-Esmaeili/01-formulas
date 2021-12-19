@@ -1,0 +1,45 @@
+<mat-card class="expression">
+  <mat-card-title class="d-flex flex-row justify-content-end">
+    <button mat-mini-fab color="primary" class="node-action-button mx-1" (click)="Help()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" class="node-action-button mx-1" (click)="RemoveNode()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title>
+  <div class="d-flex flex-row">
+    <div class="m-1" *ngIf="syntaxTree.left">
+      <mat-card>
+        <app-expression *ngIf="isNewExpression(syntaxTree.left); else SingleInputLeft" [syntaxTree]="syntaxTree.left">
+        </app-expression>
+        <ng-template #SingleInputLeft>
+          <app-expression-item [syntaxTree]="syntaxTree.left" (valueEmitter)="onLeftValue($event)">
+          </app-expression-item>
+        </ng-template>
+      </mat-card>
+    </div>
+    <div class="m-1">
+      <mat-card>
+        <mat-form-field appearance="fill" class="select-control">
+          <mat-select [(ngModel)]="operatorType">
+            <mat-option value="ADDITION">Addition (+)</mat-option>
+            <mat-option value="SUBTRACTION">Subtraction (-)</mat-option>
+            <mat-option value="MULTIPLICATION">Multiplication (*)</mat-option>
+            <mat-option value="DIVISION">Division (/)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+    </div>
+    <div class="m-1" *ngIf="syntaxTree.right">
+      <mat-card>
+        <app-expression *ngIf="isNewExpression(syntaxTree.right); else SingleInputRight"
+          [syntaxTree]="syntaxTree.right">
+        </app-expression>
+        <ng-template #SingleInputRight>
+          <app-expression-item [syntaxTree]="syntaxTree.right" (valueEmitter)="onRightValue($event)">
+          </app-expression-item>
+        </ng-template>
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

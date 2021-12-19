@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ExpressionModule } from './expression/expression.module';
-import { VisualizeComponent } from './visualize.component';
+import { ExpressionItemComponent } from './expression-item/expression-item.component';
+import { ExpressionComponent } from './expression.component';
 
-const COMPONENTS = [VisualizeComponent];
-const BASE_MODULES = [CommonModule];
+const COMPONENTS = [ExpressionComponent, ExpressionItemComponent];
+const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule];
-const FORMULA_MODULES = [ExpressionModule];
 
 @NgModule({
   declarations: [
@@ -20,14 +20,12 @@ const FORMULA_MODULES = [ExpressionModule];
   ],
   imports: [
     ...BASE_MODULES,
-    ...MATERIAL_MODULES,
-    ...FORMULA_MODULES
+    ...MATERIAL_MODULES
   ],
   exports: [
     ...COMPONENTS,
     ...BASE_MODULES,
-    ...MATERIAL_MODULES,
-    ...FORMULA_MODULES
+    ...MATERIAL_MODULES
   ]
 })
-export class VisualizeModule { }
+export class ExpressionModule { }

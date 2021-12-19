@@ -7,26 +7,34 @@
     <div class="m-2">
       <mat-form-field class="w-100" appearance="fill">
         <mat-label>Formula</mat-label>
-        <textarea matInput placeholder="Enter formula" formControlName="formula"></textarea>
+        <textarea matInput placeholder="Enter formula" class="formula-text-area" formControlName="formula"></textarea>
       </mat-form-field>
     </div>
-    <div class="m-2">
-      <button class="btn btn-primary" (click)="updateAstView()">Parse and update AST View</button>
-    </div>
-    <div class="m-2">
-      <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
-    </div>
-    <div class="m-2">
-      <button class="btn btn-primary" (click)="convertAstToFormula()">Convert AST to Formula</button>
-    </div>
-    <div class="m-2">
-      <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
-    </div>
-    <div class="m-2">
-      <button class="btn btn-primary">Visualize Formula</button>
-    </div>
-    <div class="m-2">
-      <app-visualize [syntaxTree]="syntaxTree"></app-visualize>
-    </div>
+    <mat-tab-group>
+      <mat-tab label="AST View">
+        <div class="m-2">
+          <button mat-raised-button color="primary" (click)="updateAstView()">Parse and update AST View</button>
+        </div>
+        <div class="m-2">
+          <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
+        </div>
+      </mat-tab>
+      <mat-tab label="Formula View">
+        <div class="m-2">
+          <button mat-raised-button color="primary" (click)="convertAstToFormula()">Convert AST to Formula</button>
+        </div>
+        <div class="m-2">
+          <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
+        </div>
+      </mat-tab>
+      <mat-tab label="Visualize Formula">
+        <div class="m-2">
+          <button mat-raised-button color="primary">Visualize Formula</button>
+        </div>
+        <div class="m-2">
+          <app-visualize [syntaxTree]="syntaxTree" *ngIf="syntaxTree"></app-visualize>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </form>

@@ -14,6 +14,7 @@ export class VisualizeComponent implements OnInit
 
   ngOnInit(): void
   {
+    debugger;
   }
 
 }

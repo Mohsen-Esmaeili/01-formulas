@@ -6,13 +6,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HomeModule } from './components/home/home.module';
-import { FormulaHelperService } from './services/formula-helper.service';
-import { FormulaService } from './services/formula.service';
 
 const COMPONENTS = [AppComponent];
 const BASE_MODULES = [BrowserModule, FormsModule, BrowserAnimationsModule, NgbModule];
 const FORMULA_MODULES = [HomeModule];
-const SERVICES = [FormulaService, FormulaHelperService];
 
 @NgModule({
   declarations: [
@@ -22,9 +19,6 @@ const SERVICES = [FormulaService, FormulaHelperService];
     ...BASE_MODULES,
     ...FORMULA_MODULES,
     AppRoutingModule
-  ],
-  providers: [
-    ...SERVICES
   ],
   bootstrap: [AppComponent]
 })
