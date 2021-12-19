@@ -1,5 +1,8 @@
 <mat-card class="expression">
   <div class="d-flex flex-row justify-content-end">
+    <button mat-mini-fab color="primary" class="mx-1" (click)="onAddNode(syntaxTree.id)" *ngIf="canAdd">
+      <mat-icon>add</mat-icon>
+    </button>
     <button mat-mini-fab color="warn" class="mx-1" (click)="RemoveNode(syntaxTree.id)" *ngIf="canRemove">
       <mat-icon>close</mat-icon>
     </button>
@@ -7,7 +10,8 @@
   <div class="d-flex flex-row flex-wrap align-items-center">
     <div class="m-1" *ngIf="leftExpression">
       <app-expression *ngIf="isNewExpression(leftExpression); else SingleInputLeft"
-        [syntaxTree]="leftExpression.expression" [canRemove]="true" (removeEmitter)="RemoveNode($event)">
+        [syntaxTree]="leftExpression.expression" [canRemove]="true" [canAdd]="true"
+        (removeEmitter)="RemoveNode($event)">
       </app-expression>
       <ng-template #SingleInputLeft>
         <app-expression-item [syntaxTree]="leftExpression" (valueEmitter)="onLeftValue($event)">
@@ -27,7 +31,8 @@
     </div>
     <div class="m-1" *ngIf="rightExpression">
       <app-expression *ngIf="isNewExpression(rightExpression); else SingleInputRight"
-        [syntaxTree]="rightExpression.expression" [canRemove]="true" (removeEmitter)="RemoveNode($event)">
+        [syntaxTree]="rightExpression.expression" [canRemove]="true" [canAdd]="true"
+        (removeEmitter)="RemoveNode($event)">
       </app-expression>
       <ng-template #SingleInputRight>
         <app-expression-item [syntaxTree]="rightExpression" (valueEmitter)="onRightValue($event)">

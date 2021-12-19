@@ -11,7 +11,7 @@
   <div *ngSwitchCase="'FUNCTION'">
     <div class="alert alert-info">{{ syntaxTree?.name }}
       <ng-container *ngIf="syntaxTree?.arguments && syntaxTree.arguments.length > 0">
-        <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false"
+        <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false" [canAdd]="false"
           (removeEmitter)="RemoveNode($event)">
         </app-expression>
       </ng-container>

@@ -12,6 +12,7 @@ export class ExpressionComponent implements OnInit
   operatorType: string = '';
   @Input() syntaxTree: NodeModel;
   @Input() canRemove: boolean;
+  @Input() canAdd: boolean;
   @Output() resultEmitter = new EventEmitter<number>();
   @Output() removeEmitter = new EventEmitter<string>();
 
@@ -26,6 +27,11 @@ export class ExpressionComponent implements OnInit
   RemoveNode(id: string): void
   {
     this.removeEmitter.emit(id);
+  }
+
+  onAddNode(id: string): void
+  {
+    console.log(id);
   }
 
   onRightValue(rightResult: number): void

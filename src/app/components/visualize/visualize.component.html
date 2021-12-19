@@ -7,7 +7,8 @@
     <button mat-raised-button color="accent" class="mb-3 mr-3">Apply</button>
   </div>
   <div class="visualize-content">
-    <app-expression [syntaxTree]="syntaxTree" [canRemove]="false" (removeEmitter)="onRemove($event)" *ngIf="syntaxTree">
+    <app-expression [syntaxTree]="syntaxTree" [canRemove]="false" [canAdd]="true" (removeEmitter)="onRemove($event)"
+      *ngIf="syntaxTree">
     </app-expression>
   </div>
 </mat-card>
