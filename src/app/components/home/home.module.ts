@@ -7,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { VisualizeModule } from '../visualize/visualize.module';
-import { FormulaHelperService } from './../../services/formula-helper.service';
 import { FormulaService } from './../../services/formula.service';
 import { HomeComponent } from './home.component';
 
@@ -16,7 +15,7 @@ const COMPONENTS = [HomeComponent];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule, MatButtonModule, MatTabsModule];
 const FORMULA_MODULES = [VisualizeModule];
-const SERVICES = [FormulaService, FormulaHelperService];
+const SERVICES = [FormulaService];
 
 @NgModule({
   declarations: [

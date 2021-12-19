@@ -1,4 +1,4 @@
-<container-element [ngSwitch]="syntaxTree?.type">
+<container-element [ngSwitch]="syntaxTree?.type" class="expression-item">
   <div *ngSwitchCase="'NUMBER'">
     <div class="alert alert-info">{{syntaxTree?.value}}</div>
   </div>

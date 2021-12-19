@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NodeType } from './../../../../constants/node-type';
 import { NodeModel } from './../../../../models/node.model';
-import { FormulaHelperService } from './../../../../services/formula-helper.service';
 
 @Component({
   selector: 'app-expression-item',
@@ -13,8 +13,6 @@ export class ExpressionItemComponent implements OnInit
   @Output() valueEmitter = new EventEmitter<number>();
 
   value: number;
-
-  constructor(public formulaHelper: FormulaHelperService) { }
 
   ngOnInit(): void
   {
@@ -31,6 +29,6 @@ export class ExpressionItemComponent implements OnInit
 
   get isStaticValue(): boolean
   {
-    return this.formulaHelper.isNumber(this.syntaxTree.type) || this.formulaHelper.isPI(this.syntaxTree.type) || this.formulaHelper.isE(this.syntaxTree.type);
+    return this.syntaxTree.type === NodeType.Number || this.syntaxTree.type === NodeType.PI || this.syntaxTree.type === NodeType.E;
   }
 }

@@ -1,20 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NodeModel } from '../../models/node.model';
+import { FormulaService } from './../../services/formula.service';
 
 @Component({
   selector: 'app-visualize',
   templateUrl: './visualize.component.html',
   styleUrls: ['./visualize.component.scss']
 })
-export class VisualizeComponent implements OnInit
+export class VisualizeComponent
 {
   @Input() syntaxTree: NodeModel;
 
-  constructor() { }
+  constructor(private formulaService: FormulaService) { }
 
-  ngOnInit(): void
+  onRemove(idToDelete: string): void
   {
-    debugger;
+    this.formulaService.removeNode(this.syntaxTree, idToDelete);
   }
-
 }

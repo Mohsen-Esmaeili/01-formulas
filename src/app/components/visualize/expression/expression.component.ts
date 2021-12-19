@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NodeModel } from '../../../models/node.model';
-import { FormulaHelperService } from './../../../services/formula-helper.service';
+import { NodeType } from './../../../constants/node-type';
 
 @Component({
   selector: 'app-expression',
@@ -12,26 +12,19 @@ export class ExpressionComponent implements OnInit
   operatorType: string = '';
   @Input() syntaxTree: NodeModel;
   @Output() resultEmitter = new EventEmitter<number>();
+  @Output() removeEmitter = new EventEmitter<string>();
 
   rightSideResult: number;
   leftSideResult: number;
 
-  constructor(private formulaHelperService: FormulaHelperService) { }
-
   ngOnInit(): void
   {
     this.operatorType = this.syntaxTree.type;
-    debugger;
   }
 
-  RemoveNode(): void
+  RemoveNode(id: string): void
   {
-    console.log("Should remove");
-  }
-
-  Help(): void
-  {
-
+    this.removeEmitter.emit(id);
   }
 
   onRightValue(rightResult: number): void
@@ -51,6 +44,16 @@ export class ExpressionComponent implements OnInit
 
   isNewExpression(syntaxTree: NodeModel): boolean
   {
-    return this.formulaHelperService.isParen(syntaxTree.type);
+    return syntaxTree.type === NodeType.Paren;
+  }
+
+  get leftExpression(): NodeModel
+  {
+    return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.expression : this.syntaxTree.left;
+  }
+
+  get rightExpression(): NodeModel
+  {
+    return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.power : this.syntaxTree.right;
   }
 }

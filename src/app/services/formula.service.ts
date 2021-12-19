@@ -1,131 +1,154 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
+import { NodeType } from "../constants/node-type";
 import { NodeModel } from "../models/node.model";
-import { FormulaHelperService } from "./formula-helper.service";
 
 @Injectable()
 export class FormulaService
 {
-  constructor(private helper: FormulaHelperService) { }
+  syntaxTreeEmitter = new EventEmitter<NodeModel>();
 
   convertASTToFormula(astNode: NodeModel): string | number
   {
-    if (this.helper.isNumber(astNode.type))
+    if (astNode.type === NodeType.Number)
     {
       return astNode.value;
     }
 
-    if (this.helper.isVariable(astNode.type))
+    if (astNode.type === NodeType.Variable)
     {
       return astNode.name;
     }
 
-    if (this.helper.isPI(astNode.type))
+    if (astNode.type === NodeType.PI)
     {
       return astNode.value;
     }
 
-    if (this.helper.isE(astNode.type))
+    if (astNode.type === NodeType.E)
     {
       return astNode.value;
     }
 
-    if (this.helper.isAddition(astNode.type))
+    if (astNode.type === NodeType.Addition)
     {
       return this.convertASTToFormula(astNode.left) + '+' + this.convertASTToFormula(astNode.right);
     }
 
-    if (this.helper.isSubtraction(astNode.type))
+    if (astNode.type === NodeType.Subtraction)
     {
       return this.convertASTToFormula(astNode.left) + '-' + this.convertASTToFormula(astNode.right);
     }
 
-    if (this.helper.isMultiplication(astNode.type))
+    if (astNode.type === NodeType.Multiplication)
     {
       return this.convertASTToFormula(astNode.left) + '*' + this.convertASTToFormula(astNode.right);
     }
 
-    if (this.helper.isDivision(astNode.type))
+    if (astNode.type === NodeType.Division)
     {
       return this.convertASTToFormula(astNode.left) + '/' + this.convertASTToFormula(astNode.right);
     }
 
-    if (this.helper.isPower(astNode.type))
+    if (astNode.type === NodeType.Power)
     {
       return this.convertASTToFormula(astNode.expression) + '^' + this.convertASTToFormula(astNode.power);
     }
 
-    if (this.helper.isNegation(astNode.type))
+    if (astNode.type === NodeType.Negation)
     {
       return "-" + this.convertASTToFormula(astNode.expression);
     }
 
-    if (this.helper.isFunction(astNode.type))
+    if (astNode.type === NodeType.Function)
     {
       return astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")";
     }
 
-    if (this.helper.isParen(astNode.type))
+    if (astNode.type === NodeType.Paren)
     {
-      if (this.helper.isSubtraction(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Subtraction)
       {
         return "(" + this.convertASTToFormula(astNode.expression.left) + "-" + this.convertASTToFormula(astNode.expression.right) + ")";
       }
-      if (this.helper.isAddition(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Addition)
       {
         return "(" + this.convertASTToFormula(astNode.expression.left) + "+" + this.convertASTToFormula(astNode.expression.right) + ")";
       }
 
-      if (this.helper.isMultiplication(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Multiplication)
       {
         return "(" + this.convertASTToFormula(astNode.expression.left) + "*" + this.convertASTToFormula(astNode.expression.right) + ")";
       }
 
-      if (this.helper.isDivision(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Division)
       {
         return "(" + this.convertASTToFormula(astNode.expression.left) + "/" + this.convertASTToFormula(astNode.expression.right) + ")";
       }
 
-      if (this.helper.isPower(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Power)
       {
         return "(" + this.convertASTToFormula(astNode.expression.expression) + "^" + this.convertASTToFormula(astNode.expression.power) + ")";
       }
 
-      if (this.helper.isNegation(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Negation)
       {
         return "(-" + this.convertASTToFormula(astNode.expression.expression) + ")";
       }
 
-      if (this.helper.isFunction(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Function)
       {
         return "(" + astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")" + ")";
       }
 
-      if (this.helper.isParen(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Paren)
       {
         return '(' + this.convertASTToFormula(astNode.expression) + ')';
       }
 
-      if (this.helper.isNumber(astNode.expression.type))
+      if (astNode.expression.type === NodeType.Number)
       {
         return "(" + this.convertASTToFormula(astNode.expression) + ")";
       }
 
-      if (this.helper.isVariable(astNode.type))
+      if (astNode.expression.type === NodeType.Variable)
       {
         return astNode.name;
       }
 
-      if (this.helper.isPI(astNode.type))
+      if (astNode.expression.type === NodeType.PI)
       {
         return astNode.value;
       }
 
-      if (this.helper.isE(astNode.type))
+      if (astNode.expression.type === NodeType.E)
       {
         return astNode.value;
       }
     }
 
-    return "Something Wrong Happened....";
+    return "Wrong expression";
+  }
+
+  removeNode(syntaxTree: NodeModel, idToDelete: string): void
+  {
+    if (syntaxTree.left.id === idToDelete)
+    {
+      // syntaxTree.left = new NodeList();
+    } else
+    {
+      this.removeNode(syntaxTree.left, idToDelete);
+    }
+    if (syntaxTree.right)
+    {
+      this.removeNode(syntaxTree.right, idToDelete);
+    }
+    if (syntaxTree.expression)
+    {
+      this.removeNode(syntaxTree.expression, idToDelete);
+    }
+    if (syntaxTree.power)
+    {
+      this.removeNode(syntaxTree.power, idToDelete);
+    }
   }
 }

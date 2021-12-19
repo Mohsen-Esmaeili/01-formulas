@@ -1,0 +1,7 @@
+.expression-item {
+  .input-control {
+    ::ng-deep .mat-form-field-infix {
+      width: 120px;
+    }
+  }
+}

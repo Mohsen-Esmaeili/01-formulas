@@ -2,18 +2,12 @@
   .node-action-button {
     z-index: 1;
     position: relative;
-    top: -40px;
+    top: -15px;
   }
 
   .select-control {
     ::ng-deep .mat-form-field-infix {
-      width: 130px;
-    }
-  }
-
-  .input-control {
-    ::ng-deep .mat-form-field-infix {
-      width: 140px;
+      width: 100px;
     }
   }
 
