@@ -33,4 +33,9 @@ export class ExpressionListComponent implements OnInit
     }
     return [];
   }
+
+  addNew(expressionId: number): void
+  {
+
+  }
 }

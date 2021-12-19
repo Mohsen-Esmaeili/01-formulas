@@ -130,6 +130,11 @@ export class FormulaService
     return "Wrong expression";
   }
 
+  addNewExpression(syntaxTree: NodeModel, id: number): void
+  {
+    console.log("Add Item");
+  }
+
   removeNode(syntaxTree: NodeModel, idToDelete: string): void
   {
     if (!syntaxTree)

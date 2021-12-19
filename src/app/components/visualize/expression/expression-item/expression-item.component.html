@@ -1,15 +1,15 @@
 <container-element [ngSwitch]="syntaxTree?.type" class="expression-item">
   <div *ngSwitchCase="'NUMBER'">
-    <div class="alert alert-info">{{ syntaxTree?.value }}</div>
+    <div class="alert alert-info const-value">{{ syntaxTree?.value }}</div>
   </div>
   <div *ngSwitchCase="'PI'">
-    <div class="alert alert-info">PI</div>
+    <div class="alert alert-info const-value">PI</div>
   </div>
   <div *ngSwitchCase="'E'">
-    <div class="alert alert-info">E</div>
+    <div class="alert alert-info const-value">E</div>
   </div>
   <div *ngSwitchCase="'FUNCTION'">
-    <div class="alert alert-info">{{ syntaxTree?.name }}
+    <div class="alert alert-success"><span class="const-value">{{ syntaxTree?.name }}</span>
       <ng-container *ngIf="syntaxTree?.arguments && syntaxTree.arguments.length > 0">
         <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false" [canAdd]="false"
           (removeEmitter)="RemoveNode($event)">

@@ -1,7 +1,9 @@
 .expression {
   .select-control {
+    font-weight: 700;
+
     ::ng-deep .mat-form-field-infix {
-      width: 100px;
+      width: 40px;
     }
   }
 
@@ -12,4 +14,13 @@
     justify-content: center;
     padding: 5px;
   }
+}
+
+::ng-deep .mat-option-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+  display: none;
 }

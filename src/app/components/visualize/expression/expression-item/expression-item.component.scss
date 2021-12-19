@@ -1,7 +1,14 @@
 .expression-item {
   .input-control {
+    font-weight: 600;
+
     ::ng-deep .mat-form-field-infix {
       width: 120px;
     }
+  }
+
+  .const-value {
+    font-size: 20px;
+    font-weight: 700;
   }
 }

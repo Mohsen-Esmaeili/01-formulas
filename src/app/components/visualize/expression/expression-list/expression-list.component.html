@@ -5,7 +5,9 @@
   <ng-container *ngFor="let expression of expressionList">
     <button mat-menu-item [matMenuTriggerFor]="SubMenu">{{ expression.title }}</button>
     <mat-menu #SubMenu="matMenu">
-      <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item>{{ subItem.title }}</button>
+      <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem.id)">
+        {{ subItem.title }}
+      </button>
     </mat-menu>
   </ng-container>
 </mat-menu>
