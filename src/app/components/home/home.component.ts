@@ -14,7 +14,7 @@ const parse = Parser.parse;
 export class HomeComponent implements OnInit, AfterContentInit
 {
 
-  // formula: string = "($b + SQRT (SQR($b) - 4 * $a)) / (2 * $a)";
+  // formula: string = "($b + SQRT (SQR($b) - (4 * $a))) / (2 * $a)";
   // formula: string = "($b - 4 - $a) - (2 -  $a)";
   visualizerOutput: string = "";
   syntaxTree: NodeModel;
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, AfterContentInit
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
-      formula: ['2 * $a']
+      formula: ['($b + SQRT (6 * $a)) / (2 * $a)']
     });
   }
 

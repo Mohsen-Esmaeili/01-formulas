@@ -8,14 +8,15 @@
   <div *ngSwitchCase="'E'">
     <div class="alert alert-info const-value">E</div>
   </div>
-  <div *ngSwitchCase="'FUNCTION'">
-    <div class="alert alert-success"><span class="const-value">{{ syntaxTree?.name }}</span>
-      <ng-container *ngIf="syntaxTree?.arguments && syntaxTree.arguments.length > 0">
-        <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false" [canAdd]="false"
-          (removeEmitter)="RemoveNode($event)">
-        </app-expression>
-      </ng-container>
+  <div *ngSwitchCase="'FUNCTION'" class="d-flex flex-row align-items-center">
+    <div class="alert alert-success function-name-container">
+      <span class="const-value">{{ syntaxTree?.name }}</span>
     </div>
+    <ng-container *ngIf="syntaxTree?.arguments && syntaxTree.arguments.length > 0">
+      <app-expression *ngFor="let arg of syntaxTree.arguments" [syntaxTree]="arg" [canRemove]="false" [canAdd]="false"
+        (removeEmitter)="RemoveNode($event)">
+      </app-expression>
+    </ng-container>
   </div>
   <div *ngSwitchCase="'VARIABLE'">
     <mat-form-field appearance="fill" class="input-control">
