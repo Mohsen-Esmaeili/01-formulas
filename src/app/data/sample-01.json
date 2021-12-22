@@ -1,0 +1,53 @@
+{
+  "id": "b6368383-b3ca-422b-9a69-eef8978983f7",
+  "type": "POWER",
+  "expression": {
+    "id": "1f4f84ee-b7a6-43a5-9af5-4d61c669ed02",
+    "type": "PAREN",
+    "expression": {
+      "id": "185de37d-ce32-4177-bc8b-577e199bf727",
+      "type": "MULTIPLICATION",
+      "left": {
+        "id": "641ee95e-dd0d-4600-8f34-c3e1498b29a6",
+        "type": "PAREN",
+        "expression": {
+          "id": "3e94b19d-0948-4d53-b78e-d9213bb262e9",
+          "type": "ADDITION",
+          "left": {
+            "id": "c8604747-8536-4e18-91d4-fd99544cc682",
+            "type": "VARIABLE",
+            "name": "$b"
+          },
+          "right": {
+            "id": "83bec7ac-0afb-4481-885c-a24ccb6eb186",
+            "type": "NUMBER",
+            "value": 2
+          }
+        }
+      },
+      "right": {
+        "id": "eb45678f-d4ce-410f-bf62-c1cdb7ee9484",
+        "type": "PAREN",
+        "expression": {
+          "id": "365b5479-ec97-44a6-b065-00dfaae5e845",
+          "type": "SUBTRACTION",
+          "left": {
+            "id": "f496189b-7be3-4ae6-a53a-96a4a1e9942f",
+            "type": "VARIABLE",
+            "name": "$a"
+          },
+          "right": {
+            "id": "ebd8246d-a5fd-4148-a49e-14011105c090",
+            "type": "NUMBER",
+            "value": 5
+          }
+        }
+      }
+    }
+  },
+  "power": {
+    "id": "eabcbd88-ef01-4677-9363-f7e46bfcaa5c",
+    "type": "NUMBER",
+    "value": 2
+  }
+}

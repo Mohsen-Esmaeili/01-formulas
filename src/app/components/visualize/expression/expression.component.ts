@@ -54,12 +54,12 @@ export class ExpressionComponent implements OnInit
     return syntaxTree.type === NodeType.Paren;
   }
 
-  get leftExpression(): NodeModel
+  get leftExpression(): NodeModel | undefined
   {
     return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.expression : this.syntaxTree.left;
   }
 
-  get rightExpression(): NodeModel
+  get rightExpression(): NodeModel | undefined
   {
     return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.power : this.syntaxTree.right;
   }

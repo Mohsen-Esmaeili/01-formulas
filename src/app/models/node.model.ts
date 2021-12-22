@@ -5,9 +5,9 @@ export class NodeModel
   public name: string = "";
   public value: number = 0;
   public arguments: Array<NodeModel> = [];
-  public power: NodeModel = new NodeModel();
-  public expression: NodeModel = new NodeModel();
-  public left: NodeModel = new NodeModel();
-  public right: NodeModel = new NodeModel();
+  public power: NodeModel | undefined;
+  public expression: NodeModel | undefined;
+  public left: NodeModel | undefined;
+  public right: NodeModel | undefined;
 }
 

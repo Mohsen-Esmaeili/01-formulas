@@ -6,7 +6,7 @@ import { ExpressionModel } from './../models/expression.model';
 @Injectable()
 export class FormulaService
 {
-  syntaxTreeEmitter = new EventEmitter<NodeModel>();
+  syntaxTreeEmitter = new EventEmitter<NodeModel | undefined>();
 
   convertASTToFormula(astNode: NodeModel): string | number
   {
@@ -30,32 +30,32 @@ export class FormulaService
       return astNode.value;
     }
 
-    if (astNode.type === NodeType.Addition)
+    if (astNode.type === NodeType.Addition && astNode.left && astNode.right)
     {
-      return this.convertASTToFormula(astNode.left) + '+' + this.convertASTToFormula(astNode.right);
+      return this.convertASTToFormula(astNode?.left) + '+' + this.convertASTToFormula(astNode.right);
     }
 
-    if (astNode.type === NodeType.Subtraction)
+    if (astNode.type === NodeType.Subtraction && astNode.left && astNode.right)
     {
       return this.convertASTToFormula(astNode.left) + '-' + this.convertASTToFormula(astNode.right);
     }
 
-    if (astNode.type === NodeType.Multiplication)
+    if (astNode.type === NodeType.Multiplication && astNode.left && astNode.right)
     {
       return this.convertASTToFormula(astNode.left) + '*' + this.convertASTToFormula(astNode.right);
     }
 
-    if (astNode.type === NodeType.Division)
+    if (astNode.type === NodeType.Division && astNode.left && astNode.right)
     {
       return this.convertASTToFormula(astNode.left) + '/' + this.convertASTToFormula(astNode.right);
     }
 
-    if (astNode.type === NodeType.Power)
+    if (astNode.type === NodeType.Power && astNode.power && astNode.expression)
     {
       return this.convertASTToFormula(astNode.expression) + '^' + this.convertASTToFormula(astNode.power);
     }
 
-    if (astNode.type === NodeType.Negation)
+    if (astNode.type === NodeType.Negation && astNode.expression)
     {
       return "-" + this.convertASTToFormula(astNode.expression);
     }
@@ -65,63 +65,64 @@ export class FormulaService
       return astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")";
     }
 
-    if (astNode.type === NodeType.Paren)
+    if (astNode.type === NodeType.Paren && astNode.expression)
     {
-      if (astNode.expression.type === NodeType.Subtraction)
+      const expression = astNode.expression;
+      if (expression.type === NodeType.Subtraction && expression.left && expression.right)
       {
-        return "(" + this.convertASTToFormula(astNode.expression.left) + "-" + this.convertASTToFormula(astNode.expression.right) + ")";
+        return "(" + this.convertASTToFormula(expression.left) + "-" + this.convertASTToFormula(expression.right) + ")";
       }
-      if (astNode.expression.type === NodeType.Addition)
+      if (expression.type === NodeType.Addition && expression.left && expression.right)
       {
-        return "(" + this.convertASTToFormula(astNode.expression.left) + "+" + this.convertASTToFormula(astNode.expression.right) + ")";
-      }
-
-      if (astNode.expression.type === NodeType.Multiplication)
-      {
-        return "(" + this.convertASTToFormula(astNode.expression.left) + "*" + this.convertASTToFormula(astNode.expression.right) + ")";
+        return "(" + this.convertASTToFormula(expression.left) + "+" + this.convertASTToFormula(expression.right) + ")";
       }
 
-      if (astNode.expression.type === NodeType.Division)
+      if (expression.type === NodeType.Multiplication && expression.left && expression.right)
       {
-        return "(" + this.convertASTToFormula(astNode.expression.left) + "/" + this.convertASTToFormula(astNode.expression.right) + ")";
+        return "(" + this.convertASTToFormula(expression.left) + "*" + this.convertASTToFormula(expression.right) + ")";
       }
 
-      if (astNode.expression.type === NodeType.Power)
+      if (expression.type === NodeType.Division && expression.left && expression.right)
       {
-        return "(" + this.convertASTToFormula(astNode.expression.expression) + "^" + this.convertASTToFormula(astNode.expression.power) + ")";
+        return "(" + this.convertASTToFormula(expression.left) + "/" + this.convertASTToFormula(expression.right) + ")";
       }
 
-      if (astNode.expression.type === NodeType.Negation)
+      if (expression.type === NodeType.Power && expression.expression && expression.power)
       {
-        return "(-" + this.convertASTToFormula(astNode.expression.expression) + ")";
+        return "(" + this.convertASTToFormula(expression.expression) + "^" + this.convertASTToFormula(expression.power) + ")";
       }
 
-      if (astNode.expression.type === NodeType.Function)
+      if (expression.type === NodeType.Negation && expression.expression)
+      {
+        return "(-" + this.convertASTToFormula(expression.expression) + ")";
+      }
+
+      if (expression.type === NodeType.Function)
       {
         return "(" + astNode.name + "(" + astNode.arguments.map(arg => this.convertASTToFormula(arg)).join(", ") + ")" + ")";
       }
 
-      if (astNode.expression.type === NodeType.Paren)
+      if (expression.type === NodeType.Paren)
       {
-        return '(' + this.convertASTToFormula(astNode.expression) + ')';
+        return '(' + this.convertASTToFormula(expression) + ')';
       }
 
-      if (astNode.expression.type === NodeType.Number)
+      if (expression.type === NodeType.Number)
       {
-        return "(" + this.convertASTToFormula(astNode.expression) + ")";
+        return "(" + this.convertASTToFormula(expression) + ")";
       }
 
-      if (astNode.expression.type === NodeType.Variable)
+      if (expression.type === NodeType.Variable)
       {
         return astNode.name;
       }
 
-      if (astNode.expression.type === NodeType.PI)
+      if (expression.type === NodeType.PI)
       {
         return astNode.value;
       }
 
-      if (astNode.expression.type === NodeType.E)
+      if (expression.type === NodeType.E)
       {
         return astNode.value;
       }
@@ -135,64 +136,142 @@ export class FormulaService
     console.log("Add Item");
   }
 
-  removeNode(syntaxTree: NodeModel, idToDelete: string): void
+  removeNode(syntaxTree: NodeModel, id: string): [syntaxTree: NodeModel | undefined, isDeleted: boolean]
   {
-    if (!syntaxTree)
+    debugger;
+    let result: [syntaxTree: NodeModel | undefined, isDeleted: boolean] = [syntaxTree, false];
+
+    //Remove root
+    if (syntaxTree.id === id)
     {
-      return;
+      result = [undefined, true];
+      console.log(result);
+      return result;
     }
 
-    if (syntaxTree.id === idToDelete)
-    {
-      syntaxTree = new NodeModel();
-      return;
-    }
-
+    //Check left
     if (syntaxTree.left)
     {
-      if (syntaxTree.left.id === idToDelete)
+      if (syntaxTree.left?.id === id)
       {
-        syntaxTree.left = new NodeModel();
-        return;
-      } else
+        delete syntaxTree.left;
+        result = [syntaxTree, true];
+        console.log(result);
+        return result;
+      }
+      else
       {
-        this.removeNode(syntaxTree.left, idToDelete);
+        result = this.removeNode(syntaxTree.left, id);
+        if (result[1])
+        {
+          syntaxTree.left = result[0];
+          return [syntaxTree, true];
+        }
+        // if (result[1])
+        // {
+        // return result;
+        // }
       }
     }
 
+    //Check right
     if (syntaxTree.right)
     {
-      if (syntaxTree.right.id === idToDelete)
+      if (syntaxTree.right?.id === id)
       {
-        syntaxTree.right = new NodeModel();
-        return;
-      } else
+        delete syntaxTree.right;
+        result = [syntaxTree, true];
+        console.log(result);
+        return result;
+      }
+      else
       {
-        this.removeNode(syntaxTree.right, idToDelete);
+        result = this.removeNode(syntaxTree.right, id);
+        if (result[1])
+        {
+          syntaxTree.left = result[0];
+          return [syntaxTree, true];
+        }
+        // if (result[1])
+        // {
+        // return result;
+        // }
       }
     }
+
+    //Check expression
     if (syntaxTree.expression)
     {
-      if (syntaxTree.expression.id === idToDelete)
+      if (syntaxTree.expression?.id === id)
       {
-        syntaxTree.expression = new NodeModel();
-        return;
-      } else
+        delete syntaxTree.expression;
+        result = [syntaxTree, true];
+        console.log(result);
+        return result;
+      }
+      else
       {
-        this.removeNode(syntaxTree.expression, idToDelete);
+        result = this.removeNode(syntaxTree.expression, id);
+        if (result[1])
+        {
+          syntaxTree.expression = result[0];
+          return [syntaxTree, true];
+        }
+        // if (result[1])
+        // {
+        // return result;
+        // }
       }
     }
+
+    //Check right
     if (syntaxTree.power)
     {
-      if (syntaxTree.power.id === idToDelete)
+      if (syntaxTree.power?.id === id)
       {
-        syntaxTree.power = new NodeModel();
-        return;
-      } else
+        delete syntaxTree.power;
+        result = [syntaxTree, true];
+        console.log(result);
+        return result;
+      }
+      else
       {
-        this.removeNode(syntaxTree.power, idToDelete);
+        result = this.removeNode(syntaxTree.power, id);
+        console.log(result);
+        // if (result[1])
+        // {
+        // return result;
+        // }
       }
     }
+
+    console.log(result);
+    return result;
+
+
+    // if (syntaxTree.id === idToDelete)
+    // {
+    //   return ;
+    // }
+
+    // if (syntaxTree.left)
+    // {
+    //   return this.removeNode(syntaxTree.left, idToDelete);
+    // }
+
+    // if (syntaxTree.right)
+    // {
+    //   return this.removeNode(syntaxTree.right, idToDelete);
+    // }
+    // if (syntaxTree.expression)
+    // {
+    //   return this.removeNode(syntaxTree.expression, idToDelete);
+    // }
+    // if (syntaxTree.power)
+    // {
+    //   return this.removeNode(syntaxTree.power, idToDelete);
+    // }
+    // return new NodeModel();
   }
 
   getExpressionData(): Array<ExpressionModel>

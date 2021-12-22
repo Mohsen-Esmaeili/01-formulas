@@ -12,4 +12,5 @@ export class NodeType
   static Power: string = "POWER";
   static Function: string = "FUNCTION";
   static Negation: string = "NEGATION";
+  static Empty: string = "EMPTY";
 }

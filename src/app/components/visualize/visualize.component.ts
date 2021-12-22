@@ -15,6 +15,7 @@ export class VisualizeComponent
 
   onRemove(idToDelete: string): void
   {
-    this.formulaService.removeNode(this.syntaxTree, idToDelete);
+    const newSyntaxTree = this.formulaService.removeNode(this.syntaxTree, idToDelete);
+    this.formulaService.syntaxTreeEmitter.emit(newSyntaxTree[0]);
   }
 }
