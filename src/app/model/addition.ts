@@ -24,6 +24,14 @@ export class Addition extends Node
       this.left = this.left.removeChildById(id);
     }
 
+    if (this.right.id === id)
+    {
+      this.right = new EmptyNode();
+    } else
+    {
+      this.right = this.right.removeChildById(id);
+    }
+
     return this;
   }
 
