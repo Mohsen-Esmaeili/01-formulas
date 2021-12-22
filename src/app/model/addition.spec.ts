@@ -12,6 +12,15 @@ describe('Addition', () =>
     expect(node).not.toBeNull();
   });
 
+  it("Should has valid id", () =>
+  {
+    // arrange
+    const node = new Addition(new Value(3), new Value(5));
+
+    // check
+    expect(node.id).not.toBeNull();
+  });
+
   it('Remove left child with one level', () =>
   {
     // arrange
@@ -22,10 +31,10 @@ describe('Addition', () =>
 
     // check
     expect(node.left.type).toEqual(NodeType.Empty);
-    expect(node.right.type).toEqual(NodeType.Number);
+    expect(node.right.type).not.toEqual(NodeType.Empty);
   });
 
-  it('Remove right child', () =>
+  it('Remove right child with one level', () =>
   {
     // arrange
     const node = new Addition(new Value(7), new Value(6));
@@ -35,7 +44,7 @@ describe('Addition', () =>
 
     // check
     expect(node.right.type).toEqual(NodeType.Empty);
-    expect(node.left.type).toEqual(NodeType.Number);
+    expect(node.left.type).not.toEqual(NodeType.Empty);
   });
 
   it('Remove left child from second level', () =>
@@ -46,11 +55,10 @@ describe('Addition', () =>
     const node = new Paren(expression);
 
     // act
-    node.removeChildById(nodeToBeDeleted.id);
+    node.removeChildById(nodeToBeDeleted.left.id);
 
-    //check
-    expect(expression.left.type).toEqual(NodeType.Empty);
-    expect(expression.right.type).toEqual(NodeType.Number);
+    // check
+    expect((((node as Paren).expression as Addition).left as Addition).left.type).toEqual(NodeType.Empty);
   });
 
   it('Remove right child from second level', () =>
@@ -61,10 +69,9 @@ describe('Addition', () =>
     const node = new Paren(expression);
 
     // act
-    node.removeChildById(nodeToBeDeleted.id);
+    node.removeChildById(nodeToBeDeleted.right.id);
 
     //check
-    expect(expression.right.type).toEqual(NodeType.Empty);
-    expect(expression.left.type).toEqual(NodeType.Number);
+    expect((((node as Paren).expression as Addition).right as Addition).right.type).toEqual(NodeType.Empty);
   });
 });

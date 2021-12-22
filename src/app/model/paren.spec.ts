@@ -12,7 +12,16 @@ describe('Paren', () =>
     expect(node).not.toBeNull();
   });
 
-  it('Remove addition expression', () =>
+  it("Should has valid id", () =>
+  {
+    // arrange
+    const node = new Paren(new Addition(new Value(3), new Value(5)));
+
+    // check
+    expect(node.id).not.toBeNull();
+  });
+
+  it('Remove addition expression with one level', () =>
   {
     // arrange
     const additionNode = new Addition(new Value(5), new Value(7));

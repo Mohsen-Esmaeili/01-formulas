@@ -4,8 +4,29 @@ describe('Value', () =>
 {
   it('Constructor', () =>
   {
+    // arrange
     const node = new Value(7);
 
+    // check
     expect(node).not.toBeNull();
+  });
+
+  it("Should has valid id", () =>
+  {
+    // arrange
+    const node = new Value(5);
+
+    // check
+    expect(node.id).not.toBeNull();
+  });
+
+  it('Should have correct name', () =>
+  {
+    // arrange
+    const nodeValue = 9;
+    const node = new Value(nodeValue);
+
+    //check
+    expect(node.value).toEqual(nodeValue);
   });
 });

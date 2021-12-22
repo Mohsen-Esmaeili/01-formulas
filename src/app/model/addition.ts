@@ -16,6 +16,7 @@ export class Addition extends Node
 
   override removeChildById(id: string): Node
   {
+    // Explore in the left side
     if (this.left.id === id)
     {
       this.left = new EmptyNode();
@@ -24,6 +25,7 @@ export class Addition extends Node
       this.left = this.left.removeChildById(id);
     }
 
+    // Explore in the right side
     if (this.right.id === id)
     {
       this.right = new EmptyNode();

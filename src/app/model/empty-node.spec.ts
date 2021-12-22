@@ -8,4 +8,13 @@ describe('EmptyNode', () =>
 
     expect(node).not.toBeNull();
   });
+
+  it("Should has valid id", () =>
+  {
+    // arrange
+    const node = new EmptyNode();
+
+    // check
+    expect(node.id).not.toBeNull();
+  });
 });
