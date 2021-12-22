@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import * as Parser from '../../parser/formula-parser.js';
 import { NodeModel } from './../../models/node.model';
 import { FormulaService } from './../../services/formula.service';
+import { NodeManager } from './../../services/node-manager';
 
 const parse = Parser.parse;
 @Component({
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit, AfterContentInit
 
   form: FormGroup;
 
-  constructor(private formulaService: FormulaService, private formBuilder: FormBuilder) { }
+  constructor(private formulaService: FormulaService, private formBuilder: FormBuilder, private nodeManager: NodeManager) { }
 
   ngOnInit(): void
   {
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit, AfterContentInit
     {
       return;
     }
+    console.log(this.nodeManager.Load(this.formControls["formula"].value));
 
     console.log('creating ast view...');
     this.syntaxTree = parse(this.formControls["formula"].value);

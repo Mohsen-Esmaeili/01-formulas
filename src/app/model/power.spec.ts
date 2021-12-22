@@ -68,7 +68,7 @@ describe('Power', () =>
     node.removeChildById(nodeToBeDeleted.expression.id);
 
     // check
-    expect((((node as Paren).expression as Addition).left as Power).expression.type).toEqual(NodeType.Empty);
+    expect((<Power>(<Addition>(<Paren>node).expression).left).expression.type).toEqual(NodeType.Empty);
   });
 
   it('Remove power from power expression from second level', () =>
@@ -82,6 +82,6 @@ describe('Power', () =>
     node.removeChildById(nodeToBeDeleted.power.id);
 
     //check
-    expect((((node as Paren).expression as Addition).right as Power).power.type).toEqual(NodeType.Empty);
+    expect((<Power>(<Addition>(<Paren>node).expression).right).power.type).toEqual(NodeType.Empty);
   });
 });

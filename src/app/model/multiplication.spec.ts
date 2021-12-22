@@ -67,7 +67,7 @@ describe('Multiplication', () =>
     node.removeChildById(nodeToDelete.left.id);
 
     // check
-    expect((((node as Paren).expression as Multiplication).left as Multiplication).left.type).toEqual(NodeType.Empty);
+    expect((<Multiplication>(<Multiplication>(<Paren>node).expression).left).left.type).toEqual(NodeType.Empty);
   });
 
   it('Remove right child with from second level', () =>
@@ -81,6 +81,6 @@ describe('Multiplication', () =>
     node.removeChildById(nodeToDelete.right.id);
 
     // check
-    expect((((node as Paren).expression as Multiplication).right as Multiplication).right.type).toEqual(NodeType.Empty);
+    expect((<Multiplication>(<Multiplication>(<Paren>node).expression).right).right.type).toEqual(NodeType.Empty);
   });
 });

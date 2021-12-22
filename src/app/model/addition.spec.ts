@@ -67,7 +67,7 @@ describe('Addition', () =>
     node.removeChildById(nodeToBeDeleted.left.id);
 
     // check
-    expect((((node as Paren).expression as Addition).left as Addition).left.type).toEqual(NodeType.Empty);
+    expect((<Addition>(<Addition>(<Paren>node).expression).left).left.type).toEqual(NodeType.Empty);
   });
 
   it('Remove right child from second level', () =>
@@ -81,6 +81,6 @@ describe('Addition', () =>
     node.removeChildById(nodeToBeDeleted.right.id);
 
     //check
-    expect((((node as Paren).expression as Addition).right as Addition).right.type).toEqual(NodeType.Empty);
+    expect((<Addition>(<Addition>(<Paren>node).expression).right).right.type).toEqual(NodeType.Empty);
   });
 });

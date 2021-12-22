@@ -67,7 +67,7 @@ describe('Division', () =>
     node.removeChildById(nodeToDelete.left.id);
 
     // check
-    expect((((node as Paren).expression as Division).left as Division).left.type).toEqual(NodeType.Empty);
+    expect((<Division>(<Division>(<Paren>node).expression).left).left.type).toEqual(NodeType.Empty);
   });
 
   it('Remove right child with from second level', () =>
@@ -81,6 +81,6 @@ describe('Division', () =>
     node.removeChildById(nodeToDelete.right.id);
 
     // check
-    expect((((node as Paren).expression as Division).right as Division).right.type).toEqual(NodeType.Empty);
+    expect((<Division>(<Division>(<Paren>node).expression).right).right.type).toEqual(NodeType.Empty);
   });
 });
