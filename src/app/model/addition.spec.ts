@@ -18,6 +18,6 @@ describe('Addition', () =>
     // act
     node.removeChildById(node.left.id);
 
-    expect(node.left.type).toEqual(NodeType);
+    expect(node.left.type).toEqual(NodeType.Empty);
   });
 });
