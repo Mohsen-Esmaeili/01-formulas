@@ -7,9 +7,14 @@ export class Paren extends Node
   {
     return NodeType.Paren;
   }
+
+  constructor(public expression: Node)
+  {
+    super();
+  }
+
   removeChildById(id: string): Node
   {
     throw new Error('Method not implemented.');
   }
-  expression: Node;
 }

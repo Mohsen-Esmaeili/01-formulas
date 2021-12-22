@@ -14,7 +14,7 @@ export class Addition extends Node
     super();
   }
 
-  removeChildById(id: string): Node
+  override removeChildById(id: string): Node
   {
     if (this.left.id === id)
     {
