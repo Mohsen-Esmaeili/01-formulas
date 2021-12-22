@@ -1,5 +1,6 @@
 import { NodeType } from './../constants/node-type';
 import { Addition } from './addition';
+import { Paren } from './paren';
 import { Value } from './value';
 
 describe('Addition', () =>
@@ -26,10 +27,14 @@ describe('Addition', () =>
   it('Remove left child from second level', () =>
   {
     // arrange
-    const node = new Addition(new Value(3), new Value(3));
+    const nodeToBeDeleted = new Addition(new Value(4), new Value(5));
+    const expression = new Addition(nodeToBeDeleted, new Value(8));
+    const node = new Paren(expression);
+
     // act
+    node.removeChildById(nodeToBeDeleted.id);
 
     //check
-
+    expect(expression.left.type).toEqual(NodeType.Empty);
   });
 });

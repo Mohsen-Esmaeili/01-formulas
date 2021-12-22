@@ -1,4 +1,5 @@
 import { NodeType } from '../constants/node-type';
+import { EmptyNode } from './empty-node';
 import { Node } from './node';
 
 export class Variable extends Node
@@ -7,11 +8,27 @@ export class Variable extends Node
   {
     return NodeType.Variable;
   }
+
   constructor(public name: string)
   {
     super();
   }
+
   removeChildById(id: string): Node
+  {
+    if (this.id === id)
+    {
+      return new EmptyNode();
+    }
+    return this;
+  }
+
+  getString(): string
+  {
+    return this.name;
+  }
+
+  getNode(string: Node): Node
   {
     return this;
   }

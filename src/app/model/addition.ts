@@ -26,4 +26,14 @@ export class Addition extends Node
 
     return this;
   }
+
+  getString(): string
+  {
+    return `${ this.left.getString() } + ${ this.right.getString() }`;
+  }
+
+  getNode(string: Node): Node
+  {
+    return this;
+  }
 }

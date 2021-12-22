@@ -22,5 +22,5 @@ export class NodeManager
   }
 }
 
-let node = NodeManager.Load();
-console.log(node);
+// let node = NodeManager.Load();
+// console.log(node);

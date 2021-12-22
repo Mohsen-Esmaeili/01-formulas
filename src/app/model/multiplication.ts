@@ -1,4 +1,5 @@
 import { NodeType } from '../constants/node-type';
+import { EmptyNode } from './empty-node';
 import { Node } from './node';
 
 export class Multiplication extends Node
@@ -7,10 +8,31 @@ export class Multiplication extends Node
   {
     return NodeType.Multiplication;
   }
+
+  constructor(public left: Node, public right: Node)
+  {
+    super();
+  }
+
   removeChildById(id: string): Node
   {
-    throw new Error('Method not implemented.');
+    if (this.left.id === id)
+    {
+      this.left = new EmptyNode();
+    } else
+    {
+      this.left = this.left.removeChildById(id);
+    }
+    return this;
   }
-  left: Node;
-  right: Node;
+
+  getString(): string
+  {
+    return "";
+  }
+
+  getNode(string: Node): Node
+  {
+    return this;
+  }
 }

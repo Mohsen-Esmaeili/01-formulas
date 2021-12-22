@@ -1,4 +1,5 @@
 import { NodeType } from '../constants/node-type';
+import { EmptyNode } from './empty-node';
 import { Node } from './node';
 
 export class Power extends Node
@@ -7,12 +8,31 @@ export class Power extends Node
   {
     return NodeType.Power;
   }
+
   constructor(public expression: Node, public power: Node)
   {
     super();
   }
+
   removeChildById(id: string): Node
   {
-    throw new Error('Method not implemented.');
+    if (this.expression.id === id)
+    {
+      this.expression = new EmptyNode();
+    } else
+    {
+      this.expression = this.expression.removeChildById(id);
+    }
+    return this;
+  }
+
+  getString(): string
+  {
+    return "";
+  }
+
+  getNode(string: Node): Node
+  {
+    return this;
   }
 }

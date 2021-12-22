@@ -1,4 +1,5 @@
 import { NodeType } from '../constants/node-type';
+import { EmptyNode } from './empty-node';
 import { Node } from './node';
 
 export class Paren extends Node
@@ -15,6 +16,23 @@ export class Paren extends Node
 
   removeChildById(id: string): Node
   {
-    throw new Error('Method not implemented.');
+    if (this.expression.id === id)
+    {
+      this.expression = new EmptyNode();
+    } else
+    {
+      this.expression = this.expression.removeChildById(id);
+    }
+    return this;
+  }
+
+  getString(): string
+  {
+    return `(${ this.expression.getString() })`;
+  }
+
+  getNode(string: Node): Node
+  {
+    return this;
   }
 }

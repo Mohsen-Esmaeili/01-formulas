@@ -11,4 +11,14 @@ export class EmptyNode extends Node
   {
     return this;
   }
+
+  getString(): string
+  {
+    return "";
+  }
+
+  getNode(string: Node): Node
+  {
+    return this;
+  }
 }
