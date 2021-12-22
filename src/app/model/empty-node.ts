@@ -16,9 +16,4 @@ export class EmptyNode extends Node
   {
     return "_EMPTY_";
   }
-
-  getNode(string: Node): Node
-  {
-    return this;
-  }
 }

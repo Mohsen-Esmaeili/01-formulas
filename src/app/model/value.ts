@@ -26,9 +26,4 @@ export class Value extends Node
   {
     return this.value.toString();
   }
-
-  getNode(string: Node): Node
-  {
-    return this;
-  }
 }

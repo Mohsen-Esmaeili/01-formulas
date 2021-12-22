@@ -27,9 +27,4 @@ export class Variable extends Node
   {
     return this.name;
   }
-
-  getNode(string: Node): Node
-  {
-    return this;
-  }
 }

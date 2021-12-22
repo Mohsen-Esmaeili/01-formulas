@@ -41,9 +41,4 @@ export class Power extends Node
   {
     return `${ this.expression.getString() } ^ ${ this.power.getString() }`;
   }
-
-  getNode(string: Node): Node
-  {
-    return this;
-  }
 }

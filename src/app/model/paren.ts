@@ -30,9 +30,4 @@ export class Paren extends Node
   {
     return `(${ this.expression.getString() })`;
   }
-
-  getNode(string: Node): Node
-  {
-    return this;
-  }
 }
