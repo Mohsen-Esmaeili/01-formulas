@@ -1,7 +1,12 @@
 import { NodeType } from '../constants/node-type';
 import { Addition } from './addition';
+import { Division } from './division';
+import { Multiplication } from './multiplication';
 import { Paren } from './paren';
+import { Power } from './power';
+import { Subtraction } from './subtraction';
 import { Value } from './value';
+import { Variable } from './variable';
 
 describe('Paren', () =>
 {
@@ -19,6 +24,24 @@ describe('Paren', () =>
 
     // check
     expect(node.id).not.toBeNull();
+  });
+
+  it('Get correct string', () =>
+  {
+    // arrange
+    const node = new Paren(new Addition(new Value(7), new Value(10)));
+
+    // check
+    expect(node.getString()).toEqual('(7 + 10)');
+  });
+
+  it('Get complex string', () =>
+  {
+    // arrange
+    const node = new Division(new Paren(new Addition(new Paren(new Multiplication(new Value(6), new Variable('$b'))), new Paren(new Subtraction(new Variable('$a'), new Value(5))))), new Power(new Value(8), new Value(2)));
+
+    // check
+    expect(node.getString()).toEqual('((6 * $b) + ($a - 5)) / 8 ^ 2');
   });
 
   it('Remove addition expression with one level', () =>

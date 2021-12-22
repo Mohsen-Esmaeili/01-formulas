@@ -17,4 +17,13 @@ describe('EmptyNode', () =>
     // check
     expect(node.id).not.toBeNull();
   });
+
+  it('Get correct string', () =>
+  {
+    // arrange
+    const node = new EmptyNode();
+
+    // check
+    expect(node.getString()).toEqual('_EMPTY_');
+  });
 });

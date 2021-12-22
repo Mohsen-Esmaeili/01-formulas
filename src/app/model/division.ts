@@ -39,7 +39,7 @@ export class Division extends Node
 
   getString(): string
   {
-    return "";
+    return `${ this.left.getString() } / ${ this.right.getString() }`;
   }
 
   getNode(string: Node): Node

@@ -20,6 +20,15 @@ describe('Variable', () =>
     expect(node.id).not.toBeNull();
   });
 
+  it('Get correct string', () =>
+  {
+    // arrange
+    const node = new Variable("$a");
+
+    // check
+    expect(node.getString()).toEqual('$a');
+  });
+
   it('Should have correct name', () =>
   {
     // arrange

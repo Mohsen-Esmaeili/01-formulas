@@ -22,6 +22,15 @@ describe('Power', () =>
     expect(node.id).not.toBeNull();
   });
 
+  it('Get correct string', () =>
+  {
+    // arrange
+    const node = new Power(new Value(7), new Value(10));
+
+    // check
+    expect(node.getString()).toEqual('7 ^ 10');
+  });
+
   it('Remove expression from power from power expression with one level', () =>
   {
     // arrange

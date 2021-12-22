@@ -22,6 +22,15 @@ describe('Subtraction', () =>
     expect(node.id).not.toBeNull();
   });
 
+  it('Get correct string', () =>
+  {
+    // arrange
+    const node = new Subtraction(new Value(7), new Value(10));
+
+    // check
+    expect(node.getString()).toEqual('7 - 10');
+  });
+
   it('Remove left child with one level', () =>
   {
     // arrange

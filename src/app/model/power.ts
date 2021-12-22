@@ -39,7 +39,7 @@ export class Power extends Node
 
   getString(): string
   {
-    return "";
+    return `${ this.expression.getString() } ^ ${ this.power.getString() }`;
   }
 
   getNode(string: Node): Node

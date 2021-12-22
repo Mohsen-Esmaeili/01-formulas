@@ -14,7 +14,7 @@ export class EmptyNode extends Node
 
   getString(): string
   {
-    return "";
+    return "_EMPTY_";
   }
 
   getNode(string: Node): Node
