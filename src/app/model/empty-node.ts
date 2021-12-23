@@ -6,6 +6,10 @@ export class EmptyNode extends Node
   {
     return NodeType.Empty;
   }
+  addChild(id: string, node: Node): Node
+  {
+    return this;
+  }
 
   removeChildById(id: string): Node
   {

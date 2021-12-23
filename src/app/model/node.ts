@@ -14,6 +14,8 @@ export abstract class Node
     this.id = uuidv4();
   }
 
+  abstract addChild(id: string, node: Node): Node;
+
   abstract removeChildById(id: string): Node;
 
   abstract getString(): string;

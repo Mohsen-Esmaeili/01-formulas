@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormulaService } from '../../../../services/formula.service';
-import { ExpressionModel } from './../../../../models/expression.model';
+import { Expression } from '../../../../model/expression';
+import { ExpressionService } from './../../../../services/expression.service';
 
 @Component({
   selector: 'app-expression-list',
@@ -11,8 +11,8 @@ export class ExpressionListComponent implements OnInit
 {
   @Input() visible: boolean;
   @Input() containerId: string;
-  expressionList: Array<ExpressionModel> = [];
-  constructor(private formulaService: FormulaService) { }
+  expressionList: Array<Expression> = [];
+  constructor(private expressionService: ExpressionService) { }
 
   ngOnInit(): void
   {
@@ -21,10 +21,10 @@ export class ExpressionListComponent implements OnInit
 
   load(): void
   {
-    this.expressionList = this.formulaService.getExpressionData();
+    this.expressionList = this.expressionService.load();
   }
 
-  expressionDetails(id: number): Array<ExpressionModel>
+  expressionDetails(id: number): Array<Expression>
   {
     const parent = this.expressionList.find(x => x.id === id);
     if (parent)

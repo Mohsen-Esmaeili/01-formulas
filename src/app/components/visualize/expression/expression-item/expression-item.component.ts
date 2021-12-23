@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NodeType } from './../../../../constants/node-type';
-import { NodeModel } from './../../../../models/node.model';
+import { Node } from './../../../../model/node';
 
 @Component({
   selector: 'app-expression-item',
@@ -9,7 +9,7 @@ import { NodeModel } from './../../../../models/node.model';
 })
 export class ExpressionItemComponent implements OnInit
 {
-  @Input() syntaxTree: NodeModel;
+  @Input() syntaxTree: Node;
   @Output() valueEmitter = new EventEmitter<number>();
 
   value: number;
@@ -18,7 +18,7 @@ export class ExpressionItemComponent implements OnInit
   {
     if (this.isStaticValue)
     {
-      this.valueEmitter.emit(this.syntaxTree.value);
+      this.valueEmitter.emit(5);
     }
   }
 

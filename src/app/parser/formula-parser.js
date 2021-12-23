@@ -93,7 +93,6 @@ var formulaParser = (function ()
         case 2:
 
           this.$ = {
-            id: uuidv4(),
             type: 'ADDITION',
             left: $$[$0 - 2],
             right: $$[$0]
@@ -103,7 +102,6 @@ var formulaParser = (function ()
         case 3:
 
           this.$ = {
-            id: uuidv4(),
             type: 'SUBTRACTION',
             left: $$[$0 - 2],
             right: $$[$0]
@@ -113,7 +111,6 @@ var formulaParser = (function ()
         case 4:
 
           this.$ = {
-            id: uuidv4(),
             type: 'MULTIPLICATION',
             left: $$[$0 - 2],
             right: $$[$0]
@@ -123,7 +120,6 @@ var formulaParser = (function ()
         case 5:
 
           this.$ = {
-            id: uuidv4(),
             type: 'DIVISION',
             left: $$[$0 - 2],
             right: $$[$0]
@@ -133,7 +129,6 @@ var formulaParser = (function ()
         case 6:
 
           this.$ = {
-            id: uuidv4(),
             type: 'POWER',
             expression: $$[$0 - 2],
             power: $$[$0]
@@ -143,7 +138,6 @@ var formulaParser = (function ()
         case 7:
 
           this.$ = {
-            id: uuidv4(),
             type: 'NEGATION',
             expression: $$[$0]
           };
@@ -152,7 +146,6 @@ var formulaParser = (function ()
         case 8:
 
           this.$ = {
-            id: uuidv4(),
             type: 'PAREN',
             expression: $$[$0 - 1]
           };
@@ -161,7 +154,6 @@ var formulaParser = (function ()
         case 9:
 
           this.$ = {
-            id: uuidv4(),
             type: 'NUMBER',
             value: Number(yytext)
           };
@@ -170,7 +162,6 @@ var formulaParser = (function ()
         case 10:
 
           this.$ = {
-            id: uuidv4(),
             type: 'E',
             value: Math.E
           };
@@ -179,7 +170,6 @@ var formulaParser = (function ()
         case 11:
 
           this.$ = {
-            id: uuidv4(),
             type: 'PI',
             value: Math.PI
           };
@@ -188,7 +178,6 @@ var formulaParser = (function ()
         case 12:
 
           this.$ = {
-            id: uuidv4(),
             type: 'VARIABLE',
             name: yytext
           };
@@ -197,7 +186,6 @@ var formulaParser = (function ()
         case 13:
 
           this.$ = {
-            id: uuidv4(),
             type: 'FUNCTION',
             name: $$[$0 - 2],
             arguments: []
@@ -207,7 +195,6 @@ var formulaParser = (function ()
         case 14:
 
           this.$ = {
-            id: uuidv4(),
             type: 'FUNCTION',
             name: $$[$0 - 3],
             arguments: $$[$0 - 1]
@@ -855,11 +842,4 @@ if (typeof require !== 'undefined' && typeof exports !== 'undefined')
   {
     exports.main(process.argv.slice(1));
   }
-}
-
-function uuidv4()
-{
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  );
 }

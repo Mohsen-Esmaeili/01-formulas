@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { ExpressionService } from './../../../services/expression.service';
 import { ExpressionItemComponent } from './expression-item/expression-item.component';
 import { ExpressionListComponent } from './expression-list/expression-list.component';
 import { ExpressionComponent } from './expression.component';
@@ -15,6 +16,7 @@ import { ExpressionComponent } from './expression.component';
 const COMPONENTS = [ExpressionComponent, ExpressionItemComponent, ExpressionListComponent];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatMenuModule];
+const SERVICES = [ExpressionService];
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, Mat
     ...COMPONENTS,
     ...BASE_MODULES,
     ...MATERIAL_MODULES
+  ],
+  providers: [
+    ...SERVICES
   ]
 })
 export class ExpressionModule { }

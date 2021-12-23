@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NodeModel } from '../../models/node.model';
-import { FormulaService } from './../../services/formula.service';
+import { Node } from '../../model/node';
 
 @Component({
   selector: 'app-visualize',
@@ -9,13 +8,9 @@ import { FormulaService } from './../../services/formula.service';
 })
 export class VisualizeComponent
 {
-  @Input() syntaxTree: NodeModel;
-
-  constructor(private formulaService: FormulaService) { }
+  @Input() syntaxTree: Node;
 
   onRemove(idToDelete: string): void
   {
-    const newSyntaxTree = this.formulaService.removeNode(this.syntaxTree, idToDelete);
-    this.formulaService.syntaxTreeEmitter.emit(newSyntaxTree[0]);
   }
 }

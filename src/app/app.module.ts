@@ -5,11 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { FormulizerModule } from './components/formulizer/formulizer.module';
 import { HomeModule } from './components/home/home.module';
 
 const COMPONENTS = [AppComponent];
 const BASE_MODULES = [BrowserModule, FormsModule, BrowserAnimationsModule, NgbModule];
-const FORMULA_MODULES = [HomeModule];
+const FORMULA_MODULES = [HomeModule, FormulizerModule];
 
 @NgModule({
   declarations: [

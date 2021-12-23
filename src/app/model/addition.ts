@@ -14,6 +14,28 @@ export class Addition extends Node
     super();
   }
 
+  override addChild(id: string, node: Node): Node
+  {
+    // Explore in the left side
+    if (this.left.id === id)
+    {
+      this.left = node;
+    } else
+    {
+      this.left = this.left.addChild(id, node);
+    }
+
+    // Explore in the right side
+    if (this.right.id === id)
+    {
+      this.right = node;
+    } else
+    {
+      this.right = this.right.addChild(id, node);
+    }
+    return this;
+  }
+
   override removeChildById(id: string): Node
   {
     // Explore in the left side

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NodeModel } from '../../../models/node.model';
+import { Node } from '../../../model/node';
 import { NodeType } from './../../../constants/node-type';
 
 @Component({
@@ -10,7 +10,7 @@ import { NodeType } from './../../../constants/node-type';
 export class ExpressionComponent implements OnInit
 {
   operatorType: string = '';
-  @Input() syntaxTree: NodeModel;
+  @Input() syntaxTree: Node;
   @Input() canRemove: boolean;
   @Input() canAdd: boolean;
   @Output() resultEmitter = new EventEmitter<number>();
@@ -49,18 +49,20 @@ export class ExpressionComponent implements OnInit
     console.log(this.leftSideResult + this.rightSideResult);
   }
 
-  isNewExpression(syntaxTree: NodeModel): boolean
+  isNewExpression(syntaxTree: Node): boolean
   {
     return syntaxTree.type === NodeType.Paren;
   }
 
-  get leftExpression(): NodeModel | undefined
+  get leftExpression(): Node | undefined
   {
-    return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.expression : this.syntaxTree.left;
+    return this.syntaxTree;
+    // return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.expression : this.syntaxTree.left;
   }
 
-  get rightExpression(): NodeModel | undefined
+  get rightExpression(): Node | undefined
   {
-    return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.power : this.syntaxTree.right;
+    return this.syntaxTree;
+    // return this.syntaxTree.type === NodeType.Power ? this.syntaxTree.power : this.syntaxTree.right;
   }
 }

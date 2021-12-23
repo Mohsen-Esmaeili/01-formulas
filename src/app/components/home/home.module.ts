@@ -1,21 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material/tabs';
-import { VisualizeModule } from '../visualize/visualize.module';
-import { FormulaService } from './../../services/formula.service';
 import { HomeComponent } from './home.component';
 
 
 const COMPONENTS = [HomeComponent];
-const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule, MatButtonModule, MatTabsModule];
-const FORMULA_MODULES = [VisualizeModule];
-const SERVICES = [FormulaService];
+const BASE_MODULES = [CommonModule];
+const MATERIAL_MODULES = [MatButtonModule, MatDividerModule];
 
 @NgModule({
   declarations: [
@@ -23,17 +15,12 @@ const SERVICES = [FormulaService];
   ],
   imports: [
     ...BASE_MODULES,
-    ...MATERIAL_MODULES,
-    ...FORMULA_MODULES
+    ...MATERIAL_MODULES
   ],
   exports: [
     ...COMPONENTS,
     ...BASE_MODULES,
-    ...MATERIAL_MODULES,
-    ...FORMULA_MODULES
-  ],
-  providers: [
-    ...SERVICES
+    ...MATERIAL_MODULES
   ]
 })
 export class HomeModule { }

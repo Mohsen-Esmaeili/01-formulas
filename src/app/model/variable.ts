@@ -14,6 +14,11 @@ export class Variable extends Node
     super();
   }
 
+  override addChild(id: string, node: Node): Node
+  {
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     if (this.id === id)
