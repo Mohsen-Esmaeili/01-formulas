@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Node } from '../../model/node';
+import { Router } from '@angular/router';
+import { Node } from '../../models/node';
 import { NodeManagerService } from '../../services/node-manager.service';
 
 @Component({
@@ -18,12 +19,14 @@ export class FormulizerComponent implements OnInit
   node: Node;
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private nodeManagerService: NodeManagerService) { }
+  constructor(private formBuilder: FormBuilder,
+    private nodeManagerService: NodeManagerService,
+    private router: Router) { }
 
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
-      formula: ['($b + 2) * ($a - 5)']
+      formula: ['(2 + $a)']
     });
   }
 
@@ -52,5 +55,14 @@ export class FormulizerComponent implements OnInit
   get formControls()
   {
     return this.form?.controls;
+  }
+
+  onGoHome(): void
+  {
+    this.router.navigate(['/']);
+  }
+
+  onRemove(idToDelete: string): void
+  {
   }
 }

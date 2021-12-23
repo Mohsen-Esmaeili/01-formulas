@@ -1,4 +1,4 @@
-.home-content {
+.formulizer-content {
   .formula-text-area {
     font-size: 1.2rem;
   }
@@ -11,5 +11,9 @@
 
   .formula-content {
     background-color: #eeeeee;
+  }
+  .visualize-content {
+    overflow-y: auto;
+    max-height: calc(100vh - 420px);
   }
 }

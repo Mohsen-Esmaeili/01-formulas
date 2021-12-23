@@ -1,0 +1,15 @@
+<ng-container *ngIf="isParen(left);else LeftIsAddition">
+  <app-expression [node]="left" [canRemove]="true" [canAdd]="true" (removeEmitter)="onRemove($event)">
+  </app-expression>
+</ng-container>
+<ng-template #LeftIsAddition>
+  {{ left.getString() }}
+</ng-template>
+<span class="mx-2">+</span>
+<ng-container *ngIf="isParen(right);else RightIsAddition">
+  <app-expression [node]="right" [canRemove]="true" [canAdd]="true" (removeEmitter)="onRemove($event)">
+  </app-expression>
+</ng-container>
+<ng-template #RightIsAddition>
+  {{ right.getString() }}
+</ng-template>

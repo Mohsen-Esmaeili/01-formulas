@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Expression } from "../model/expression";
+import { Expression } from "../models/expression";
 
 @Injectable()
 export class ExpressionService
