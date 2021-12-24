@@ -1,5 +1,6 @@
 import { NodeType } from './../../../constants/node-type';
 import { AdditionComponent } from './expression-type/addition/addition.component';
+import { EmptyComponent } from './expression-type/empty/empty.component';
 import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
 import { ParenComponent } from './expression-type/paren/paren.component';
 import { PowerComponent } from './expression-type/power/power.component';
@@ -25,6 +26,8 @@ export default function GetComponent(nodeType: NodeType)
       return PowerComponent;
     case NodeType.Paren:
       return ParenComponent;
+    case NodeType.Empty:
+      return EmptyComponent;
 
     default:
       throw new Error(`Invalid node type. NodeType = ${ nodeType }`);

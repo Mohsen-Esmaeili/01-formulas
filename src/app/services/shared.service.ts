@@ -8,4 +8,5 @@ import { EventEmitter, Injectable } from "@angular/core";
 export class SharedService
 {
   selectedEmitter = new EventEmitter<string>();
+  updatedEmitter = new EventEmitter();
 }

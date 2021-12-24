@@ -24,6 +24,7 @@ export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
 
   selectedNodeId: string = '';
   @Input() selectable: boolean = true;
+  @Input() parentNode: Node | undefined;
   @Input() node: Node;
 
   @ViewChild(ExpressionHostDirective, { static: true }) expressionHostDirective!: ExpressionHostDirective;
@@ -51,6 +52,16 @@ export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
   get isSelected(): boolean
   {
     return this.node.id === this.selectedNodeId;
+  }
+
+  onRemoveNode(): void
+  {
+    debugger;
+    if (this.parentNode)
+    {
+      this.parentNode.removeChildById(this.node.id);
+      this.sharedService.updatedEmitter.emit();
+    }
   }
 
   onSelect(event: Event): void
