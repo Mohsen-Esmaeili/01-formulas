@@ -22,9 +22,4 @@ export class PowerComponent extends NodeComponent
   {
     return (<Power>this.node).power;
   }
-
-  isParen(node: Node): boolean
-  {
-    return node.type === NodeType.Paren;
-  }
 }

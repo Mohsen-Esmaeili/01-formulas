@@ -22,9 +22,4 @@ export class SubtractionComponent extends NodeComponent
   {
     return (<Subtraction>this.node).right;
   }
-
-  isParen(node: Node): boolean
-  {
-    return node.type === NodeType.Paren;
-  }
 }

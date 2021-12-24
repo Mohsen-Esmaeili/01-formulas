@@ -22,9 +22,4 @@ export class AdditionComponent extends NodeComponent
   {
     return (<Addition>this.node).right;
   }
-
-  isParen(node: Node): boolean
-  {
-    return node.type === NodeType.Paren;
-  }
 }

@@ -1,8 +1,8 @@
 <section class="expression-list">
-  <button mat-mini-fab color="primary" class="mx-1" [matMenuTriggerFor]="expressions" *ngIf="visible">
+  <button mat-mini-fab color="primary" class="mx-1" [matMenuTriggerFor]="Expressions" *ngIf="visible">
     <mat-icon>add</mat-icon>
   </button>
-  <mat-menu #expressions="matMenu">
+  <mat-menu #Expressions="matMenu">
     <ng-container *ngFor="let expression of expressionList">
       <button mat-menu-item [matMenuTriggerFor]="SubMenu">
         <mat-icon>{{ expression.icon }}</mat-icon>

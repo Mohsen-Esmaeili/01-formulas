@@ -22,9 +22,4 @@ export class MultiplicationComponent extends NodeComponent
   {
     return (<Multiplication>this.node).right;
   }
-
-  isParen(node: Node): boolean
-  {
-    return node.type === NodeType.Paren;
-  }
 }

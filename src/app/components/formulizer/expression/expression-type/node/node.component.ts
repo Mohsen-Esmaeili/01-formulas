@@ -9,15 +9,4 @@ import { Node } from '../../../../../models/node';
 export class NodeComponent
 {
   @Input() node: Node;
-
-  onRemove(): void
-  {
-
-  }
-
-  // @Output() updateEventEmitter = new EventEmitter();
-
-  // onRemove(node: Node): void { }
-
-  // onAdd(node: Node): void { }
 }

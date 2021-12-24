@@ -22,9 +22,4 @@ export class DivisionComponent extends NodeComponent
   {
     return (<Division>this.node).right;
   }
-
-  isParen(node: Node): boolean
-  {
-    return node.type === NodeType.Paren;
-  }
 }
