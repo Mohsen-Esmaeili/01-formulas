@@ -1,6 +1,7 @@
 import { NodeType } from '../constants/node-type';
 import { EmptyNode } from './empty-node';
 import { Node } from './node';
+import { Paren } from './paren';
 
 export class Multiplication extends Node
 {
@@ -16,23 +17,18 @@ export class Multiplication extends Node
 
   override addChild(id: string, node: Node): Node
   {
-    // Explore in the left side
+    const newExpression = new Paren(new Multiplication(this.left, this.right));
+
     if (this.left.id === id)
     {
+      this.right = newExpression;
       this.left = node;
-    } else
+    } else if (this.right.id === id)
     {
-      this.left = this.left.addChild(id, node);
+      this.left = newExpression;
+      this.right = node;
     }
 
-    // Explore in the right side
-    if (this.right.id === id)
-    {
-      this.right = node;
-    } else
-    {
-      this.right = this.right.addChild(id, node);
-    }
     return this;
   }
 

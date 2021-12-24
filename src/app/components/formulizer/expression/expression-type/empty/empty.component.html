@@ -1,1 +1,6 @@
-<div class="alert alert-danger">Click to add</div>
+<app-expression-list [menuTriggerTmp]="AddNewNode" [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)">
+</app-expression-list>
+
+<ng-template #AddNewNode>
+  <div class="alert alert-danger add-new-node">Click to add</div>
+</ng-template>

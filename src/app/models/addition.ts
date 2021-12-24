@@ -17,25 +17,19 @@ export class Addition extends Node
 
   override addChild(id: string, node: Node): Node
   {
-    this.right = new Paren(new Addition(this.left, this.right));
-    this.left = node;
-    // // Explore in the left side
-    // if (this.left.id === id)
-    // {
-    //   this.left = node;
-    // } else
-    // {
-    //   this.left = this.left.addChild(id, node);
-    // }
+    debugger;
+    const newExpression = new Paren(new Addition(this.left, this.right));
 
-    // // Explore in the right side
-    // if (this.right.id === id)
-    // {
-    //   this.right = node;
-    // } else
-    // {
-    //   this.right = this.right.addChild(id, node);
-    // }
+    if (this.left.id === id)
+    {
+      this.right = newExpression;
+      this.left = node;
+    } else if (this.right.id === id)
+    {
+      this.left = newExpression;
+      this.right = node;
+    }
+
     return this;
   }
 

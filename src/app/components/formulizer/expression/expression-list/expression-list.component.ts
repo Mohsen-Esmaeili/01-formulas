@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Expression } from '../../../../models/expression';
 import { ExpressionService } from '../../../../services/expression.service';
 import { Node } from './../../../../models/node';
@@ -11,6 +11,7 @@ import GetNode from './node.factory';
 })
 export class ExpressionListComponent implements OnInit
 {
+  @Input() menuTriggerTmp: TemplateRef<any>;
   @Input() visible: boolean;
   @Output() newNodeEmitter = new EventEmitter<Node>();
 

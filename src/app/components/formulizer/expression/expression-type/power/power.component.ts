@@ -31,12 +31,19 @@ export class PowerComponent extends NodeComponent
     }
   }
 
+
   onAddNewNode(node: Node): void
   {
-    debugger;
-    this.node.addChild((<Power>this.node).expression.id, node);
+    this.sharedService.openPositionSelectionDialog(this.node.type, node, this.addNewNode.bind(this));
+  }
+
+  addNewNode(isExpression: boolean, node: Node): void
+  {
+    const positionId = isExpression ? this.expression.id : this.power.id;
+    this.node.addChild(positionId, node);
     this.sharedService.updatedEmitter.emit();
   }
+
 
   onSelect(event: Event): void
   {

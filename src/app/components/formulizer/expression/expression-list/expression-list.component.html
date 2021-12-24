@@ -1,4 +1,31 @@
 <section class="expression-list">
+  <section [matMenuTriggerFor]="Expressions">
+    <ng-container *ngTemplateOutlet="menuTriggerTmp ? menuTriggerTmp : defaultMenuTriggerTmp;">
+    </ng-container>
+  </section>
+  <mat-menu #Expressions="matMenu">
+    <ng-container *ngFor="let expression of expressionList">
+      <button mat-menu-item [matMenuTriggerFor]="SubMenu">
+        <mat-icon>{{ expression.icon }}</mat-icon>
+        {{ expression.title }}
+      </button>
+      <mat-menu #SubMenu="matMenu">
+        <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem)">
+          <mat-icon>{{ subItem.icon }}</mat-icon>
+          {{ subItem.title }}
+        </button>
+      </mat-menu>
+    </ng-container>
+  </mat-menu>
+
+  <ng-template #defaultMenuTriggerTmp>
+    <button mat-mini-fab color="primary" class="mx-1" [matMenuTriggerFor]="Expressions" *ngIf="visible">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-template>
+
+  <!--
+
   <button mat-mini-fab color="primary" class="mx-1" [matMenuTriggerFor]="Expressions" *ngIf="visible">
     <mat-icon>add</mat-icon>
   </button>
@@ -16,4 +43,4 @@
       </mat-menu>
     </ng-container>
   </mat-menu>
-</section>
+</section> -->

@@ -33,8 +33,13 @@ export class SubtractionComponent extends NodeComponent
 
   onAddNewNode(node: Node): void
   {
-    debugger;
-    this.node.addChild((<Subtraction>this.node).left.id, node);
+    this.sharedService.openPositionSelectionDialog(this.node.type, node, this.addNewNode.bind(this));
+  }
+
+  addNewNode(isLeft: boolean, node: Node): void
+  {
+    const positionId = isLeft ? this.left.id : this.right.id;
+    this.node.addChild(positionId, node);
     this.sharedService.updatedEmitter.emit();
   }
 

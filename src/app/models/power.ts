@@ -1,6 +1,7 @@
 import { NodeType } from '../constants/node-type';
 import { EmptyNode } from './empty-node';
 import { Node } from './node';
+import { Paren } from './paren';
 
 export class Power extends Node
 {
@@ -16,23 +17,18 @@ export class Power extends Node
 
   override addChild(id: string, node: Node): Node
   {
-    // Explore in the power, expression object
+    const newExpression = new Paren(new Power(this.expression, this.power));
+
     if (this.expression.id === id)
     {
+      this.power = newExpression;
       this.expression = node;
-    } else
+    } else if (this.power.id === id)
     {
-      this.expression = this.expression.addChild(id, node);
+      this.expression = newExpression;
+      this.power = node;
     }
 
-    // Explore in the power, power object
-    if (this.power.id === id)
-    {
-      this.power = node;
-    } else
-    {
-      this.power = this.power.addChild(id, node);
-    }
     return this;
   }
 

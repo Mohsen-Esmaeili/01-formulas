@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Node } from '../../../../../models/node';
 import { SharedService } from './../../../../../services/shared.service';
@@ -17,7 +18,7 @@ export class NodeComponent implements OnInit, OnDestroy
 
   @Input() node: Node;
 
-  constructor(public sharedService: SharedService) { }
+  constructor(public dialog: MatDialog, public sharedService: SharedService) { }
 
   ngOnInit(): void
   {
