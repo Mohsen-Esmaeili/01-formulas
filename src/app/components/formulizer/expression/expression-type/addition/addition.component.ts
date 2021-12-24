@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Node } from '../../../../../models/node';
 import { NodeComponent } from '../node/node.component';
 import { NodeType } from './../../../../../constants/node-type';
@@ -9,15 +9,9 @@ import { Addition } from './../../../../../models/addition';
   templateUrl: './addition.component.html',
   styleUrls: ['./addition.component.scss']
 })
-export class AdditionComponent implements NodeComponent
+export class AdditionComponent extends NodeComponent
 {
-  @Input() node: Node;
   operator: string = NodeType.Addition;
-
-  onRemove(id: string): void
-  {
-
-  }
 
   get left(): Node
   {

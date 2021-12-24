@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Node } from '../../../../../models/node';
+import { Component } from '@angular/core';
 import { NodeComponent } from '../node/node.component';
 
 @Component({
@@ -7,7 +6,6 @@ import { NodeComponent } from '../node/node.component';
   templateUrl: './variable.component.html',
   styleUrls: ['./variable.component.scss']
 })
-export class VariableComponent implements NodeComponent
+export class VariableComponent extends NodeComponent
 {
-  @Input() node: Node;
 }

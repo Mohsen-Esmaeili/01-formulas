@@ -1,7 +1,7 @@
 <div class="d-flex flex-row flex-wrap align-items-center">
   <div class="m-1">
     <ng-container *ngIf="isParen(left);else LeftIsSubtraction">
-      <app-expression [node]="left" (removeEmitter)="onRemove($event)">
+      <app-expression [node]="left">
       </app-expression>
     </ng-container>
     <ng-template #LeftIsSubtraction>
@@ -21,7 +21,7 @@
   </div>
   <div class="m-1">
     <ng-container *ngIf="isParen(right);else RightIsSubtraction">
-      <app-expression [node]="right" (removeEmitter)="onRemove($event)">
+      <app-expression [node]="right">
       </app-expression>
     </ng-container>
     <ng-template #RightIsSubtraction>

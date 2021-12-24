@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NodeType } from '../../../../constants/node-type';
+import { Component, Input } from '@angular/core';
 import { Node } from '../../../../models/node';
 
 @Component({
@@ -7,33 +6,7 @@ import { Node } from '../../../../models/node';
   templateUrl: './expression-item.component.html',
   styleUrls: ['./expression-item.component.scss']
 })
-export class ExpressionItemComponent implements OnInit
+export class ExpressionItemComponent
 {
   @Input() node: Node;
-  @Output() valueEmitter = new EventEmitter<number>();
-
-  value: number;
-
-  ngOnInit(): void
-  {
-    if (this.isStaticValue)
-    {
-      this.valueEmitter.emit(5);
-    }
-  }
-
-  RemoveNode(id: string): void
-  {
-    console.log(id);
-  }
-
-  onBlurInput(event: any): void
-  {
-    this.valueEmitter.emit(event.target.value);
-  }
-
-  get isStaticValue(): boolean
-  {
-    return this.node.type === NodeType.Number || this.node.type === NodeType.PI || this.node.type === NodeType.E;
-  }
 }

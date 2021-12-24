@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Node } from '../../../../../models/node';
 import { NodeComponent } from '../node/node.component';
 import { NodeType } from './../../../../../constants/node-type';
@@ -9,15 +9,9 @@ import { Division } from './../../../../../models/division';
   templateUrl: './division.component.html',
   styleUrls: ['./division.component.scss']
 })
-export class DivisionComponent implements NodeComponent
+export class DivisionComponent extends NodeComponent
 {
-  @Input() node: Node;
   operator: string = NodeType.Division;
-
-  onRemove(id: string): void
-  {
-
-  }
 
   get left(): Node
   {

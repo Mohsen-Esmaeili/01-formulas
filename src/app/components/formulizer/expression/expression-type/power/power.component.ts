@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Node } from '../../../../../models/node';
 import { NodeComponent } from '../node/node.component';
 import { NodeType } from './../../../../../constants/node-type';
@@ -9,15 +9,9 @@ import { Power } from './../../../../../models/power';
   templateUrl: './power.component.html',
   styleUrls: ['./power.component.scss']
 })
-export class PowerComponent implements NodeComponent
+export class PowerComponent extends NodeComponent
 {
-  @Input() node: Node;
   operator: string = NodeType.Power;
-
-  onRemove(id: string): void
-  {
-
-  }
 
   get power(): Node
   {

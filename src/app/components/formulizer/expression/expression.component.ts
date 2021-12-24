@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Addition } from 'src/app/models/addition';
 import { NodeType } from '../../../constants/node-type';
@@ -10,14 +10,8 @@ import { Power } from '../../../models/power';
 import { Subtraction } from '../../../models/subtraction';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
 import { SharedService } from './../../../services/shared.service';
-import { AdditionComponent } from './expression-type/addition/addition.component';
-import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
+import GetComponent from './component.factory';
 import { NodeComponent } from './expression-type/node/node.component';
-import { ParenComponent } from './expression-type/paren/paren.component';
-import { PowerComponent } from './expression-type/power/power.component';
-import { SubtractionComponent } from './expression-type/subtraction/subtraction.component';
-import { ValueComponent } from './expression-type/value/value.component';
-import { VariableComponent } from './expression-type/variable/variable.component';
 
 @Component({
   selector: 'app-expression',
@@ -27,16 +21,10 @@ import { VariableComponent } from './expression-type/variable/variable.component
 export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
 {
   sharedServiceSubscription: Subscription;
-  operatorType: string = '';
+
   selectedNodeId: string = '';
   @Input() selectable: boolean = true;
   @Input() node: Node;
-
-  @Output() resultEmitter = new EventEmitter<number>();
-  @Output() removeEmitter = new EventEmitter<string>();
-
-  rightSideResult: number;
-  leftSideResult: number;
 
   @ViewChild(ExpressionHostDirective, { static: true }) expressionHostDirective!: ExpressionHostDirective;
 
@@ -49,7 +37,6 @@ export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
       this.selectedNodeId = response;
     });
 
-    this.operatorType = this.node.type;
     this.loadComponent();
   }
 
@@ -73,82 +60,14 @@ export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
     this.sharedService.selectedEmitter.emit(this.node.id);
   }
 
-  onRemove(id: string): void
-  {
-
-  }
-
   loadComponent()
   {
     const viewContainerRef = this.expressionHostDirective.viewContainerRef;
+
     viewContainerRef.clear();
 
-    switch (this.node.type)
-    {
-      case NodeType.Number:
-        const valueComponentRef = viewContainerRef.createComponent<NodeComponent>(ValueComponent);
-        //TODO: Should load correct node
-        valueComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Variable:
-        const variableComponentRef = viewContainerRef.createComponent<NodeComponent>(VariableComponent);
-        //TODO: Should load correct node
-        variableComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Addition:
-        const additionComponentRef = viewContainerRef.createComponent<NodeComponent>(AdditionComponent);
-        //TODO: Should load correct node
-        additionComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Subtraction:
-        const subtractionComponentRef = viewContainerRef.createComponent<NodeComponent>(SubtractionComponent);
-        //TODO: Should load correct node
-        subtractionComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Multiplication:
-        const multiplicationComponentRef = viewContainerRef.createComponent<NodeComponent>(MultiplicationComponent);
-        //TODO: Should load correct node
-        multiplicationComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Power:
-        const powerComponentRef = viewContainerRef.createComponent<NodeComponent>(PowerComponent);
-        //TODO: Should load correct node
-        powerComponentRef.instance.node = this.node;
-        break;
-      case NodeType.Paren:
-        const parenComponentRef = viewContainerRef.createComponent<NodeComponent>(ParenComponent);
-        //TODO: Should load correct node
-        parenComponentRef.instance.node = this.node;
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  RemoveNode(id: string): void
-  {
-    this.removeEmitter.emit(id);
-  }
-
-  onAddNode(id: string): void
-  {
-    console.log(id);
-  }
-
-  onRightValue(rightResult: number): void
-  {
-    this.rightSideResult = rightResult;
-  }
-
-  onLeftValue(leftResult: number): void
-  {
-    this.leftSideResult = leftResult;
-  }
-
-  calculateAndEmitResult(): void
-  {
-    console.log(this.leftSideResult + this.rightSideResult);
+    const componentRef = viewContainerRef.createComponent<NodeComponent>(GetComponent(this.node.type));
+    componentRef.instance.node = this.node;
   }
 
   isNewExpression(node: Node): boolean

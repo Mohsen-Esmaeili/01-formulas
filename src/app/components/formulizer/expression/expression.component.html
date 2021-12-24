@@ -1,55 +1,9 @@
 <mat-card class="expression" (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected">
   <div class="d-flex flex-row justify-content-end action-buttons">
     <app-expression-list [visible]="isSelected" [containerId]="node.id"></app-expression-list>
-    <button mat-mini-fab color="warn" class="mx-1" (click)="RemoveNode(node.id)" *ngIf="isSelected">
+    <button mat-mini-fab color="warn" class="mx-1" *ngIf="isSelected">
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <ng-template expressionHostDirective></ng-template>
 </mat-card>
-
-
-
-<!-- <mat-card class="expression">
-  <div class="d-flex flex-row justify-content-end">
-    <app-expression-list [visible]="canAdd" [containerId]="node.id"></app-expression-list>
-    <button mat-mini-fab color="warn" class="mx-1" (click)="RemoveNode(node.id)" *ngIf="canRemove">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
-  <div class="d-flex flex-row flex-wrap align-items-center">
-    <div class="m-1" *ngIf="leftExpression">
-      <app-expression
-        *ngIf="isNewExpression(leftExpression) && (<Paren>leftExpression).expression; else SingleInputLeft"
-        [node]="(<Paren>leftExpression).expression" [canRemove]="true" [canAdd]="true"
-        (removeEmitter)="RemoveNode($event)">
-      </app-expression>
-      <ng-template #SingleInputLeft>
-        <app-expression-item [node]="leftExpression" (valueEmitter)="onLeftValue($event)">
-        </app-expression-item>
-      </ng-template>
-    </div>
-    <div class="m-1 d-flex flex-column justify-content-center">
-      <mat-form-field appearance="fill" class="select-control">
-        <mat-select [(ngModel)]="operatorType">
-          <mat-option value="ADDITION">+</mat-option>
-          <mat-option value="SUBTRACTION">-</mat-option>
-          <mat-option value="MULTIPLICATION">*</mat-option>
-          <mat-option value="DIVISION">/</mat-option>
-          <mat-option value="POWER">^</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="m-1" *ngIf="hasExpression(rightExpression)">
-      <app-expression
-        *ngIf="isNewExpression(rightExpression) && (<Paren>rightExpression).expression; else SingleInputRight"
-        [node]="(<Paren>rightExpression).expression" [canRemove]="true" [canAdd]="true"
-        (removeEmitter)="RemoveNode($event)">
-      </app-expression>
-      <ng-template #SingleInputRight>
-        <app-expression-item [node]="rightExpression" (valueEmitter)="onRightValue($event)">
-        </app-expression-item>
-      </ng-template>
-    </div>
-  </div>
-</mat-card> -->

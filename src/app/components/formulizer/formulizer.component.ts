@@ -61,8 +61,4 @@ export class FormulizerComponent implements OnInit
   {
     this.router.navigate(['/']);
   }
-
-  onRemove(idToDelete: string): void
-  {
-  }
 }

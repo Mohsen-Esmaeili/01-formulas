@@ -1,7 +1,7 @@
 <div class="d-flex flex-row flex-wrap align-items-center">
   <div class="m-1">
     <ng-container *ngIf="isParen(expression);else LeftIsPower">
-      <app-expression [node]="expression" (removeEmitter)="onRemove($event)">
+      <app-expression [node]="expression">
       </app-expression>
     </ng-container>
     <ng-template #LeftIsPower>
@@ -21,7 +21,7 @@
   </div>
   <div class="m-1">
     <ng-container *ngIf="isParen(power);else RightIsPower">
-      <app-expression [node]="power" (removeEmitter)="onRemove($event)">
+      <app-expression [node]="power">
       </app-expression>
     </ng-container>
     <ng-template #RightIsPower>

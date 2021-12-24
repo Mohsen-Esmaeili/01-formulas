@@ -35,15 +35,12 @@
           <button mat-raised-button color="primary">Visualize Formula</button>
         </div>
         <div class="m-2">
-          <div class="d-flex flex-row justify-content-between">
-            <div>
-              <mat-card-title>Formula visualization</mat-card-title>
-              <mat-card-subtitle>By clicking you can add your formula</mat-card-subtitle>
-            </div>
-            <button mat-raised-button color="accent" class="mb-3 mr-3">Apply</button>
+          <div>
+            <mat-card-title>Formula visualization</mat-card-title>
+            <mat-card-subtitle>By clicking you can add your formula</mat-card-subtitle>
           </div>
           <pre class="visualize-content p-3" *ngIf="node">
-            <app-expression [node]="node" [selectable]=false (removeEmitter)="onRemove($event)">
+            <app-expression [node]="node" [selectable]=false>
             </app-expression>
           </pre>
         </div>

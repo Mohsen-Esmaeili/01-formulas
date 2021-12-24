@@ -13,14 +13,13 @@
       <span class="const-value">{{ node?.name }}</span>
     </div>
     <ng-container *ngIf="node?.arguments && node.arguments.length > 0">
-      <app-expression *ngFor="let arg of node.arguments" [node]="arg" [canRemove]="false" [canAdd]="false"
-        (removeEmitter)="RemoveNode($event)">
+      <app-expression *ngFor="let arg of node.arguments" [node]="arg">
       </app-expression>
     </ng-container>
   </div> -->
   <div *ngSwitchCase="'VARIABLE'">
     <mat-form-field appearance="fill" class="input-control">
-      <input matInput autocomplete="off" type="number" (blur)="onBlurInput($event)">
+      <input matInput autocomplete="off" type="number">
     </mat-form-field>
   </div>
   <div *ngSwitchDefault>Wrong</div>
