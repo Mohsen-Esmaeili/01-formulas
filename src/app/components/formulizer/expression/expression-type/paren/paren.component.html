@@ -1,3 +1,2 @@
-<app-expression [node]="parenExpression" [canRemove]="true" [canAdd]="true" (removeEmitter)="onRemove($event)"
-  *ngIf="parenExpression">
+<app-expression [node]="parenExpression" (removeEmitter)="onRemove($event)" *ngIf="parenExpression">
 </app-expression>

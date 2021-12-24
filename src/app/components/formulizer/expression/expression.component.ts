@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Addition } from 'src/app/models/addition';
 import { NodeType } from '../../../constants/node-type';
 import { Division } from '../../../models/division';
@@ -8,6 +9,7 @@ import { Node } from '../../../models/node';
 import { Power } from '../../../models/power';
 import { Subtraction } from '../../../models/subtraction';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
+import { SharedService } from './../../../services/shared.service';
 import { AdditionComponent } from './expression-type/addition/addition.component';
 import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
 import { NodeComponent } from './expression-type/node/node.component';
@@ -22,12 +24,14 @@ import { VariableComponent } from './expression-type/variable/variable.component
   templateUrl: './expression.component.html',
   styleUrls: ['./expression.component.scss']
 })
-export class ExpressionComponent implements OnInit
+export class ExpressionComponent implements OnInit, OnChanges, OnDestroy
 {
+  sharedServiceSubscription: Subscription;
   operatorType: string = '';
+  selectedNodeId: string = '';
+  @Input() selectable: boolean = true;
   @Input() node: Node;
-  @Input() canRemove: boolean;
-  @Input() canAdd: boolean;
+
   @Output() resultEmitter = new EventEmitter<number>();
   @Output() removeEmitter = new EventEmitter<string>();
 
@@ -35,10 +39,38 @@ export class ExpressionComponent implements OnInit
   leftSideResult: number;
 
   @ViewChild(ExpressionHostDirective, { static: true }) expressionHostDirective!: ExpressionHostDirective;
+
+  constructor(private sharedService: SharedService) { }
+
   ngOnInit(): void
   {
+    this.sharedServiceSubscription = this.sharedService.selectedEmitter.subscribe((response: string) =>
+    {
+      this.selectedNodeId = response;
+    });
+
     this.operatorType = this.node.type;
     this.loadComponent();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void
+  {
+    if (changes["node"] && !changes["node"].firstChange)
+    {
+      this.loadComponent();
+    }
+  }
+
+  get isSelected(): boolean
+  {
+    return this.node.id === this.selectedNodeId;
+  }
+
+  onSelect(event: Event): void
+  {
+    event.stopPropagation();
+
+    this.sharedService.selectedEmitter.emit(this.node.id);
   }
 
   onRemove(id: string): void
@@ -160,5 +192,10 @@ export class ExpressionComponent implements OnInit
       default:
         return new EmptyNode();
     }
+  }
+
+  ngOnDestroy(): void
+  {
+    this.sharedServiceSubscription?.unsubscribe();
   }
 }

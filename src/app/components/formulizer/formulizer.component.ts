@@ -26,7 +26,7 @@ export class FormulizerComponent implements OnInit
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
-      formula: ['(2 + $a)']
+      formula: ['(2 + $a) + ($a + 4)']
     });
   }
 

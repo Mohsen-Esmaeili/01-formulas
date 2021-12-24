@@ -1,2 +1,31 @@
-<p>subtraction works!</p>
-<h3>{{ node }}</h3>
+<div class="d-flex flex-row flex-wrap align-items-center">
+  <div class="m-1">
+    <ng-container *ngIf="isParen(left);else LeftIsSubtraction">
+      <app-expression [node]="left" (removeEmitter)="onRemove($event)">
+      </app-expression>
+    </ng-container>
+    <ng-template #LeftIsSubtraction>
+      <app-expression-item [node]="left"></app-expression-item>
+    </ng-template>
+  </div>
+  <div class="m-1 d-flex flex-column justify-content-center">
+    <mat-form-field appearance="fill" class="select-control">
+      <mat-select [(ngModel)]="operator">
+        <mat-option value="ADDITION">+</mat-option>
+        <mat-option value="SUBTRACTION">-</mat-option>
+        <mat-option value="MULTIPLICATION">*</mat-option>
+        <mat-option value="DIVISION">/</mat-option>
+        <mat-option value="POWER">^</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="m-1">
+    <ng-container *ngIf="isParen(right);else RightIsSubtraction">
+      <app-expression [node]="right" (removeEmitter)="onRemove($event)">
+      </app-expression>
+    </ng-container>
+    <ng-template #RightIsSubtraction>
+      <app-expression-item [node]="right"></app-expression-item>
+    </ng-template>
+  </div>
+</div>

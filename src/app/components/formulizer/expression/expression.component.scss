@@ -7,16 +7,34 @@
     }
   }
 
+  .action-buttons {
+    position: relative;
+    top: -20px;
+
+    button {
+      width: 32px;
+      height: 32px;
+
+      .mat-icon {
+        font-size: 15px;
+      }
+    }
+  }
+
   .mat-card {
     min-height: 103px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 5px;
+    padding: 10px;
   }
 }
 
 ::ng-deep .mat-option-text {
   font-size: 20px;
   font-weight: 700;
+}
+
+.selected-expression {
+  border: 1px solid red;
 }

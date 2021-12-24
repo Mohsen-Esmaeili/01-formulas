@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Node } from '../../../../../models/node';
 import { NodeComponent } from '../node/node.component';
 import { NodeType } from './../../../../../constants/node-type';
@@ -9,24 +9,10 @@ import { Addition } from './../../../../../models/addition';
   templateUrl: './addition.component.html',
   styleUrls: ['./addition.component.scss']
 })
-export class AdditionComponent implements NodeComponent, OnInit
+export class AdditionComponent implements NodeComponent
 {
   @Input() node: Node;
-  // @Output() updateEventEmitter: EventEmitter<any>;
-
-  // onRemove(node: Node): void
-  // {
-  //   node.removeChildById(node.id)
-  // }
-  // onAdd(emptyNode: EmptyNode, node: Node): void
-  // {
-  //   node.addChild(emptyNode, node)
-  // }
-
-  ngOnInit(): void
-  {
-    debugger;
-  }
+  operator: string = NodeType.Addition;
 
   onRemove(id: string): void
   {
