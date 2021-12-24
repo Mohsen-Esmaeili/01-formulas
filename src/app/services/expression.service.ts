@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { NodeType } from "../constants/node-type";
 import { Expression } from "../models/expression";
 
 @Injectable()
@@ -14,30 +15,35 @@ export class ExpressionService
         children: [
           {
             id: 6,
+            nodeType: NodeType.Addition,
             icon: "add",
             title: "Addition (+)",
             children: []
           },
           {
             id: 7,
+            nodeType: NodeType.Subtraction,
             icon: "remove",
             title: "Subtraction (-)",
             children: []
           },
           {
             id: 8,
+            nodeType: NodeType.Multiplication,
             icon: "clear",
             title: "Multiplication (*)",
             children: []
           },
           {
             id: 9,
+            nodeType: NodeType.Subtraction,
             icon: "device_hub",
             title: "Division (/)",
             children: []
           },
           {
             id: 10,
+            nodeType: NodeType.Power,
             icon: "superscript",
             title: "Power (^)",
             children: []

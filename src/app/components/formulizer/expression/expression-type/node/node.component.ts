@@ -1,12 +1,39 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Node } from '../../../../../models/node';
+import { SharedService } from './../../../../../services/shared.service';
 
 @Component({
   selector: 'app-node',
-  templateUrl: './node.component.html',
-  styleUrls: ['./node.component.scss']
+  template: ''
 })
-export class NodeComponent
+export class NodeComponent implements OnInit, OnDestroy
 {
+  sharedServiceSubscription: Subscription;
+
+  selectedNodeId: string = '';
+  @Input() selectable: boolean = true;
+  @Input() parentNode: Node | undefined;
+
   @Input() node: Node;
+
+  constructor(public sharedService: SharedService) { }
+
+  ngOnInit(): void
+  {
+    this.sharedServiceSubscription = this.sharedService.selectedEmitter.subscribe((response: string) =>
+    {
+      this.selectedNodeId = response;
+    });
+  }
+
+  get isSelected(): boolean
+  {
+    return this.node.id === this.selectedNodeId;
+  }
+
+  ngOnDestroy(): void
+  {
+    this.sharedServiceSubscription?.unsubscribe();
+  }
 }

@@ -3,8 +3,7 @@ import { NodeComponent } from '../node/node.component';
 
 @Component({
   selector: 'app-empty',
-  templateUrl: './empty.component.html',
-  styleUrls: ['./empty.component.scss']
+  templateUrl: './empty.component.html'
 })
 export class EmptyComponent extends NodeComponent
 {

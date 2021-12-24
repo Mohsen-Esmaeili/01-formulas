@@ -3,6 +3,7 @@ import { Addition } from './addition';
 import { Paren } from './paren';
 import { Power } from './power';
 import { Value } from './value';
+import { Variable } from './variable';
 
 describe('Power', () =>
 {
@@ -29,6 +30,34 @@ describe('Power', () =>
 
     // check
     expect(node.getString()).toEqual('7 ^ 10');
+  });
+
+  it('Add new node to expression of power', () =>
+  {
+    // arrange
+    const newNode = new Addition(new Value(5), new Variable('$a'));
+    const expressionNode = new Value(5);
+    const node = new Power(expressionNode, new Value(8));
+
+    // act
+    node.addChild(expressionNode.id, newNode);
+
+    // check
+    expect(node.expression).toEqual(newNode);
+  });
+
+  it('Add new node to power of child', () =>
+  {
+    // arrange
+    const newNode = new Addition(new Value(5), new Variable('$a'));
+    const powerNode = new Value(5);
+    const node = new Power(new Value(8), powerNode);
+
+    // act
+    node.addChild(powerNode.id, newNode);
+
+    // check
+    expect(node.power).toEqual(newNode);
   });
 
   it('Remove expression from power from power expression with one level', () =>

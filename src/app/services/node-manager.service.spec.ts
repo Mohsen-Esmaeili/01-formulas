@@ -1,17 +1,18 @@
-import { NodeType } from '../constants/node-type';
-import { Addition } from './addition';
-import { Node } from './node';
-import { Value } from './value';
+import { NodeType } from "../constants/node-type";
+import { Addition } from "../models/addition";
+import { Value } from "../models/value";
+import { NodeManagerService } from "./node-manager.service";
 
-describe('Node', () =>
+describe('Load manager', () =>
 {
   it('Load simple expression', () =>
   {
     // arrange
+    const service = new NodeManagerService();
     const formula = '2 + 3';
 
     // act
-    const node = Node.load(formula);
+    const node = service.Load(formula);
     console.log(node);
 
     // check
@@ -23,5 +24,5 @@ describe('Node', () =>
     expect(left.value).toEqual(2);
     expect(right.value).toEqual(3);
   });
-});
 
+});

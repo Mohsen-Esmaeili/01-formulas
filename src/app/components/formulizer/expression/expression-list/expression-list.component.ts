@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Expression } from '../../../../models/expression';
 import { ExpressionService } from '../../../../services/expression.service';
+import { Node } from './../../../../models/node';
+import GetNode from './node.factory';
 
 @Component({
   selector: 'app-expression-list',
@@ -10,7 +12,8 @@ import { ExpressionService } from '../../../../services/expression.service';
 export class ExpressionListComponent implements OnInit
 {
   @Input() visible: boolean;
-  @Input() containerId: string;
+  @Output() newNodeEmitter = new EventEmitter<Node>();
+
   expressionList: Array<Expression> = [];
   constructor(private expressionService: ExpressionService) { }
 
@@ -34,8 +37,8 @@ export class ExpressionListComponent implements OnInit
     return [];
   }
 
-  addNew(expressionId: number): void
+  addNew(expression: Expression): void
   {
-
+    this.newNodeEmitter.emit(GetNode(expression));
   }
 }

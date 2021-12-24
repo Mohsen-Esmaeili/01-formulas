@@ -9,7 +9,7 @@
         {{ expression.title }}
       </button>
       <mat-menu #SubMenu="matMenu">
-        <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem.id)">
+        <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem)">
           <mat-icon>{{ subItem.icon }}</mat-icon>
           {{ subItem.title }}
         </button>

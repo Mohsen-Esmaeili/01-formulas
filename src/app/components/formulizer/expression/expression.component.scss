@@ -9,7 +9,8 @@
 
   .action-buttons {
     position: relative;
-    top: -20px;
+    top: -26px;
+    right: -5px;
 
     button {
       width: 32px;
@@ -28,13 +29,26 @@
     justify-content: center;
     padding: 10px;
   }
+
+  .value {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .input-control {
+    font-weight: 600;
+
+    ::ng-deep .mat-form-field-infix {
+      width: 120px;
+    }
+  }
+
+  .selected-expression {
+    border: 1px solid red;
+  }
 }
 
 ::ng-deep .mat-option-text {
   font-size: 20px;
   font-weight: 700;
-}
-
-.selected-expression {
-  border: 1px solid red;
 }

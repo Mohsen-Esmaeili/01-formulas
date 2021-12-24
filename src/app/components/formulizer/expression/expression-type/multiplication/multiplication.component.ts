@@ -6,8 +6,7 @@ import { Multiplication } from './../../../../../models/multiplication';
 
 @Component({
   selector: 'app-multiplication',
-  templateUrl: './multiplication.component.html',
-  styleUrls: ['./multiplication.component.scss']
+  templateUrl: './multiplication.component.html'
 })
 export class MultiplicationComponent extends NodeComponent
 {
@@ -21,5 +20,28 @@ export class MultiplicationComponent extends NodeComponent
   get right(): Node
   {
     return (<Multiplication>this.node).right;
+  }
+
+  onRemoveNode(): void
+  {
+    if (this.parentNode)
+    {
+      this.parentNode.removeChildById(this.node.id);
+      this.sharedService.updatedEmitter.emit();
+    }
+  }
+
+  onAddNewNode(node: Node): void
+  {
+    debugger;
+    this.node.addChild((<Multiplication>this.node).left.id, node);
+    this.sharedService.updatedEmitter.emit();
+  }
+
+  onSelect(event: Event): void
+  {
+    event.stopPropagation();
+
+    this.sharedService.selectedEmitter.emit(this.node.id);
   }
 }

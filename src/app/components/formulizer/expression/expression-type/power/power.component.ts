@@ -6,8 +6,7 @@ import { Power } from './../../../../../models/power';
 
 @Component({
   selector: 'app-power',
-  templateUrl: './power.component.html',
-  styleUrls: ['./power.component.scss']
+  templateUrl: './power.component.html'
 })
 export class PowerComponent extends NodeComponent
 {
@@ -21,5 +20,28 @@ export class PowerComponent extends NodeComponent
   get expression(): Node
   {
     return (<Power>this.node).power;
+  }
+
+  onRemoveNode(): void
+  {
+    if (this.parentNode)
+    {
+      this.parentNode.removeChildById(this.node.id);
+      this.sharedService.updatedEmitter.emit();
+    }
+  }
+
+  onAddNewNode(node: Node): void
+  {
+    debugger;
+    this.node.addChild((<Power>this.node).expression.id, node);
+    this.sharedService.updatedEmitter.emit();
+  }
+
+  onSelect(event: Event): void
+  {
+    event.stopPropagation();
+
+    this.sharedService.selectedEmitter.emit(this.node.id);
   }
 }

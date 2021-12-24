@@ -9,6 +9,11 @@ export class EmptyNode extends Node
 
   addChild(id: string, node: Node): Node
   {
+    // if (this.id === id)
+    // {
+    //   this = node;
+    // }
+
     return this;
   }
 

@@ -3,8 +3,7 @@ import { NodeComponent } from '../node/node.component';
 
 @Component({
   selector: 'app-variable',
-  templateUrl: './variable.component.html',
-  styleUrls: ['./variable.component.scss']
+  templateUrl: './variable.component.html'
 })
 export class VariableComponent extends NodeComponent
 {

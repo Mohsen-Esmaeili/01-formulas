@@ -1,9 +1,3 @@
-<mat-card class="expression" (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected">
-  <div class="d-flex flex-row justify-content-end action-buttons">
-    <app-expression-list [visible]="isSelected" [containerId]="node.id"></app-expression-list>
-    <button mat-mini-fab color="warn" class="mx-1" *ngIf="isSelected" (click)="onRemoveNode()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<section class="expression">
   <ng-template expressionHostDirective></ng-template>
-</mat-card>
+</section>

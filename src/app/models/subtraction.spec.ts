@@ -3,6 +3,7 @@ import { Addition } from './addition';
 import { Paren } from './paren';
 import { Subtraction } from './subtraction';
 import { Value } from './value';
+import { Variable } from './variable';
 
 describe('Subtraction', () =>
 {
@@ -29,6 +30,34 @@ describe('Subtraction', () =>
 
     // check
     expect(node.getString()).toEqual('7 - 10');
+  });
+
+  it('Add new node to left child', () =>
+  {
+    // arrange
+    const newNode = new Subtraction(new Value(5), new Variable('$a'));
+    const leftNode = new Value(5);
+    const node = new Subtraction(leftNode, new Value(8));
+
+    // act
+    node.addChild(leftNode.id, newNode);
+
+    // check
+    expect(node.left).toEqual(newNode);
+  });
+
+  it('Add new node to right child', () =>
+  {
+    // arrange
+    const newNode = new Subtraction(new Value(5), new Variable('$a'));
+    const rightNode = new Value(5);
+    const node = new Subtraction(new Value(8), rightNode);
+
+    // act
+    node.addChild(rightNode.id, newNode);
+
+    // check
+    expect(node.right).toEqual(newNode);
   });
 
   it('Remove left child with one level', () =>

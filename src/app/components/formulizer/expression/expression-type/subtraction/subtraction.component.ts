@@ -6,8 +6,7 @@ import { Subtraction } from './../../../../../models/subtraction';
 
 @Component({
   selector: 'app-subtraction',
-  templateUrl: './subtraction.component.html',
-  styleUrls: ['./subtraction.component.scss']
+  templateUrl: './subtraction.component.html'
 })
 export class SubtractionComponent extends NodeComponent
 {
@@ -21,5 +20,28 @@ export class SubtractionComponent extends NodeComponent
   get right(): Node
   {
     return (<Subtraction>this.node).right;
+  }
+
+  onRemoveNode(): void
+  {
+    if (this.parentNode)
+    {
+      this.parentNode.removeChildById(this.node.id);
+      this.sharedService.updatedEmitter.emit();
+    }
+  }
+
+  onAddNewNode(node: Node): void
+  {
+    debugger;
+    this.node.addChild((<Subtraction>this.node).left.id, node);
+    this.sharedService.updatedEmitter.emit();
+  }
+
+  onSelect(event: Event): void
+  {
+    event.stopPropagation();
+
+    this.sharedService.selectedEmitter.emit(this.node.id);
   }
 }
