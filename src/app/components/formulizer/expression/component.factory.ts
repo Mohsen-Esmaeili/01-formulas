@@ -1,4 +1,3 @@
-import { Node } from '../.././../models/node';
 import { NodeType } from './../../../constants/node-type';
 import { AdditionComponent } from './expression-type/addition/addition.component';
 import { DivisionComponent } from './expression-type/division/division.component';
@@ -10,7 +9,7 @@ import { SubtractionComponent } from './expression-type/subtraction/subtraction.
 import { ValueComponent } from './expression-type/value/value.component';
 import { VariableComponent } from './expression-type/variable/variable.component';
 
-export default function GetComponent(nodeType: NodeType, node: Node)
+export default function GetComponent(nodeType: NodeType)
 {
   switch (nodeType)
   {
@@ -34,7 +33,6 @@ export default function GetComponent(nodeType: NodeType, node: Node)
       return EmptyComponent;
 
     default:
-      debugger;
       throw new Error(`Invalid node type. NodeType = ${ nodeType }`);
   }
 }
