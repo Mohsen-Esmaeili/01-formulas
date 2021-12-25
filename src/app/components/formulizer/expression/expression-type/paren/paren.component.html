@@ -1,4 +1,6 @@
-<mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected">
+<mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected"
+  matBadge="{{ node.getValue() }}" matBadgePosition="before" matBadgeColor="accent"
+  class="d-flex flex-column justify-content-end">
   <div class="d-flex flex-row justify-content-end action-buttons">
     <app-expression-list [node]="node" [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)">
     </app-expression-list>

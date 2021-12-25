@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,7 +31,7 @@ const COMPONENTS = [AddNodePositionComponent, ExpressionComponent, ExpressionLis
   MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent];
 const DIRECTIVES = [ExpressionHostDirective];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule];
+const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatBadgeModule];
 const SERVICES = [ExpressionService];
 
 @NgModule({

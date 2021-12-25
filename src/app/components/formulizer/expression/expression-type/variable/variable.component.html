@@ -1,3 +1,4 @@
-<mat-form-field appearance="fill" class="input-control">
-  <input matInput autocomplete="off" type="number">
-</mat-form-field>
+<section class="variable">
+  <input class="custom-input form-control" autocomplete="off" type="number" [formControl]="varName"
+    (change)="onChangeValue()">
+</section>

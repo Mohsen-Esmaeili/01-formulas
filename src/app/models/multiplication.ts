@@ -49,4 +49,9 @@ export class Multiplication extends Node
   {
     return `${ this.left.getString() } * ${ this.right.getString() }`;
   }
+
+  getValue(): number
+  {
+    return this.left.getValue() * this.right.getValue();
+  }
 }

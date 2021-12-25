@@ -53,4 +53,9 @@ export class Subtraction extends Node
   {
     return `${ this.left.getString() } - ${ this.right.getString() }`;
   }
+
+  getValue(): number
+  {
+    return this.left.getValue() - this.right.getValue();
+  }
 }

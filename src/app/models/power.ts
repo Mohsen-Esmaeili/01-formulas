@@ -49,4 +49,9 @@ export class Power extends Node
   {
     return `${ this.expression.getString() } ^ ${ this.power.getString() }`;
   }
+
+  getValue(): number
+  {
+    return Math.pow(this.expression.getValue(), this.power.getValue());
+  }
 }

@@ -49,4 +49,9 @@ export class Addition extends Node
   {
     return `${ this.left.getString() } + ${ this.right.getString() }`;
   }
+
+  getValue(): number
+  {
+    return this.left.getValue() + this.right.getValue();
+  }
 }

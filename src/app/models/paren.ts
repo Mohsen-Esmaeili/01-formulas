@@ -37,4 +37,9 @@ export class Paren extends Node
   {
     return `(${ this.expression.getString() })`;
   }
+
+  getValue(): number
+  {
+    return this.expression.getValue();
+  }
 }

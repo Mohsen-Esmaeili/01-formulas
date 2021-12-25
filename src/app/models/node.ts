@@ -16,5 +16,7 @@ export abstract class Node
   abstract removeChildById(id: string): Node;
 
   abstract getString(): string;
+
+  abstract getValue(): number;
 }
 

@@ -4,6 +4,8 @@ import { Node } from './node';
 
 export class Variable extends Node
 {
+  value: number = 2;
+
   get type(): string
   {
     return NodeType.Variable;
@@ -31,5 +33,10 @@ export class Variable extends Node
   getString(): string
   {
     return this.name;
+  }
+
+  getValue(): number
+  {
+    return this.value;
   }
 }

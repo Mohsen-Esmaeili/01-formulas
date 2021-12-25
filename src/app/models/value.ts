@@ -31,4 +31,9 @@ export class Value extends Node
   {
     return this.value.toString();
   }
+
+  getValue(): number
+  {
+    return this.value;
+  }
 }

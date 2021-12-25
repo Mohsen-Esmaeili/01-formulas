@@ -3,7 +3,8 @@ import { NodeComponent } from '../node/node.component';
 
 @Component({
   selector: 'app-value',
-  templateUrl: './value.component.html'
+  templateUrl: './value.component.html',
+  styleUrls: ['./value.component.scss']
 })
 export class ValueComponent extends NodeComponent
 {

@@ -1,10 +1,9 @@
 .expression {
-  .select-control {
+  .operator {
+    font-size: 25px;
     font-weight: 700;
-
-    ::ng-deep .mat-form-field-infix {
-      width: 40px;
-    }
+    min-height: 45px;
+    max-width: 80px;
   }
 
   .action-buttons {
@@ -30,25 +29,7 @@
     padding: 10px;
   }
 
-  .value {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .input-control {
-    font-weight: 600;
-
-    ::ng-deep .mat-form-field-infix {
-      width: 120px;
-    }
-  }
-
   .selected-expression {
     border: 1px solid red;
   }
-}
-
-::ng-deep .mat-option-text {
-  font-size: 20px;
-  font-weight: 700;
 }

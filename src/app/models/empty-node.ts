@@ -26,4 +26,9 @@ export class EmptyNode extends Node
   {
     return "_EMPTY_";
   }
+
+  getValue(): number
+  {
+    return Number.MIN_VALUE;
+  }
 }

@@ -15,7 +15,6 @@ export class NodeComponent implements OnInit, OnDestroy
   selectedNodeId: string = '';
   @Input() selectable: boolean = true;
   @Input() parentNode: Node | undefined;
-
   @Input() node: Node;
 
   constructor(public dialog: MatDialog, public sharedService: SharedService) { }

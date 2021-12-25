@@ -13,7 +13,6 @@ describe('Load manager', () =>
 
     // act
     const node = service.Load(formula);
-    console.log(node);
 
     // check
     const left = <Value>(<Addition>node).left;
