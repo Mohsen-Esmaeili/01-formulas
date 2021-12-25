@@ -1,9 +1,8 @@
 <mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected"
-  matBadge="{{ node.getValue() }}" matBadgePosition="before" matBadgeColor="accent"
+  matBadge="{{ node.getValue() }}" matBadgePosition="before" matBadgeColor="accent" [matBadgeHidden]="badgeIsHidden"
   class="d-flex flex-column justify-content-end">
   <div class="d-flex flex-row justify-content-end action-buttons">
-    <app-expression-list [node]="node" [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)">
-    </app-expression-list>
+    <app-expression-list [node]="node" [visible]="isSelected"></app-expression-list>
     <button mat-mini-fab color="warn" *ngIf="isSelected" (click)="onRemoveNode()">
       <mat-icon>close</mat-icon>
     </button>

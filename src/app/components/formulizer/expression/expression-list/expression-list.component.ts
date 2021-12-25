@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as _ from 'underscore';
 import { Expression } from '../../../../models/expression';
@@ -17,7 +17,6 @@ export class ExpressionListComponent implements OnInit
   @Input() menuTriggerTmp: TemplateRef<any>;
   @Input() node: Node;
   @Input() visible: boolean;
-  @Output() newNodeEmitter = new EventEmitter<Node>();
 
   expressionList: Array<Expression> = [];
   constructor(private expressionService: ExpressionService,

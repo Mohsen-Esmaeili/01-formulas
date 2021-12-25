@@ -6,11 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatSelectModule } from '@angular/material/select';
 import { ExpressionService } from '../../../services/expression.service';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
 import { AddNodePositionComponent } from './add-node-position/add-node-position.component';
@@ -31,7 +28,7 @@ const COMPONENTS = [AddNodePositionComponent, ExpressionComponent, ExpressionLis
   MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent];
 const DIRECTIVES = [ExpressionHostDirective];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatBadgeModule];
+const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatBadgeModule];
 const SERVICES = [ExpressionService];
 
 @NgModule({

@@ -2,16 +2,8 @@
   <div class="m-1">
     <app-expression [parentNode]="node" [node]="left"></app-expression>
   </div>
-  <div class="m-1 d-flex flex-column justify-content-center">
-    <mat-form-field appearance="fill" class="select-control">
-      <mat-select [(ngModel)]="operator">
-        <mat-option value="ADDITION">+</mat-option>
-        <mat-option value="SUBTRACTION">-</mat-option>
-        <mat-option value="MULTIPLICATION">*</mat-option>
-        <mat-option value="DIVISION">/</mat-option>
-        <mat-option value="POWER">^</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="m-1 alert alert-danger operator">
+    /
   </div>
   <div class="m-1">
     <app-expression [parentNode]="node" [node]="right"></app-expression>
