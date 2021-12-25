@@ -1,6 +1,7 @@
 import { NodeType } from '../constants/node-type';
 import { EmptyNode } from './empty-node';
 import { Node } from './node';
+import { Paren } from './paren';
 
 export class Subtraction extends Node
 {
@@ -16,23 +17,24 @@ export class Subtraction extends Node
 
   override addChild(id: string, node: Node): Node
   {
-    // Explore in the left side
+    const newExpression = new Paren(new Subtraction(this.left, this.right));
+
     if (this.left.id === id)
     {
+      if (this.left.type !== NodeType.Empty)
+      {
+        this.right = newExpression;
+      }
       this.left = node;
-    } else
+    } else if (this.right.id === id)
     {
-      this.left = this.left.addChild(id, node);
+      if (this.right.type !== NodeType.Empty)
+      {
+        this.left = newExpression;
+      }
+      this.right = node;
     }
 
-    // Explore in the right side
-    if (this.right.id === id)
-    {
-      this.right = node;
-    } else
-    {
-      this.right = this.right.addChild(id, node);
-    }
     return this;
   }
 

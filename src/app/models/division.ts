@@ -21,11 +21,17 @@ export class Division extends Node
 
     if (this.left.id === id)
     {
-      this.right = newExpression;
+      if (this.left.type !== NodeType.Empty)
+      {
+        this.right = newExpression;
+      }
       this.left = node;
     } else if (this.right.id === id)
     {
-      this.left = newExpression;
+      if (this.right.type !== NodeType.Empty)
+      {
+        this.left = newExpression;
+      }
       this.right = node;
     }
 

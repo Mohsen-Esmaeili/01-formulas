@@ -31,7 +31,6 @@ export class ExpressionComponent implements OnInit, OnChanges
 
   loadComponent()
   {
-    debugger;
     const viewContainerRef = this.expressionHostDirective.viewContainerRef;
 
     viewContainerRef.clear();

@@ -36,7 +36,6 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
   updateAstView()
   {
-    debugger;
     this.node = this.nodeManagerService.Load(this.formula.value);
     this.syntaxTreeJson = JSON.stringify(this.node, null, 2);
   }

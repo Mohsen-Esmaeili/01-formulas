@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import * as _ from 'underscore';
 import { Expression } from '../../../../models/expression';
 import { ExpressionService } from '../../../../services/expression.service';
 import { Node } from './../../../../models/node';
@@ -59,8 +58,8 @@ export class ExpressionListComponent implements OnInit
     {
       if (expression.nodeType && response.isSelected)
       {
-        const newNode = this.expressionService.getNode(_.assign(this.node), expression.nodeType, response.isInLeftSide);
-        this.node.addChild(this.node.id, newNode);
+        const newNode = this.expressionService.getNode(expression.nodeType);
+        this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, response.isInLeftSide), newNode);
         this.sharedService.updatedEmitter.emit();
       }
     });

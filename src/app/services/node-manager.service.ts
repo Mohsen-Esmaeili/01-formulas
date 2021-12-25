@@ -20,7 +20,6 @@ export class NodeManagerService
 {
   Load(formula: string): Node
   {
-    console.log(parse(formula));
     const parserResult = <Node>parse(formula);
 
     const root = this.regenerateNode(parserResult);

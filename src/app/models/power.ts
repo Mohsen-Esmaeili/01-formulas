@@ -21,11 +21,17 @@ export class Power extends Node
 
     if (this.expression.id === id)
     {
-      this.power = newExpression;
+      if (this.expression.type !== NodeType.Empty)
+      {
+        this.power = newExpression;
+      }
       this.expression = node;
     } else if (this.power.id === id)
     {
-      this.expression = newExpression;
+      if (this.power.type !== NodeType.Empty)
+      {
+        this.expression = newExpression;
+      }
       this.power = node;
     }
 

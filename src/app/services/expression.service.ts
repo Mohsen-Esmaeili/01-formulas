@@ -6,81 +6,55 @@ import { EmptyNode } from "../models/empty-node";
 import { Expression } from "../models/expression";
 import { Multiplication } from "../models/multiplication";
 import { Node } from "../models/node";
+import { Paren } from "../models/paren";
 import { Power } from "../models/power";
 import { Subtraction } from "../models/subtraction";
-import { Paren } from './../models/paren';
+import { Variable } from './../models/variable';
 
 @Injectable()
 export class ExpressionService
 {
-  getNode(node: Node, newNodeType: NodeType, isInLeftSide: boolean): Node
+  getNode(newNodeType: NodeType): Node
   {
-    let newNode: Node;
     switch (newNodeType)
     {
       case NodeType.Addition:
-        newNode = new Addition(new EmptyNode(), new EmptyNode());
-        break;
+        return new Paren(new Addition(new EmptyNode(), new EmptyNode()));
       case NodeType.Subtraction:
-        newNode = new Subtraction(new EmptyNode(), new EmptyNode());
-        break;
+        return new Paren(new Subtraction(new EmptyNode(), new EmptyNode()));
       case NodeType.Multiplication:
-        newNode = new Multiplication(new EmptyNode(), new EmptyNode());
-        break;
+        return new Paren(new Multiplication(new EmptyNode(), new EmptyNode()));
       case NodeType.Division:
-        newNode = new Division(new EmptyNode(), new EmptyNode());
-        break;
+        return new Paren(new Division(new EmptyNode(), new EmptyNode()));
       case NodeType.Power:
-        newNode = new Power(new EmptyNode(), new EmptyNode());
-        break;
+        return new Paren(new Power(new EmptyNode(), new EmptyNode()));
+      case NodeType.Variable:
+        return new Variable("$c");
 
       default:
         throw new Error(`Invalid node type. NodeType = ${ newNodeType }`);
     }
-
-    return this.getFinalNode(node, isInLeftSide, newNode);
   }
 
-  getFinalNode(node: Node, isInLeftSide: boolean, newNode: Node): Node
+  getPositionId(node: Node, isInLeftSide: boolean): string
   {
-    const expression = (<Paren>node).expression;
-    switch (expression.type)
+    switch (node.type)
     {
       case NodeType.Addition:
-        return isInLeftSide ? new Addition(new Paren(newNode), new Paren(expression)) : new Addition(new Paren(expression), new Paren(newNode));
+        return isInLeftSide ? (<Addition>node).left.id : (<Addition>node).right.id;
       case NodeType.Subtraction:
-        return isInLeftSide ? new Subtraction(new Paren(newNode), new Paren(expression)) : new Subtraction(new Paren(expression), new Paren(newNode));
+        return isInLeftSide ? (<Subtraction>node).left.id : (<Subtraction>node).right.id;
       case NodeType.Multiplication:
-        return isInLeftSide ? new Multiplication(new Paren(newNode), new Paren(expression)) : new Multiplication(new Paren(expression), new Paren(newNode));
+        return isInLeftSide ? (<Multiplication>node).left.id : (<Multiplication>node).right.id;
       case NodeType.Division:
-        return isInLeftSide ? new Division(new Paren(newNode), new Paren(expression)) : new Division(new Paren(expression), new Paren(newNode));
+        return isInLeftSide ? (<Division>node).left.id : (<Division>node).right.id;
       case NodeType.Power:
-        return isInLeftSide ? new Power(new Paren(newNode), new Paren(expression)) : new Power(new Paren(expression), new Paren(newNode));
+        return isInLeftSide ? (<Power>node).expression.id : (<Power>node).power.id;
 
       default:
-        throw new Error(`Invalid node type. NodeType = ${ expression.type }`);
+        throw new Error(`Invalid node type. NodeType: ${ node.type }`);
     }
   }
-
-  // getCorrectPositionId(node: Node, isInLeftSide: boolean): string
-  // {
-  //   switch (node.type)
-  //   {
-  //     case NodeType.Addition:
-  //       return isInLeftSide ? (<Addition>node).left.id : (<Addition>node).right.id;
-  //     case NodeType.Subtraction:
-  //       return isInLeftSide ? (<Subtraction>node).left.id : (<Subtraction>node).right.id;
-  //     case NodeType.Multiplication:
-  //       return isInLeftSide ? (<Multiplication>node).left.id : (<Multiplication>node).right.id;
-  //     case NodeType.Division:
-  //       return isInLeftSide ? (<Division>node).left.id : (<Division>node).right.id;
-  //     case NodeType.Power:
-  //       return isInLeftSide ? (<Power>node).expression.id : (<Power>node).power.id;
-
-  //     default:
-  //       throw new Error(`Invalid node type. NodeType = ${ node.type }`);
-  //   }
-  // }
 
   load(): Array<Expression>
   {
@@ -161,6 +135,20 @@ export class ExpressionService
             id: 18,
             icon: "functions",
             title: "SQR",
+            children: []
+          }
+        ]
+      },
+      {
+        id: 19,
+        icon: "input",
+        title: "Variables",
+        children: [
+          {
+            id: 20,
+            icon: "text_fields",
+            nodeType: NodeType.Variable,
+            title: "Text Field",
             children: []
           }
         ]
