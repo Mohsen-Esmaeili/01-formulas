@@ -26,9 +26,9 @@ export class SharedService
       }
     });
 
-    dialogRef.afterClosed().subscribe((positionId: string) =>
+    dialogRef.afterClosed().subscribe((isInLeftSide: boolean) =>
     {
-      acceptCallBackFunc(positionId, newNode);
+      acceptCallBackFunc(isInLeftSide, newNode);
     });
   }
 }

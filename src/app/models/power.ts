@@ -34,22 +34,12 @@ export class Power extends Node
 
   removeChildById(id: string): Node
   {
-    // Explore in the power, expression object
     if (this.expression.id === id)
     {
       this.expression = new EmptyNode();
-    } else
-    {
-      this.expression = this.expression.removeChildById(id);
-    }
-
-    // Explore in the power, power object
-    if (this.power.id === id)
+    } else if (this.power.id === id)
     {
       this.power = new EmptyNode();
-    } else
-    {
-      this.power = this.power.removeChildById(id);
     }
 
     return this;

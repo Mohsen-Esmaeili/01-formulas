@@ -1,1 +1,10 @@
-<app-expression [parentNode]="node" [node]="parenExpression"></app-expression>
+<mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected">
+  <div class="d-flex flex-row justify-content-end action-buttons">
+    <app-expression-list [node]="node" [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)">
+    </app-expression-list>
+    <button mat-mini-fab color="warn" *ngIf="isSelected" (click)="onRemoveNode()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <app-expression [parentNode]="node" [node]="parenExpression"></app-expression>
+</mat-card>

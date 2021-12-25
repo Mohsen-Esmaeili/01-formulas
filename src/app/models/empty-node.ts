@@ -9,7 +9,6 @@ export class EmptyNode extends Node
 
   addChild(id: string, node: Node): Node
   {
-    debugger;
     if (this.id === id)
     {
       return node;

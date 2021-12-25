@@ -35,7 +35,7 @@ export class ExpressionComponent implements OnInit, OnChanges
 
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<NodeComponent>(GetComponent(this.node.type));
+    const componentRef = viewContainerRef.createComponent<NodeComponent>(GetComponent(this.node.type, this.node));
     componentRef.instance.parentNode = this.parentNode;
     componentRef.instance.node = this.node;
   }

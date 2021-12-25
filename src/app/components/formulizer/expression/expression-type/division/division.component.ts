@@ -21,31 +21,4 @@ export class DivisionComponent extends NodeComponent
   {
     return (<Division>this.node).right;
   }
-
-  onRemoveNode(): void
-  {
-    if (this.parentNode)
-    {
-      this.parentNode.removeChildById(this.node.id);
-      this.sharedService.updatedEmitter.emit();
-    }
-  }
-
-  onAddNewNode(node: Node): void
-  {
-    this.sharedService.openPositionSelectionDialog(this.node, node, this.addNewNode.bind(this));
-  }
-
-  addNewNode(positionId: string, node: Node): void
-  {
-    this.node.addChild(positionId, node);
-    this.sharedService.updatedEmitter.emit();
-  }
-
-  onSelect(event: Event): void
-  {
-    event.stopPropagation();
-
-    this.sharedService.selectedEmitter.emit(this.node.id);
-  }
 }

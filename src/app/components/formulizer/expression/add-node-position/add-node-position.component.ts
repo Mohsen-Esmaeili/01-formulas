@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NodeType } from './../../../../constants/node-type';
 
@@ -7,17 +7,19 @@ import { NodeType } from './../../../../constants/node-type';
   templateUrl: './add-node-position.component.html',
   styleUrls: ['./add-node-position.component.scss']
 })
-export class AddNodePositionComponent
+export class AddNodePositionComponent implements OnInit
 {
-  constructor(@Inject(MAT_DIALOG_DATA) public nodeType: NodeType, private dialogRef: MatDialogRef<AddNodePositionComponent>) { }
+  isPower: boolean;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Record<string, unknown>, private dialogRef: MatDialogRef<AddNodePositionComponent>) { }
 
-  onSelect(firstSelected: boolean)
+  ngOnInit(): void
   {
-    this.dialogRef.close({ isSelected: true, firstSelected: firstSelected });
+    this.isPower = this.data["nodeType"] == NodeType.Power;
   }
 
-  get isPower(): boolean
+  onSelect(isInLeftSide: boolean)
   {
-    return this.nodeType === NodeType.Power;
+    this.dialogRef.close({ isSelected: true, isInLeftSide: isInLeftSide });
   }
+
 }

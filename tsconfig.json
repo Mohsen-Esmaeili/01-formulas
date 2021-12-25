@@ -30,5 +30,8 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "strictPropertyInitialization": false
-  }
+  },
+  "types": [
+    "underscore"
+  ]
 }

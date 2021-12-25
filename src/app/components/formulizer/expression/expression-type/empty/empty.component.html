@@ -1,4 +1,5 @@
-<app-expression-list [menuTriggerTmp]="AddNewNode" [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)">
+<app-expression-list [menuTriggerTmp]="AddNewNode" [node]="node" [visible]="isSelected"
+  (newNodeEmitter)="onAddNewNode($event)">
 </app-expression-list>
 
 <ng-template #AddNewNode>

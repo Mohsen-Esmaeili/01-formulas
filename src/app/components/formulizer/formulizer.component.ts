@@ -35,8 +35,7 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
     this.updateEmitterSubscription = this.sharedService.updatedEmitter.subscribe(response =>
     {
-      debugger;
-      this.formControls["formula"].patchValue(this.node.getString());
+      // this.formControls["formula"].patchValue(this.node.getString());
     });
   }
 
@@ -60,6 +59,7 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
     this.node = this.nodeManagerService.Load(this.formControls["formula"].value);
     this.visualizerOutput = this.node.getString();
+    console.log(this.visualizerOutput);
   }
 
   get formControls()

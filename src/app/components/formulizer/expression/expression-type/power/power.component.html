@@ -1,27 +1,19 @@
-<mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected">
-  <div class="d-flex flex-row justify-content-end action-buttons">
-    <app-expression-list [visible]="isSelected" (newNodeEmitter)="onAddNewNode($event)"></app-expression-list>
-    <button mat-mini-fab color="warn" *ngIf="isSelected" (click)="onRemoveNode()">
-      <mat-icon>close</mat-icon>
-    </button>
+<div class="d-flex flex-row flex-wrap align-items-center">
+  <div class="m-1">
+    <app-expression [parentNode]="node" [node]="expression"></app-expression>
   </div>
-  <div class="d-flex flex-row flex-wrap align-items-center">
-    <div class="m-1">
-      <app-expression [parentNode]="node" [node]="expression"></app-expression>
-    </div>
-    <div class="m-1 d-flex flex-column justify-content-center">
-      <mat-form-field appearance="fill" class="select-control">
-        <mat-select [(ngModel)]="operator">
-          <mat-option value="ADDITION">+</mat-option>
-          <mat-option value="SUBTRACTION">-</mat-option>
-          <mat-option value="MULTIPLICATION">*</mat-option>
-          <mat-option value="DIVISION">/</mat-option>
-          <mat-option value="POWER">^</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="m-1">
-      <app-expression [parentNode]="node" [node]="power"></app-expression>
-    </div>
+  <div class="m-1 d-flex flex-column justify-content-center">
+    <mat-form-field appearance="fill" class="select-control">
+      <mat-select [(ngModel)]="operator">
+        <mat-option value="ADDITION">+</mat-option>
+        <mat-option value="SUBTRACTION">-</mat-option>
+        <mat-option value="MULTIPLICATION">*</mat-option>
+        <mat-option value="DIVISION">/</mat-option>
+        <mat-option value="POWER">^</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-</mat-card>
+  <div class="m-1">
+    <app-expression [parentNode]="node" [node]="power"></app-expression>
+  </div>
+</div>

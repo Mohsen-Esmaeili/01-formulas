@@ -34,22 +34,12 @@ export class Division extends Node
 
   removeChildById(id: string): Node
   {
-    // Explore in the left side
     if (this.left.id === id)
     {
       this.left = new EmptyNode();
-    } else
-    {
-      this.left = this.left.removeChildById(id);
-    }
-
-    // Explore in the right side
-    if (this.right.id === id)
+    } else if (this.right.id === id)
     {
       this.right = new EmptyNode();
-    } else
-    {
-      this.right = this.right.removeChildById(id);
     }
 
     return this;

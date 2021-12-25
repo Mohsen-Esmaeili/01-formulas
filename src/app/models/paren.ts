@@ -16,6 +16,11 @@ export class Paren extends Node
 
   override addChild(id: string, node: Node): Node
   {
+    debugger;
+    if (this.id === id)
+    {
+      this.expression = node;
+    }
     return this;
   }
 
@@ -24,10 +29,8 @@ export class Paren extends Node
     if (this.expression.id === id)
     {
       this.expression = new EmptyNode();
-    } else
-    {
-      this.expression = this.expression.removeChildById(id);
     }
+
     return this;
   }
 
