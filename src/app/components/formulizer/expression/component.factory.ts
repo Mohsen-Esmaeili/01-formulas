@@ -1,9 +1,12 @@
 import { NodeType } from './../../../constants/node-type';
 import { AdditionComponent } from './expression-type/addition/addition.component';
 import { DivisionComponent } from './expression-type/division/division.component';
+import { EComponent } from './expression-type/e/e.component';
 import { EmptyComponent } from './expression-type/empty/empty.component';
+import { FunctionComponent } from './expression-type/function/function.component';
 import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
 import { ParenComponent } from './expression-type/paren/paren.component';
+import { PiComponent } from './expression-type/pi/pi.component';
 import { PowerComponent } from './expression-type/power/power.component';
 import { SubtractionComponent } from './expression-type/subtraction/subtraction.component';
 import { ValueComponent } from './expression-type/value/value.component';
@@ -31,6 +34,12 @@ export default function GetComponent(nodeType: NodeType)
       return ParenComponent;
     case NodeType.Empty:
       return EmptyComponent;
+    case NodeType.Function:
+      return FunctionComponent;
+    case NodeType.E:
+      return EComponent;
+    case NodeType.PI:
+      return PiComponent;
 
     default:
       throw new Error(`Invalid node type. NodeType = ${ nodeType }`);

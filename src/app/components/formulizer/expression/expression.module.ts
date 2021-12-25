@@ -14,10 +14,13 @@ import { AddNodePositionComponent } from './add-node-position/add-node-position.
 import { ExpressionListComponent } from './expression-list/expression-list.component';
 import { AdditionComponent } from './expression-type/addition/addition.component';
 import { DivisionComponent } from './expression-type/division/division.component';
+import { EComponent } from './expression-type/e/e.component';
 import { EmptyComponent } from './expression-type/empty/empty.component';
+import { FunctionComponent } from './expression-type/function/function.component';
 import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
 import { NodeComponent } from './expression-type/node/node.component';
 import { ParenComponent } from './expression-type/paren/paren.component';
+import { PiComponent } from './expression-type/pi/pi.component';
 import { PowerComponent } from './expression-type/power/power.component';
 import { SubtractionComponent } from './expression-type/subtraction/subtraction.component';
 import { ValueComponent } from './expression-type/value/value.component';
@@ -25,7 +28,7 @@ import { VariableComponent } from './expression-type/variable/variable.component
 import { ExpressionComponent } from './expression.component';
 
 const COMPONENTS = [AddNodePositionComponent, ExpressionComponent, ExpressionListComponent, EmptyComponent, AdditionComponent, SubtractionComponent, DivisionComponent,
-  MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent];
+  MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent, FunctionComponent, EComponent, PiComponent];
 const DIRECTIVES = [ExpressionHostDirective];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatBadgeModule];

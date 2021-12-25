@@ -16,7 +16,6 @@ export class ParenComponent extends NodeComponent
 
   get badgeIsHidden(): boolean
   {
-    debugger;
     return this.node.getValue() === Number.MIN_VALUE;
   }
 
