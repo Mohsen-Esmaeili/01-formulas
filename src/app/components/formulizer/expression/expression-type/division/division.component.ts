@@ -33,12 +33,11 @@ export class DivisionComponent extends NodeComponent
 
   onAddNewNode(node: Node): void
   {
-    this.sharedService.openPositionSelectionDialog(this.node.type, node, this.addNewNode.bind(this));
+    this.sharedService.openPositionSelectionDialog(this.node, node, this.addNewNode.bind(this));
   }
 
-  addNewNode(isLeft: boolean, node: Node): void
+  addNewNode(positionId: string, node: Node): void
   {
-    const positionId = isLeft ? this.left.id : this.right.id;
     this.node.addChild(positionId, node);
     this.sharedService.updatedEmitter.emit();
   }

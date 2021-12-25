@@ -34,12 +34,11 @@ export class PowerComponent extends NodeComponent
 
   onAddNewNode(node: Node): void
   {
-    this.sharedService.openPositionSelectionDialog(this.node.type, node, this.addNewNode.bind(this));
+    this.sharedService.openPositionSelectionDialog(this.node, node, this.addNewNode.bind(this));
   }
 
-  addNewNode(isExpression: boolean, node: Node): void
+  addNewNode(positionId: string, node: Node): void
   {
-    const positionId = isExpression ? this.expression.id : this.power.id;
     this.node.addChild(positionId, node);
     this.sharedService.updatedEmitter.emit();
   }

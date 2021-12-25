@@ -1,5 +1,6 @@
 import { NodeType } from './../../../constants/node-type';
 import { AdditionComponent } from './expression-type/addition/addition.component';
+import { DivisionComponent } from './expression-type/division/division.component';
 import { EmptyComponent } from './expression-type/empty/empty.component';
 import { MultiplicationComponent } from './expression-type/multiplication/multiplication.component';
 import { ParenComponent } from './expression-type/paren/paren.component';
@@ -22,6 +23,8 @@ export default function GetComponent(nodeType: NodeType)
       return SubtractionComponent;
     case NodeType.Multiplication:
       return MultiplicationComponent;
+    case NodeType.Division:
+      return DivisionComponent;
     case NodeType.Power:
       return PowerComponent;
     case NodeType.Paren:

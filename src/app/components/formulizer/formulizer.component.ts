@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Node } from '../../models/node';
 import { NodeManagerService } from '../../services/node-manager.service';
+import { SharedService } from './../../services/shared.service';
 
 @Component({
   selector: 'app-formulizer',
   templateUrl: './formulizer.component.html',
   styleUrls: ['./formulizer.component.scss']
 })
-export class FormulizerComponent implements OnInit
+export class FormulizerComponent implements OnInit, OnDestroy
 {
 
   // formula: string = "($b + SQRT (SQR($b) - (4 * $a))) / (2 * $a)";
@@ -18,15 +20,23 @@ export class FormulizerComponent implements OnInit
   syntaxTreeJson: string = "";
   node: Node;
   form: FormGroup;
+  updateEmitterSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder,
     private nodeManagerService: NodeManagerService,
-    private router: Router) { }
+    private router: Router,
+    private sharedService: SharedService) { }
 
   ngOnInit(): void
   {
     this.form = this.formBuilder.group({
       formula: ['(2 + $a) + ($a + 4)']
+    });
+
+    this.updateEmitterSubscription = this.sharedService.updatedEmitter.subscribe(response =>
+    {
+      debugger;
+      this.formControls["formula"].patchValue(this.node.getString());
     });
   }
 
@@ -60,5 +70,10 @@ export class FormulizerComponent implements OnInit
   onGoHome(): void
   {
     this.router.navigate(['/']);
+  }
+
+  ngOnDestroy(): void
+  {
+    this.updateEmitterSubscription?.unsubscribe();
   }
 }
