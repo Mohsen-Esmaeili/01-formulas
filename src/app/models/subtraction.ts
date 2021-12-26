@@ -15,7 +15,7 @@ export class Subtraction extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     const newExpression = new Paren(new Subtraction(this.left, this.right));
 

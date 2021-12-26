@@ -33,7 +33,7 @@ export class ExpressionService
       case NodeType.Power:
         return new Paren(new Power(new EmptyNode(), new EmptyNode()));
       case NodeType.Function:
-        return new Function(expression.title, [new Value(5)]);
+        return new Function(expression.title, [new EmptyNode()]);
       case NodeType.Variable:
         return new Variable("$" + value);
       case NodeType.Number:
@@ -63,6 +63,8 @@ export class ExpressionService
         return isInLeftSide ? (<Division>node).left.id : (<Division>node).right.id;
       case NodeType.Power:
         return isInLeftSide ? (<Power>node).expression.id : (<Power>node).power.id;
+      case NodeType.Function:
+        return ((<Function>node).args[0].id);
 
       default:
         throw new Error(`Invalid node type. NodeType: ${ node.type }`);
@@ -159,6 +161,20 @@ export class ExpressionService
             icon: "functions",
             nodeType: NodeType.Function,
             title: "SQR",
+            children: []
+          },
+          {
+            id: 27,
+            icon: "functions",
+            nodeType: NodeType.Function,
+            title: "MIN",
+            children: []
+          },
+          {
+            id: 28,
+            icon: "functions",
+            nodeType: NodeType.Function,
+            title: "MAX",
             children: []
           }
         ]

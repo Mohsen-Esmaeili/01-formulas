@@ -15,7 +15,7 @@ export class Addition extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     const newExpression = new Paren(new Addition(this.left, this.right));
 
@@ -38,7 +38,7 @@ export class Addition extends Node
     return this;
   }
 
-  override removeChildById(id: string): Node
+  removeChildById(id: string): Node
   {
     if (this.left.id === id)
     {

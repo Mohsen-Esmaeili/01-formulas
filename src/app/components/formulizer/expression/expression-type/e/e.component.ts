@@ -3,8 +3,7 @@ import { NodeComponent } from './../node/node.component';
 
 @Component({
   selector: 'app-e',
-  templateUrl: './e.component.html',
-  styleUrls: ['./e.component.scss']
+  templateUrl: './e.component.html'
 })
 export class EComponent extends NodeComponent
 {

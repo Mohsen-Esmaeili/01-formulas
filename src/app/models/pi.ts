@@ -14,7 +14,7 @@ export class PI extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     return this;
   }

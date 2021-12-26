@@ -15,7 +15,7 @@ export class Multiplication extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     const newExpression = new Paren(new Multiplication(this.left, this.right));
 

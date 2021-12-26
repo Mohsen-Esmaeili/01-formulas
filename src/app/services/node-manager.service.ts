@@ -22,35 +22,35 @@ export class NodeManagerService
 {
   Load(formula: string): Node
   {
-    const parserResult = <Node>parse(formula);
+    const parserResult = parse(formula);
 
     const root = this.regenerateNode(parserResult);
 
     return root;
   }
 
-  regenerateNode(node: Node): Node
+  regenerateNode(node: any): Node
   {
     switch (node.type)
     {
       case NodeType.Number:
-        return new Value((<Value>node).value);
+        return new Value(node.value);
       case NodeType.Variable:
-        return new Variable((<Variable>node).name);
+        return new Variable(node.name);
       case NodeType.Addition:
-        return new Addition(this.regenerateNode((<Addition>node).left), this.regenerateNode((<Addition>node).right));
+        return new Addition(this.regenerateNode(node.left), this.regenerateNode(node.right));
       case NodeType.Subtraction:
-        return new Subtraction(this.regenerateNode((<Subtraction>node).left), this.regenerateNode((<Subtraction>node).right));
+        return new Subtraction(this.regenerateNode(node.left), this.regenerateNode(node.right));
       case NodeType.Multiplication:
-        return new Multiplication(this.regenerateNode((<Multiplication>node).left), this.regenerateNode((<Multiplication>node).right));
+        return new Multiplication(this.regenerateNode(node.left), this.regenerateNode(node.right));
       case NodeType.Division:
-        return new Division(this.regenerateNode((<Division>node).left), this.regenerateNode((<Division>node).right));
+        return new Division(this.regenerateNode(node.left), this.regenerateNode(node.right));
       case NodeType.Power:
-        return new Power(this.regenerateNode((<Power>node).expression), this.regenerateNode((<Power>node).power));
+        return new Power(this.regenerateNode(node.expression), this.regenerateNode(node.power));
       case NodeType.Function:
-        return new Function((<Function>node).name, (<any>node).arguments.map((arg: Node) => this.regenerateNode(arg)));
+        return new Paren(new Function(node.name, node.arguments.map((arg: Node) => this.regenerateNode(arg))));
       case NodeType.Paren:
-        return new Paren(this.regenerateNode((<Paren>node).expression));
+        return new Paren(this.regenerateNode(node.expression));
       case NodeType.PI:
         return new PI();
       case NodeType.E:

@@ -46,6 +46,12 @@ export class ExpressionListComponent implements OnInit
 
   addNew(expression: Expression): void
   {
+    if (expression.nodeType === NodeType.Function)
+    {
+      this.addChild(expression);
+      return;
+    }
+
     const dialogRef = this.dialog.open(AddNodePositionComponent, {
       panelClass: "add-node-position-modal",
       hasBackdrop: true,
@@ -58,7 +64,6 @@ export class ExpressionListComponent implements OnInit
 
     dialogRef.afterClosed().subscribe((positionRes: any) =>
     {
-      debugger;
       if (expression.nodeType && positionRes.isSelected)
       {
         if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
@@ -76,18 +81,21 @@ export class ExpressionListComponent implements OnInit
           {
             if (dataRes.isSelected && expression.nodeType)
             {
-              const newNode = this.expressionService.getNode(expression, dataRes.value);
-              this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
-              this.sharedService.updatedEmitter.emit();
+              this.addChild(expression, positionRes.isInLeftSide, dataRes.value);
             }
           });
         } else
         {
-          const newNode = this.expressionService.getNode(expression);
-          this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
-          this.sharedService.updatedEmitter.emit();
+          this.addChild(expression, positionRes.isInLeftSide);
         }
       }
     });
+  }
+
+  addChild(expression: Expression, isInLeftSide: boolean = true, requiredData: string = ""): void
+  {
+    const newNode = this.expressionService.getNode(expression, requiredData);
+    this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, isInLeftSide), newNode);
+    this.sharedService.updatedEmitter.emit();
   }
 }

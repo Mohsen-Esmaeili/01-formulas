@@ -15,7 +15,7 @@ export class Power extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     const newExpression = new Paren(new Power(this.expression, this.power));
 

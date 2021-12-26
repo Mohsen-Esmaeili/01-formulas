@@ -14,12 +14,27 @@ export class Function extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
+    let updated = false;
+    this.args.forEach((arg: Node) =>
+    {
+      if (arg.id === id)
+      {
+        arg = node;
+        updated = true;
+      }
+    });
+
+    if (!updated)
+    {
+      this.args.push(node);
+    }
+
     return this;
   }
 
-  override removeChildById(id: string): Node
+  removeChildById(id: string): Node
   {
     this.args.forEach((arg: Node) =>
     {
@@ -47,6 +62,8 @@ export class Function extends Node
         return Math.max(...this.args.map((arg: Node) => arg.getValue()));
       case 'MIN':
         return Math.min(...this.args.map((arg: Node) => arg.getValue()));
+      case 'SQR':
+        return this.args[0].getValue() * this.args[0].getValue();
 
       default:
         throw new Error(`Function is not valid. Function: ${ this.name }`);

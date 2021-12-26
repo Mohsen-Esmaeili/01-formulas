@@ -3,8 +3,7 @@ import { NodeComponent } from './../node/node.component';
 
 @Component({
   selector: 'app-pi',
-  templateUrl: './pi.component.html',
-  styleUrls: ['./pi.component.scss']
+  templateUrl: './pi.component.html'
 })
 export class PiComponent extends NodeComponent
 {

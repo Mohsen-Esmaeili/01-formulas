@@ -14,7 +14,7 @@ export class Paren extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     this.expression.addChild(id, node);
     return this;

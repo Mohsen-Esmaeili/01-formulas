@@ -15,7 +15,7 @@ export class Division extends Node
     super();
   }
 
-  override addChild(id: string, node: Node): Node
+  addChild(id: string, node: Node): Node
   {
     const newExpression = new Paren(new Division(this.left, this.right));
 
