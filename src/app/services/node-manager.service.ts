@@ -24,6 +24,7 @@ export class NodeManagerService
   {
     const parserResult = parse(formula);
 
+    // Creating data model based on generated Abstract Syntax Tree
     const root = this.regenerateNode(parserResult);
 
     return root;

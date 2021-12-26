@@ -51,7 +51,10 @@ export class ExpressionListComponent implements OnInit
       this.addChild(expression);
       return;
     }
-
+    /*
+    Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
+    to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
+    */
     const dialogRef = this.dialog.open(AddNodePositionComponent, {
       panelClass: "add-node-position-modal",
       hasBackdrop: true,
@@ -66,6 +69,9 @@ export class ExpressionListComponent implements OnInit
     {
       if (expression.nodeType && positionRes.isSelected)
       {
+        /*
+        If you want to add
+        */
         if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
         {
           const valueDialog = this.dialog.open(ExpressionInputComponent, {

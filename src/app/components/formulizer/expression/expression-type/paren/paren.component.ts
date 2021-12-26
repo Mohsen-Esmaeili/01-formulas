@@ -28,17 +28,6 @@ export class ParenComponent extends NodeComponent
     }
   }
 
-  onAddNewNode(node: Node): void
-  {
-    this.sharedService.openPositionSelectionDialog(this.node, node, this.addNewNode.bind(this));
-  }
-
-  addNewNode(positionId: string, node: Node): void
-  {
-    this.node.addChild(positionId, node);
-    this.sharedService.updatedEmitter.emit();
-  }
-
   onSelect(event: Event): void
   {
     event.stopPropagation();
