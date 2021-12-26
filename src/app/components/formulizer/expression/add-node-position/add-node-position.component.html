@@ -1,12 +1,21 @@
-<h1 mat-dialog-title class="p-3 mb-0">Select position</h1>
-<mat-divider></mat-divider>
-<div mat-dialog-content class="position-container">
-  <ng-container *ngIf="isPower; else HasLeftAndRight">
-    <div class="alert alert-success m-1" (click)="onSelect(true)">Expression</div>
-    <div class="alert alert-success m-1" (click)="onSelect(false)">Power</div>
-  </ng-container>
-  <ng-template #HasLeftAndRight>
-    <div class="alert alert-success m-1" (click)="onSelect(true)">Left</div>
-    <div class="alert alert-success m-1" (click)="onSelect(false)">Right</div>
-  </ng-template>
-</div>
+<h2 mat-dialog-title>Select position</h2>
+<mat-dialog-content class="mat-typography position-container">
+  <mat-selection-list [multiple]="false" [formControl]="isInLeftSide" (selectionChange)="onSelect()">
+    <ng-container *ngIf="isPower; else IsNotPower">
+      <mat-list-option [value]="true">
+        Expression
+      </mat-list-option>
+      <mat-list-option [value]="false">
+        Power
+      </mat-list-option>
+    </ng-container>
+    <ng-template #IsNotPower>
+      <mat-list-option [value]="true">
+        Left
+      </mat-list-option>
+      <mat-list-option [value]="false">
+        Right
+      </mat-list-option>
+    </ng-template>
+  </mat-selection-list>
+</mat-dialog-content>

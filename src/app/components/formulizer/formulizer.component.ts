@@ -28,21 +28,28 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
   ngOnInit(): void
   {
+    this.update();
     this.updateEmitterSubscription = this.sharedService.updatedEmitter.subscribe(response =>
     {
       this.formula.setValue(this.node.getString());
+      this.update();
     });
   }
 
-  updateAstView()
+  onBlur(): void
   {
-    this.node = this.nodeManagerService.Load(this.formula.value);
-    this.syntaxTreeJson = JSON.stringify(this.node, null, 2);
+    this.update();
   }
 
-  convertAstToFormula()
+  update(): void
   {
+    if (this.formula.invalid)
+    {
+      return;
+    }
+
     this.node = this.nodeManagerService.Load(this.formula.value);
+    this.syntaxTreeJson = JSON.stringify(this.node, null, 2);
     this.visualizerOutput = this.node.getString();
   }
 

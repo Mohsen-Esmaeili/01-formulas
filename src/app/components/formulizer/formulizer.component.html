@@ -10,34 +10,25 @@
     <div class="m-2">
       <mat-form-field class="w-100" appearance="fill">
         <mat-label>Formula</mat-label>
-        <textarea matInput placeholder="Enter formula" class="formula-text-area" [formControl]="formula"></textarea>
+        <textarea matInput placeholder="Enter formula" class="formula-text-area" [formControl]="formula"
+          (blur)="onBlur()"></textarea>
       </mat-form-field>
     </div>
     <mat-tab-group>
-      <mat-tab label="AST View">
-        <div class="m-2">
-          <button mat-raised-button color="primary" (click)="updateAstView()">Parse and update AST View</button>
-        </div>
-        <div class="m-2">
-          <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
-        </div>
+      <mat-tab label="AST View" class="p-3 mt-2">
+        <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
       </mat-tab>
-      <mat-tab label="Formula View">
-        <div class="m-2">
-          <button mat-raised-button color="primary" (click)="convertAstToFormula()">Convert AST to Formula</button>
-        </div>
-        <div class="m-2">
-          <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
-        </div>
+      <mat-tab label="Formula View" class="p-3 mt-2">
+        <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
       </mat-tab>
-      <mat-tab label="Visualize Formula">
+      <mat-tab label="Visualize Formula" class="p-3 mt-2">
         <div class="m-2">
           <section class="d-flex flex-row justify-content-between">
             <div>
               <mat-card-title>Formula visualization</mat-card-title>
               <mat-card-subtitle>By clicking you can add your formula</mat-card-subtitle>
             </div>
-            <div class="alert alert-warning" *ngIf="node">Result: {{ node?.getValue() }}</div>
+            <div class="alert alert-warning" *ngIf="node">Final Result: {{ node?.getValue() }}</div>
           </section>
           <pre class="visualize-content p-3" *ngIf="node">
             <mat-card>

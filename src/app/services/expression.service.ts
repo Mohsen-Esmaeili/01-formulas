@@ -9,12 +9,13 @@ import { Node } from "../models/node";
 import { Paren } from "../models/paren";
 import { Power } from "../models/power";
 import { Subtraction } from "../models/subtraction";
+import { Value } from "../models/value";
 import { Variable } from './../models/variable';
 
 @Injectable()
 export class ExpressionService
 {
-  getNode(newNodeType: NodeType): Node
+  getNode(newNodeType: NodeType, value: string = ""): Node
   {
     switch (newNodeType)
     {
@@ -29,7 +30,9 @@ export class ExpressionService
       case NodeType.Power:
         return new Paren(new Power(new EmptyNode(), new EmptyNode()));
       case NodeType.Variable:
-        return new Variable("$c");
+        return new Variable("$" + value);
+      case NodeType.Number:
+        return new Value(Number(value));
 
       default:
         throw new Error(`Invalid node type. NodeType = ${ newNodeType }`);
@@ -106,6 +109,13 @@ export class ExpressionService
         icon: "task_alt",
         title: "Specific values",
         children: [
+          {
+            id: 1,
+            icon: "numbers",
+            nodeType: NodeType.Number,
+            title: "Static Value",
+            children: []
+          },
           {
             id: 14,
             icon: "task_alt",

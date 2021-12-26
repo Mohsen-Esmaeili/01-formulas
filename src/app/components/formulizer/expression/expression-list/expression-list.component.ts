@@ -2,10 +2,12 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Expression } from '../../../../models/expression';
 import { ExpressionService } from '../../../../services/expression.service';
+import { NodeType } from './../../../../constants/node-type';
 import { Node } from './../../../../models/node';
 import { Paren } from './../../../../models/paren';
 import { SharedService } from './../../../../services/shared.service';
 import { AddNodePositionComponent } from './../add-node-position/add-node-position.component';
+import { ExpressionInputComponent } from './../expression-input/expression-input.component';
 @Component({
   selector: 'app-expression-list',
   templateUrl: './expression-list.component.html',
@@ -54,13 +56,36 @@ export class ExpressionListComponent implements OnInit
       }
     });
 
-    dialogRef.afterClosed().subscribe((response: any) =>
+    dialogRef.afterClosed().subscribe((positionRes: any) =>
     {
-      if (expression.nodeType && response.isSelected)
+      if (expression.nodeType && positionRes.isSelected)
       {
-        const newNode = this.expressionService.getNode(expression.nodeType);
-        this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, response.isInLeftSide), newNode);
-        this.sharedService.updatedEmitter.emit();
+        if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
+        {
+          const valueDialog = this.dialog.open(ExpressionInputComponent, {
+            panelClass: "select-node-data-modal",
+            hasBackdrop: true,
+            minWidth: "350px",
+            data: {
+              nodeType: expression.nodeType
+            }
+          });
+
+          valueDialog.afterClosed().subscribe((dataRes: any) =>
+          {
+            if (dataRes.isSelected && expression.nodeType)
+            {
+              const newNode = this.expressionService.getNode(expression.nodeType, dataRes.value);
+              this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
+              this.sharedService.updatedEmitter.emit();
+            }
+          });
+        } else
+        {
+          const newNode = this.expressionService.getNode(expression.nodeType);
+          this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
+          this.sharedService.updatedEmitter.emit();
+        }
       }
     });
   }
