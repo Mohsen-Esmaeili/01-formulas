@@ -1,6 +1,5 @@
 import { NodeType } from '../constants/node-type';
 import { Addition } from './addition';
-import { Paren } from './paren';
 import { Power } from './power';
 import { Value } from './value';
 import { Variable } from './variable';
@@ -84,33 +83,5 @@ describe('Power', () =>
     // check
     expect(node.power.type).toEqual(NodeType.Empty);
     expect(node.expression.type).not.toEqual(NodeType.Empty);
-  });
-
-  it('Remove expression from power expression from second level', () =>
-  {
-    // arrange
-    const nodeToBeDeleted = new Power(new Value(4), new Value(5));
-    const expression = new Addition(nodeToBeDeleted, new Value(8));
-    const node = new Paren(expression);
-
-    // act
-    node.removeChildById(nodeToBeDeleted.expression.id);
-
-    // check
-    expect((<Power>(<Addition>(<Paren>node).expression).left).expression.type).toEqual(NodeType.Empty);
-  });
-
-  it('Remove power from power expression from second level', () =>
-  {
-    // arrange
-    const nodeToBeDeleted = new Power(new Value(4), new Value(5));
-    const expression = new Addition(new Value(8), nodeToBeDeleted);
-    const node = new Paren(expression);
-
-    // act
-    node.removeChildById(nodeToBeDeleted.power.id);
-
-    //check
-    expect((<Power>(<Addition>(<Paren>node).expression).right).power.type).toEqual(NodeType.Empty);
   });
 });

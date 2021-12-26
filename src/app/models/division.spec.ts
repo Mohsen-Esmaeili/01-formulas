@@ -1,6 +1,5 @@
 import { NodeType } from '../constants/node-type';
 import { Division } from './division';
-import { Paren } from './paren';
 import { Value } from './value';
 import { Variable } from './variable';
 
@@ -83,33 +82,5 @@ describe('Division', () =>
     // check
     expect(node.right.type).toEqual(NodeType.Empty);
     expect(node.left.type).toEqual(NodeType.Number);
-  });
-
-  it('Remove left child with from second level', () =>
-  {
-    // arrange
-    const nodeToDelete = new Division(new Value(4), new Value(8));
-    const expression = new Division(nodeToDelete, new Value(9));
-    const node = new Paren(expression);
-
-    // act
-    node.removeChildById(nodeToDelete.left.id);
-
-    // check
-    expect((<Division>(<Division>(<Paren>node).expression).left).left.type).toEqual(NodeType.Empty);
-  });
-
-  it('Remove right child with from second level', () =>
-  {
-    // arrange
-    const nodeToDelete = new Division(new Value(4), new Value(8));
-    const expression = new Division(new Value(9), nodeToDelete);
-    const node = new Paren(expression);
-
-    // act
-    node.removeChildById(nodeToDelete.right.id);
-
-    // check
-    expect((<Division>(<Division>(<Paren>node).expression).right).right.type).toEqual(NodeType.Empty);
   });
 });

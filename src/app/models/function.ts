@@ -1,6 +1,8 @@
 import { NodeType } from '../constants/node-type';
 import { EmptyNode } from './empty-node';
 import { Node } from './node';
+import { Power } from './power';
+import { Value } from './value';
 
 export class Function extends Node
 {
@@ -49,7 +51,7 @@ export class Function extends Node
 
   getString(): string
   {
-    return `${ this.name } (${ this.args.map((arg: Node) => arg.getString()).join(', ') })`;
+    return `${ this.name }(${ this.args.map((arg: Node) => arg.getString()).join(', ') })`;
   }
 
   getValue(): number
@@ -63,7 +65,7 @@ export class Function extends Node
       case 'MIN':
         return Math.min(...this.args.map((arg: Node) => arg.getValue()));
       case 'SQR':
-        return this.args[0].getValue() * this.args[0].getValue();
+        return new Power(this.args[0], new Value(2)).getValue();
 
       default:
         throw new Error(`Function is not valid. Function: ${ this.name }`);

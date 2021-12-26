@@ -29,13 +29,13 @@ describe('Value', () =>
     expect(node.getString()).toEqual('7');
   });
 
-  it('Should have correct name', () =>
+  it('Should have correct value', () =>
   {
     // arrange
     const nodeValue = 9;
     const node = new Value(nodeValue);
 
     //check
-    expect(node.value).toEqual(nodeValue);
+    expect(node.getValue()).toEqual(nodeValue);
   });
 });

@@ -15,14 +15,14 @@
       </mat-form-field>
     </div>
     <mat-tab-group>
-      <mat-tab label="AST View" class="p-3 mt-2">
-        <pre class="tree-content p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
+      <mat-tab label="AST View">
+        <pre class="tree-content mt-2 p-3" *ngIf="syntaxTreeJson">{{ syntaxTreeJson }}</pre>
       </mat-tab>
-      <mat-tab label="Formula View" class="p-3 mt-2">
-        <pre class="formula-content p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
+      <mat-tab label="Formula View">
+        <pre class="formula-content mt-2 p-3" *ngIf="visualizerOutput">{{ visualizerOutput }}</pre>
       </mat-tab>
-      <mat-tab label="Visualize Formula" class="p-3 mt-2">
-        <div class="m-2">
+      <mat-tab label="Visualize Formula">
+        <div class="mt-2">
           <section class="d-flex flex-row justify-content-between">
             <div>
               <mat-card-title>Formula visualization</mat-card-title>

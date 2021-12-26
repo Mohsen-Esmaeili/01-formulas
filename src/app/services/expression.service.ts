@@ -122,13 +122,6 @@ export class ExpressionService
         title: "Specific values",
         children: [
           {
-            id: 1,
-            icon: "numbers",
-            nodeType: NodeType.Number,
-            title: "Static Value",
-            children: []
-          },
-          {
             id: 14,
             icon: "task_alt",
             nodeType: NodeType.PI,
@@ -137,7 +130,7 @@ export class ExpressionService
           },
           {
             id: 15,
-            icon: "task_alt",
+            icon: "e_mobiledata",
             nodeType: NodeType.E,
             title: "E",
             children: []
@@ -158,21 +151,21 @@ export class ExpressionService
           },
           {
             id: 18,
-            icon: "functions",
+            icon: "superscript",
             nodeType: NodeType.Function,
             title: "SQR",
             children: []
           },
           {
             id: 27,
-            icon: "functions",
+            icon: "south_east",
             nodeType: NodeType.Function,
             title: "MIN",
             children: []
           },
           {
             id: 28,
-            icon: "functions",
+            icon: "north_east",
             nodeType: NodeType.Function,
             title: "MAX",
             children: []
@@ -184,6 +177,13 @@ export class ExpressionService
         icon: "input",
         title: "Variables",
         children: [
+          {
+            id: 1,
+            icon: "numbers",
+            nodeType: NodeType.Number,
+            title: "Static Value",
+            children: []
+          },
           {
             id: 20,
             icon: "text_fields",

@@ -1,11 +1,11 @@
-import { Value } from './value';
+import { E } from './e';
 
-describe('Value', () =>
+describe('E', () =>
 {
   it('Constructor', () =>
   {
     // arrange
-    const node = new Value(7);
+    const node = new E();
 
     // check
     expect(node).not.toBeNull();
@@ -14,7 +14,7 @@ describe('Value', () =>
   it("Should has valid id", () =>
   {
     // arrange
-    const node = new Value(5);
+    const node = new E();
 
     // check
     expect(node.id).not.toBeNull();
@@ -23,19 +23,18 @@ describe('Value', () =>
   it('Get correct string', () =>
   {
     // arrange
-    const node = new Value(7);
+    const node = new E();
 
     // check
-    expect(node.getString()).toEqual('7');
+    expect(node.getString()).toEqual('E');
   });
 
-  it('Should have correct name', () =>
+  it('Should have correct value', () =>
   {
     // arrange
-    const nodeValue = 9;
-    const node = new Value(nodeValue);
+    const node = new E();
 
     //check
-    expect(node.value).toEqual(nodeValue);
+    expect(node.getValue()).toEqual(Math.E);
   });
 });

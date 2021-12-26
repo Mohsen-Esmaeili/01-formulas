@@ -1,11 +1,12 @@
+import { Function } from './function';
 import { Value } from './value';
 
-describe('Value', () =>
+describe('Function', () =>
 {
   it('Constructor', () =>
   {
     // arrange
-    const node = new Value(7);
+    const node = new Function("Test name", [new Value(5)]);
 
     // check
     expect(node).not.toBeNull();
@@ -14,7 +15,8 @@ describe('Value', () =>
   it("Should has valid id", () =>
   {
     // arrange
-    const node = new Value(5);
+    const name = "Test name";
+    const node = new Function(name, [new Value(5)]);
 
     // check
     expect(node.id).not.toBeNull();
@@ -23,19 +25,20 @@ describe('Value', () =>
   it('Get correct string', () =>
   {
     // arrange
-    const node = new Value(7);
+    const name = "Test name";
+    const node = new Function(name, [new Value(5)]);
 
     // check
-    expect(node.getString()).toEqual('7');
+    expect(node.getString()).toEqual(`${ name }(5)`);
   });
 
-  it('Should have correct name', () =>
+  it('Should have correct value', () =>
   {
     // arrange
-    const nodeValue = 9;
-    const node = new Value(nodeValue);
+    const name = "SQRT";
+    const node = new Function(name, [new Value(9)]);
 
     //check
-    expect(node.value).toEqual(nodeValue);
+    expect(node.getValue()).toEqual(Math.sqrt(9));
   });
 });
