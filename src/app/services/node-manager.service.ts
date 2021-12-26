@@ -47,14 +47,14 @@ export class NodeManagerService
         return new Division(this.regenerateNode((<Division>node).left), this.regenerateNode((<Division>node).right));
       case NodeType.Power:
         return new Power(this.regenerateNode((<Power>node).expression), this.regenerateNode((<Power>node).power));
+      case NodeType.Function:
+        return new Function((<Function>node).name, (<Function>node).args.map((arg: Node) => this.regenerateNode(arg)));
       case NodeType.Paren:
         return new Paren(this.regenerateNode((<Paren>node).expression));
       case NodeType.PI:
         return new PI();
       case NodeType.E:
         return new E;
-      case NodeType.Function:
-        return new Function((<Function>node).name, (<Function>node).args.map((arg: Node) => this.regenerateNode(arg)));
 
       default:
         throw new Error(`Invalid node type ${ node.type }`);

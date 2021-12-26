@@ -4,7 +4,7 @@ import { Node } from './node';
 
 export class Variable extends Node
 {
-  value: number = 0;
+  value: number;
 
   get type(): string
   {
@@ -37,6 +37,6 @@ export class Variable extends Node
 
   getValue(): number
   {
-    return this.value;
+    return this.value ? this.value : 0;
   }
 }

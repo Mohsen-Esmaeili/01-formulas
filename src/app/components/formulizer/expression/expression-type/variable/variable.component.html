@@ -1,4 +1,9 @@
 <section class="variable">
-  <input class="custom-input form-control" autocomplete="off" type="number" [formControl]="varName"
-    (change)="onChangeValue()">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">{{ node.getString() }}</div>
+    </div>
+    <input class="custom-input form-control" autocomplete="off" type="number" [formControl]="varName"
+      (change)="onChangeValue()">
+  </div>
 </section>
