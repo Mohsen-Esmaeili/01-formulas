@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { NodeType } from "../constants/node-type";
 import { Addition } from "../models/addition";
 import { Division } from "../models/division";
+import { E } from '../models/e';
 import { EmptyNode } from "../models/empty-node";
 import { Expression } from "../models/expression";
 import { Multiplication } from "../models/multiplication";
@@ -10,6 +10,8 @@ import { Paren } from "../models/paren";
 import { Power } from "../models/power";
 import { Subtraction } from "../models/subtraction";
 import { Value } from "../models/value";
+import { NodeType } from './../constants/node-type';
+import { PI } from './../models/pi';
 import { Variable } from './../models/variable';
 
 @Injectable()
@@ -33,6 +35,11 @@ export class ExpressionService
         return new Variable("$" + value);
       case NodeType.Number:
         return new Value(Number(value));
+      case NodeType.PI:
+        return new PI();
+      case NodeType.E:
+        return new E();
+
 
       default:
         throw new Error(`Invalid node type. NodeType = ${ newNodeType }`);
@@ -119,12 +126,14 @@ export class ExpressionService
           {
             id: 14,
             icon: "task_alt",
+            nodeType: NodeType.PI,
             title: "PI",
             children: []
           },
           {
             id: 15,
             icon: "task_alt",
+            nodeType: NodeType.E,
             title: "E",
             children: []
           }

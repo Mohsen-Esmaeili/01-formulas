@@ -28,7 +28,7 @@ export class AddNodePositionComponent implements OnInit
       return;
     }
 
-    this.dialogRef.close({ isSelected: true, isInLeftSide: this.isInLeftSide.value });
+    this.dialogRef.close({ isSelected: true, isInLeftSide: this.isInLeftSide.value[0] });
   }
 
 }
