@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Function } from '../../../../../models/function';
+import { Node } from '../../../../../models/node';
 import { NodeComponent } from './../node/node.component';
 
 @Component({
@@ -8,4 +10,13 @@ import { NodeComponent } from './../node/node.component';
 })
 export class FunctionComponent extends NodeComponent
 {
+  get name(): string
+  {
+    return (<Function>this.node).name;
+  }
+
+  get args(): Array<Node>
+  {
+    return (<Function>this.node).args;
+  }
 }

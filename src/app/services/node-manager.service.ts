@@ -48,7 +48,7 @@ export class NodeManagerService
       case NodeType.Power:
         return new Power(this.regenerateNode((<Power>node).expression), this.regenerateNode((<Power>node).power));
       case NodeType.Function:
-        return new Function((<Function>node).name, (<Function>node).args.map((arg: Node) => this.regenerateNode(arg)));
+        return new Function((<Function>node).name, (<any>node).arguments.map((arg: Node) => this.regenerateNode(arg)));
       case NodeType.Paren:
         return new Paren(this.regenerateNode((<Paren>node).expression));
       case NodeType.PI:

@@ -34,7 +34,7 @@ export class Function extends Node
 
   getString(): string
   {
-    return `${ this.name } (${ this.args.map((arg: Node) => arg.getString()).join(', ') }`;
+    return `${ this.name } (${ this.args.map((arg: Node) => arg.getString()).join(', ') })`;
   }
 
   getValue(): number

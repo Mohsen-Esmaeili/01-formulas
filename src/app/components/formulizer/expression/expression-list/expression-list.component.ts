@@ -76,14 +76,14 @@ export class ExpressionListComponent implements OnInit
           {
             if (dataRes.isSelected && expression.nodeType)
             {
-              const newNode = this.expressionService.getNode(expression.nodeType, dataRes.value);
+              const newNode = this.expressionService.getNode(expression, dataRes.value);
               this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
               this.sharedService.updatedEmitter.emit();
             }
           });
         } else
         {
-          const newNode = this.expressionService.getNode(expression.nodeType);
+          const newNode = this.expressionService.getNode(expression);
           this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, positionRes.isInLeftSide), newNode);
           this.sharedService.updatedEmitter.emit();
         }

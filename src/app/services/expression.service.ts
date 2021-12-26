@@ -4,6 +4,7 @@ import { Division } from "../models/division";
 import { E } from '../models/e';
 import { EmptyNode } from "../models/empty-node";
 import { Expression } from "../models/expression";
+import { Function } from "../models/function";
 import { Multiplication } from "../models/multiplication";
 import { Node } from "../models/node";
 import { Paren } from "../models/paren";
@@ -17,9 +18,9 @@ import { Variable } from './../models/variable';
 @Injectable()
 export class ExpressionService
 {
-  getNode(newNodeType: NodeType, value: string = ""): Node
+  getNode(expression: Expression, value: string = ""): Node
   {
-    switch (newNodeType)
+    switch (expression.nodeType)
     {
       case NodeType.Addition:
         return new Paren(new Addition(new EmptyNode(), new EmptyNode()));
@@ -31,6 +32,8 @@ export class ExpressionService
         return new Paren(new Division(new EmptyNode(), new EmptyNode()));
       case NodeType.Power:
         return new Paren(new Power(new EmptyNode(), new EmptyNode()));
+      case NodeType.Function:
+        return new Function(expression.title, [new Value(5)]);
       case NodeType.Variable:
         return new Variable("$" + value);
       case NodeType.Number:
@@ -42,7 +45,7 @@ export class ExpressionService
 
 
       default:
-        throw new Error(`Invalid node type. NodeType = ${ newNodeType }`);
+        throw new Error(`Invalid node type. NodeType = ${ expression.nodeType }`);
     }
   }
 
@@ -147,12 +150,14 @@ export class ExpressionService
           {
             id: 17,
             icon: "functions",
+            nodeType: NodeType.Function,
             title: "SQRT",
             children: []
           },
           {
             id: 18,
             icon: "functions",
+            nodeType: NodeType.Function,
             title: "SQR",
             children: []
           }

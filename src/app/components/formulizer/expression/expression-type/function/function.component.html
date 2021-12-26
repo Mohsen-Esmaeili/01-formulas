@@ -1,3 +1,6 @@
 <section class="d-flex flex-row">
-  <div>{{node?.getString()}}</div>
+  <div class="mb-0 alert alert-info">{{ name }}</div>
+  <div *ngFor="let arg of args">
+    <app-expression [node]="arg"></app-expression>
+  </div>
 </section>
