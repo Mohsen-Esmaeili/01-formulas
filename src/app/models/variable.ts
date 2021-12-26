@@ -4,7 +4,7 @@ import { Node } from './node';
 
 export class Variable extends Node
 {
-  value: number = 2;
+  value: number = 0;
 
   get type(): string
   {

@@ -58,6 +58,7 @@ export class ExpressionListComponent implements OnInit
 
     dialogRef.afterClosed().subscribe((positionRes: any) =>
     {
+      debugger;
       if (expression.nodeType && positionRes.isSelected)
       {
         if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
