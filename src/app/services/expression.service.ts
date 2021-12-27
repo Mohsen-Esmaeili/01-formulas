@@ -1,4 +1,8 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable, OnDestroy } from "@angular/core";
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from "rxjs";
+import { AddNodePositionComponent } from '../components/formulizer/expression/add-node-position/add-node-position.component';
+import { ExpressionInputComponent } from '../components/formulizer/expression/expression-input/expression-input.component';
 import { Addition } from "../models/addition";
 import { Division } from "../models/division";
 import { E } from '../models/e';
@@ -16,9 +20,80 @@ import { PI } from './../models/pi';
 import { Variable } from './../models/variable';
 
 @Injectable()
-export class ExpressionService
+export class ExpressionService implements OnDestroy
 {
-  getNode(expression: Expression, value: string = ""): Node
+  // For detecting the selected node
+  selectedEmitter = new EventEmitter<string>();
+
+  // When changing the formula we need to be aware the textarea and AST need to reload
+  updatedEmitter = new EventEmitter();
+
+  dialogSubscription: Subscription;
+  constructor(private dialog: MatDialog) { }
+
+
+  public addNewNode(node: Paren, expression: Expression): void
+  {
+    if (expression.nodeType === NodeType.Function)
+    {
+      this.addChild(node, expression);
+      return;
+    }
+    /*
+    Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
+    to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
+    */
+    const dialogRef = this.dialog.open(AddNodePositionComponent, {
+      panelClass: "add-node-position-modal",
+      hasBackdrop: true,
+      minWidth: "350px",
+      minHeight: "350px",
+      data: {
+        nodeType: node.expression.type
+      }
+    });
+
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((positionRes: any) =>
+    {
+      if (expression.nodeType && positionRes.isSelected)
+      {
+        /*
+        If you want to add
+        */
+        if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
+        {
+          const valueDialog = this.dialog.open(ExpressionInputComponent, {
+            panelClass: "select-node-data-modal",
+            hasBackdrop: true,
+            minWidth: "350px",
+            data: {
+              nodeType: expression.nodeType
+            }
+          });
+
+          this.dialogSubscription = valueDialog.afterClosed().subscribe((dataRes: any) =>
+          {
+            if (dataRes.isSelected && expression.nodeType)
+            {
+              this.addChild(node, expression, positionRes.isInLeftSide, dataRes.value);
+            }
+          });
+        } else
+        {
+          this.addChild(node, expression, positionRes.isInLeftSide);
+        }
+      }
+    });
+  }
+
+  private addChild(node: Paren, expression: Expression, isInLeftSide: boolean = true, requiredData: string = ""): void
+  {
+    const newNode = this.getNode(expression, requiredData);
+    node.addChild(this.getPositionId(node.expression, isInLeftSide), newNode);
+    this.updatedEmitter.emit();
+  }
+
+  private getNode(expression: Expression, value: string = ""): Node
   {
     switch (expression.nodeType)
     {
@@ -49,7 +124,7 @@ export class ExpressionService
     }
   }
 
-  getPositionId(node: Node, isInLeftSide: boolean): string
+  private getPositionId(node: Node, isInLeftSide: boolean): string
   {
     switch (node.type)
     {
@@ -71,7 +146,7 @@ export class ExpressionService
     }
   }
 
-  load(): Array<Expression>
+  public load(): Array<Expression>
   {
     const result: Array<Expression> = [
       {
@@ -196,5 +271,10 @@ export class ExpressionService
     ];
 
     return result;
+  }
+
+  ngOnDestroy(): void
+  {
+    this.dialogSubscription?.unsubscribe();
   }
 }

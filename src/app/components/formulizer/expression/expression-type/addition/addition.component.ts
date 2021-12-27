@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Node } from '../../../../../models/node';
 import { NodeComponent } from '../node/node.component';
-import { NodeType } from './../../../../../constants/node-type';
 import { Addition } from './../../../../../models/addition';
 
 @Component({
@@ -10,8 +9,6 @@ import { Addition } from './../../../../../models/addition';
 })
 export class AdditionComponent extends NodeComponent
 {
-  operator: string = NodeType.Addition;
-
   get left(): Node
   {
     return (<Addition>this.node).left;

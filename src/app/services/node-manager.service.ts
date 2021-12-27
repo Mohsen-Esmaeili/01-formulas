@@ -30,7 +30,7 @@ export class NodeManagerService
     return root;
   }
 
-  regenerateNode(node: any): Node
+  private regenerateNode(node: any): Node
   {
     switch (node.type)
     {

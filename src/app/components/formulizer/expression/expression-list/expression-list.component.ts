@@ -1,13 +1,6 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Expression } from '../../../../models/expression';
 import { ExpressionService } from '../../../../services/expression.service';
-import { NodeType } from './../../../../constants/node-type';
-import { Node } from './../../../../models/node';
-import { Paren } from './../../../../models/paren';
-import { SharedService } from './../../../../services/shared.service';
-import { AddNodePositionComponent } from './../add-node-position/add-node-position.component';
-import { ExpressionInputComponent } from './../expression-input/expression-input.component';
 @Component({
   selector: 'app-expression-list',
   templateUrl: './expression-list.component.html',
@@ -16,13 +9,12 @@ import { ExpressionInputComponent } from './../expression-input/expression-input
 export class ExpressionListComponent implements OnInit
 {
   @Input() menuTriggerTmp: TemplateRef<any>;
-  @Input() node: Node;
   @Input() visible: boolean;
 
+  @Output() newExpressionEmitter = new EventEmitter<Expression>();
+
   expressionList: Array<Expression> = [];
-  constructor(private expressionService: ExpressionService,
-    private dialog: MatDialog,
-    private sharedService: SharedService) { }
+  constructor(private expressionService: ExpressionService) { }
 
   ngOnInit(): void
   {
@@ -46,62 +38,6 @@ export class ExpressionListComponent implements OnInit
 
   addNew(expression: Expression): void
   {
-    if (expression.nodeType === NodeType.Function)
-    {
-      this.addChild(expression);
-      return;
-    }
-    /*
-    Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
-    to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
-    */
-    const dialogRef = this.dialog.open(AddNodePositionComponent, {
-      panelClass: "add-node-position-modal",
-      hasBackdrop: true,
-      minWidth: "350px",
-      minHeight: "350px",
-      data: {
-        nodeType: (<Paren>this.node).expression.type
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((positionRes: any) =>
-    {
-      if (expression.nodeType && positionRes.isSelected)
-      {
-        /*
-        If you want to add
-        */
-        if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
-        {
-          const valueDialog = this.dialog.open(ExpressionInputComponent, {
-            panelClass: "select-node-data-modal",
-            hasBackdrop: true,
-            minWidth: "350px",
-            data: {
-              nodeType: expression.nodeType
-            }
-          });
-
-          valueDialog.afterClosed().subscribe((dataRes: any) =>
-          {
-            if (dataRes.isSelected && expression.nodeType)
-            {
-              this.addChild(expression, positionRes.isInLeftSide, dataRes.value);
-            }
-          });
-        } else
-        {
-          this.addChild(expression, positionRes.isInLeftSide);
-        }
-      }
-    });
-  }
-
-  addChild(expression: Expression, isInLeftSide: boolean = true, requiredData: string = ""): void
-  {
-    const newNode = this.expressionService.getNode(expression, requiredData);
-    this.node.addChild(this.expressionService.getPositionId((<Paren>this.node).expression, isInLeftSide), newNode);
-    this.sharedService.updatedEmitter.emit();
+    this.newExpressionEmitter.emit(expression);
   }
 }

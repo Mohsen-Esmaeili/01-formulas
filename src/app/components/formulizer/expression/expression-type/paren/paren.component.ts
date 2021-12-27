@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Node } from 'src/app/models/node';
 import { NodeComponent } from '../node/node.component';
+import { Expression } from './../../../../../models/expression';
 import { Paren } from './../../../../../models/paren';
 
 @Component({
@@ -24,14 +25,19 @@ export class ParenComponent extends NodeComponent
     if (this.parentNode)
     {
       this.parentNode.removeChildById(this.node.id);
-      this.sharedService.updatedEmitter.emit();
+      this.expressionService.updatedEmitter.emit();
     }
+  }
+
+  onAddNew(expression: Expression): void
+  {
+    this.expressionService.addNewNode(<Paren>this.node, expression);
   }
 
   onSelect(event: Event): void
   {
     event.stopPropagation();
 
-    this.sharedService.selectedEmitter.emit(this.node.id);
+    this.expressionService.selectedEmitter.emit(this.node.id);
   }
 }
