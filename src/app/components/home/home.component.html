@@ -1,12 +1,82 @@
-<div class="alert alert-success">
+<div class="alert alert-success d-flex flex-row justify-content-between align-items-center">
   <h1 class="mb-0">Welcome to the formulizer!</h1>
+  <button mat-raised-button color="primary" class="float-right assignment-button" (click)="onLoadAssignment()">Go to
+    the assignment
+    <mat-icon>assignment</mat-icon>
+  </button>
 </div>
 <mat-divider></mat-divider>
-<article class="my-3">
-  <p>Formulizer was implemented with Angular 13 completely based on design pattern. I used object oriented principle to
-    create data model</p>
+<article class="my-3 p-3 description-content-container">
+  <h1>About formulizer</h1>
+  <p class="description-content">
+    Object-oriented principles were used to design and implement this application. Throughout the implementation
+    processes, I attempted to simplify and create reliable source code and also, I always believe to clean code. I used
+    TDD as my development approach.
+  </p>
+  <h1>Technical description</h1>
+  <p class="description-content">
+    Each operation and expression in the AST was viewed as a node. So, both the data model and the expression components
+    have a parent class(Node) or parent component(NodeComponent). every other expression component and model inherit
+    them.
+  </p>
+  <ul>
+    <li>
+      <h2>Data Model</h2>
+      <p class="description-content">Node is a abstract class and has type(to determine the type of a node), add
+        child(to add a node as a child. be
+        careful you should have the position that you want to add a new node(left side or right side)), remove child(to
+        remove a child node of this node. Actually, at this step we replace intended child with a empty node),
+        getString(returns a string related to the node that I used to generate formula from the node), getValue(returns
+        the evaluated value of the node, So for each node I have evaluated value). All
+        other derived class
+        such as addition, subtraction, multiplication, division, power, paren, function, each argument of function, PI,
+        E, empty node have to implement all abstract properties and functions for yourself. Actually, they should
+        override oll properties and methods(Polymorphism). Each node has another property called id which is a unique
+        identifier for each node. I need this property to add and remove the specific node
+      </p>
+    </li>
+    <li>
+      <h2>Services</h2>
+      <p class="description-content">
+        There is NodeManagerService to load AST from the formula with the parser and then convert it into the data
+        model.
+        Another service that you can see on the project solution is ExpressionService. This service is responsible for
+        loading implemented expression
+        which you can use it in the visualization section and also add new child functionality was implemented in this
+        service
+      </p>
+    </li>
+    <li>
+      <h2>Directive</h2>
+      <p class="description-content">
+        In frontend development I don't like if and else directive. So, I decided to use dynamic component and I added a
+        directive to detect the container that I want to load component's there. I know there is several way to detect
+        the section but I prefer to use directive for this purpose.
+      </p>
+    </li>
+    <li>
+      <h2>Constants</h2>
+      <p class="description-content">
+        I have node types as a constants to check types in all over the project. I like this way because if you want to
+        change a type you just need to change the constants. don't need to search all project. Also, in this way, if you
+        have any typo you cant see it on compile time
+      </p>
+    </li>
+  </ul>
+  <h1>General description</h1>
+  <p class="description-content">
+    The purpose of the application is to visualize the formula. AST, formula and
+    visualization can all be converted
+    into each other. I mean, Changing the input allows you to see the visualization and AST as results. The
+    visualization section also allows you to change the formula. By adding another node(each operation or value is a
+    node) to a specific part of the formula and then see the result on the AST and formula. An expression can be added
+    or removed within a parenthesis. Whenever you remove an expression, the application creates an Empty node and then
+    you can replace it with a new expression. When you add a new expression to another expression, for some
+    operations(Addition, Subtraction, Division, Multiplication, Power), you have two sections. Each power operation has
+    another expression and power. Other operations have left side and right side in expression. There for, you should
+    choose a position for the new operation. In addition, if you wish to add a variable, you will have to name it, and
+    if you wish to add a static value, you will have to specify which value you want to use in the formula.
+  </p>
 </article>
 <mat-divider></mat-divider>
-<button mat-raised-button color="primary" class="mt-3 float-right" (click)="onLoadAssignment()">Go to the assignment
-  <mat-icon>assignment</mat-icon>
-</button>
+<footer>mohsen.es@gmail.com</footer>

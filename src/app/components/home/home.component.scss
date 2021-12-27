@@ -1,0 +1,15 @@
+.description-content-container {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+
+  .description-content {
+    padding: 12px;
+    line-height: 30px;
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+}
+
+.assignment-button {
+  height: 55px;
+}
