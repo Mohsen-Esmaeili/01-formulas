@@ -9,30 +9,42 @@
 <article class="my-3 p-3 description-content-container">
   <h1>About formulizer</h1>
   <p class="description-content">
-    Object-oriented principles were used to design and implement this application. Throughout the implementation
-    processes, I attempted to simplify and create reliable source code and also, I always believe to clean code. I used
+    Object-oriented principles was used to design and implement this application. Throughout the implementation
+    processes, I attempted to simplify and create reliable source code and, also, I always believe to clean code. I used
     TDD as my development approach.
   </p>
   <h1>Technical description</h1>
   <p class="description-content">
-    Each operation and expression in the AST was viewed as a node. So, both the data model and the expression components
+    Each operation and expression in the AST were viewed as a node. So, both the data model and the expression
+    components
     have a parent class(Node) or parent component(NodeComponent). every other expression component and model inherit
     them.
+    In this solution, I used material and bootstrap and an external UI library and, also, I used underscore library
+    because I
+    needed to have a deep copy of the node.
   </p>
   <ul>
     <li>
       <h2>Data Model</h2>
-      <p class="description-content">Node is a abstract class and has type(to determine the type of a node), add
-        child(to add a node as a child. be
-        careful you should have the position that you want to add a new node(left side or right side)), remove child(to
-        remove a child node of this node. Actually, at this step we replace intended child with a empty node),
-        getString(returns a string related to the node that I used to generate formula from the node), getValue(returns
-        the evaluated value of the node, So for each node I have evaluated value). All
-        other derived class
-        such as addition, subtraction, multiplication, division, power, paren, function, each argument of function, PI,
-        E, empty node have to implement all abstract properties and functions for yourself. Actually, they should
-        override oll properties and methods(Polymorphism). Each node has another property called id which is a unique
-        identifier for each node. I need this property to add and remove the specific node
+      <p class="description-content">
+        Node is an abstract class and has type(to determine the type of a node), add child(to add a node as a child. be
+        careful
+        you should have the position that you want to add a new node(left side or right side)), remove the child(to
+        remove a
+        child
+        node of this node. Actually, at this step we replace intended child with an empty node), getString(returns a
+        string
+        related to the node that I used to generate formula from the node), getValue(returns the evaluated value of the
+        node, So
+        for each node, I have evaluated value). All other derived class such as addition, subtraction, multiplication,
+        division,
+        power, paren, function, each argument of a function, PI, E, an empty node has to implement all abstract
+        properties
+        and
+        functions for yourself. Actually, they should override all properties and methods(Polymorphism). Each node has
+        another
+        property called id which is a unique identifier for each node. I need this property to add and remove the
+        specific node.
       </p>
     </li>
     <li>
@@ -49,31 +61,119 @@
     <li>
       <h2>Directive</h2>
       <p class="description-content">
-        In frontend development I don't like if and else directive. So, I decided to use dynamic component and I added a
-        directive to detect the container that I want to load component's there. I know there is several way to detect
-        the section but I prefer to use directive for this purpose.
+        In frontend development, I don't like if and else directive. So, I decided to use dynamic component and I added
+        a
+        directive to detect the container that I want to load components there. I know there are several ways to detect
+        the section but I prefer to use a directive for this purpose.
       </p>
     </li>
     <li>
       <h2>Constants</h2>
       <p class="description-content">
-        I have node types as a constants to check types in all over the project. I like this way because if you want to
-        change a type you just need to change the constants. don't need to search all project. Also, in this way, if you
-        have any typo you cant see it on compile time
+        I have node types as a constant to check types all over the project. I like this way because if you want to
+        change a
+        type you just need to change the constants. don't need to search all files of the project. Also, in this way, if
+        you
+        have any typo, you can't see it on compile time.
       </p>
+    </li>
+    <li>
+      <h2>Components</h2>
+      <ul>
+        <li>
+          <h3>HomeComponent</h3>
+          <p class="description-centent">
+            In this component you can find all descriptions of the project includes technical information and general
+            project information.
+          </p>
+        </li>
+        <li>
+          <h3>FormulizerComponent</h3>
+          <p class="description-centent">
+            This component is the main component of the solution and all components related to the solution load in this
+            component.
+          </p>
+        </li>
+        <li>
+          <h3>ExpressionComponent</h3>
+          <p class="description-centent">
+            Gets parent node and current node and analysis that and decided to load correct component based on the node
+            type. in this component, we have a component factory. It is the main component that was loaded for each
+            expression.
+          </p>
+        </li>
+        <li>
+          <h3>ParenComponent</h3>
+          <p class="description-centent">
+            In fact, paren is not an operation or expression just contains another operation. I handle all functionality
+            for adding a new child or removing an expression in this component.
+          </p>
+        </li>
+        <li>
+          <h3>VariableComponent</h3>
+          <p class="description-centent">
+            Declared to handle input with using reactive form to support variable type which must generate input to
+            take a dynamic value from the user.
+          </p>
+        </li>
+        <li>
+          <h3>All other components in the expression type folder</h3>
+          <p class="description-centent">
+            There are several components for each node type. for example, ValueComponent is generated to display static
+            values or AdditionComponent is generated to display addition operator and also it has left expression and
+            right expression as properties and it has getValue to return the result for this step and getString to
+            return
+            addition expression as a string. If the left property or right property be an expression then I load
+            ExpressionComponent again and repeat all steps in the ExpressionComponent for the left or right expression
+            again. So, each component can support multi-level expression.
+          </p>
+        </li>
+        <li>
+          <h3>ExpressionListComponent</h3>
+          <p class="description-centent">
+            This component is responsible to load all valid operations that I have implementation for them and you can
+            use it in the formula. Actually, it has a context menu.
+          </p>
+        </li>
+        <li>
+          <h3>ExpressionListComponent</h3>
+          <p class="description-centent">
+            This component is responsible to load all valid operations that I have implementation for them and you can
+            use it in the formula. Actually, it has a context menu.
+          </p>
+        </li>
+        <li>
+          <h3>NodePositionComponent</h3>
+          <p class="description-centent">
+            As I mentioned, When you want to add a new expression or node in another expression, you should choose the
+            position of the parent expression. This component loads in a modal and let you choose the position.
+          </p>
+        </li>
+        <li>
+          <h3>ExpressionInputComponent</h3>
+          <p class="description-centent">
+            As I said, When you want to add a new expression or node, if the new node is a number you should choose the
+            number that is in your mind or if the new node is a variable you should choose a name for that one because
+            you
+            need to detect it in the formula. This component loads in a modal and you can enter a value for numbers and
+            name for variables.
+          </p>
+        </li>
+      </ul>
     </li>
   </ul>
   <h1>General description</h1>
   <p class="description-content">
-    The purpose of the application is to visualize the formula. AST, formula and
+    The purpose of the application is to visualize the formula. AST, formula and,
     visualization can all be converted
     into each other. I mean, Changing the input allows you to see the visualization and AST as results. The
     visualization section also allows you to change the formula. By adding another node(each operation or value is a
-    node) to a specific part of the formula and then see the result on the AST and formula. An expression can be added
+    node) to a specific part of the formula and then seeing the result on the AST and formula. An expression can be
+    added
     or removed within a parenthesis. Whenever you remove an expression, the application creates an Empty node and then
     you can replace it with a new expression. When you add a new expression to another expression, for some
     operations(Addition, Subtraction, Division, Multiplication, Power), you have two sections. Each power operation has
-    another expression and power. Other operations have left side and right side in expression. There for, you should
+    another expression and power. Other operations have left side and right side in expression. Therefor, you should
     choose a position for the new operation. In addition, if you wish to add a variable, you will have to name it, and
     if you wish to add a static value, you will have to specify which value you want to use in the formula.
   </p>

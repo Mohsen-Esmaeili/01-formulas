@@ -1,20 +1,20 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NodeType } from './../../../../constants/node-type';
+import { NodeType } from '../../../../constants/node-type';
 
 @Component({
-  selector: 'app-add-node-position',
-  templateUrl: './add-node-position.component.html',
-  styleUrls: ['./add-node-position.component.scss']
+  selector: 'app-node-position',
+  templateUrl: './node-position.component.html',
+  styleUrls: ['./node-position.component.scss']
 })
-export class AddNodePositionComponent implements OnInit
+export class NodePositionComponent implements OnInit
 {
   isPower: boolean;
 
   isInLeftSide = new FormControl('', Validators.required);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Record<string, unknown>, private dialogRef: MatDialogRef<AddNodePositionComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Record<string, unknown>, private dialogRef: MatDialogRef<NodePositionComponent>) { }
 
   ngOnInit(): void
   {

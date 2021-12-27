@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddNodePositionComponent } from './add-node-position.component';
+import { NodePositionComponent } from './node-position.component';
 
-describe('AddNodePositionComponent', () =>
+describe('NodePositionComponent', () =>
 {
-  let component: AddNodePositionComponent;
-  let fixture: ComponentFixture<AddNodePositionComponent>;
+  let component: NodePositionComponent;
+  let fixture: ComponentFixture<NodePositionComponent>;
 
   beforeEach(async () =>
   {
     await TestBed.configureTestingModule({
-      declarations: [AddNodePositionComponent],
+      declarations: [NodePositionComponent],
       providers: [
         { provide: MatDialogRef, useValue: { IsChanged: true } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -21,7 +21,7 @@ describe('AddNodePositionComponent', () =>
 
   beforeEach(() =>
   {
-    fixture = TestBed.createComponent(AddNodePositionComponent);
+    fixture = TestBed.createComponent(NodePositionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

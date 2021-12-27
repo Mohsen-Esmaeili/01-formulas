@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable, OnDestroy } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from "rxjs";
-import { AddNodePositionComponent } from '../components/formulizer/expression/add-node-position/add-node-position.component';
 import { ExpressionInputComponent } from '../components/formulizer/expression/expression-input/expression-input.component';
+import { NodePositionComponent } from '../components/formulizer/expression/node-position/node-position.component';
 import { Addition } from "../models/addition";
 import { Division } from "../models/division";
 import { E } from '../models/e';
@@ -43,7 +43,7 @@ export class ExpressionService implements OnDestroy
     Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
     to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
     */
-    const dialogRef = this.dialog.open(AddNodePositionComponent, {
+    const dialogRef = this.dialog.open(NodePositionComponent, {
       panelClass: "add-node-position-modal",
       hasBackdrop: true,
       minWidth: "350px",
