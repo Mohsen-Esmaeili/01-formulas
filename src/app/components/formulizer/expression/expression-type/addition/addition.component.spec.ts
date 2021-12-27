@@ -1,33 +1,33 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { MatDialogModule } from '@angular/material/dialog';
-// import { ExpressionService } from './../../../../../services/expression.service';
-// import { AdditionComponent } from './addition.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ExpressionService } from './../../../../../services/expression.service';
+import { AdditionComponent } from './addition.component';
 
 
-// describe('AdditionComponent', () =>
-// {
-//   let component: AdditionComponent;
-//   let fixture: ComponentFixture<AdditionComponent>;
+describe('AdditionComponent', () =>
+{
+  let component: AdditionComponent;
+  let fixture: ComponentFixture<AdditionComponent>;
 
-//   beforeEach(async () =>
-//   {
-//     await TestBed.configureTestingModule({
-//       declarations: [AdditionComponent],
-//       imports: [MatDialogModule],
-//       providers: [ExpressionService]
-//     })
-//       .compileComponents();
-//   });
+  beforeEach(async () =>
+  {
+    await TestBed.configureTestingModule({
+      declarations: [AdditionComponent],
+      imports: [MatDialogModule],
+      providers: [ExpressionService]
+    })
+      .compileComponents();
+  });
 
-//   beforeEach(() =>
-//   {
-//     fixture = TestBed.createComponent(AdditionComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() =>
+  {
+    fixture = TestBed.createComponent(AdditionComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should create', () =>
-//   {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  // it('should create', () =>
+  // {
+  //   expect(component).toBeTruthy();
+  // });
+});
