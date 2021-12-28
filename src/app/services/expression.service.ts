@@ -1,8 +1,7 @@
 import { EventEmitter, Injectable, OnDestroy } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from "rxjs";
-import { ExpressionInputComponent } from '../components/formulizer/expression/expression-input/expression-input.component';
-import { NodePositionComponent } from '../components/formulizer/expression/node-position/node-position.component';
+import { NewNodeConfigComponent } from "../components/formulizer/expression/new-node-config/new-node-config.component";
 import { Addition } from "../models/addition";
 import { Division } from "../models/division";
 import { E } from '../models/e';
@@ -43,45 +42,18 @@ export class ExpressionService implements OnDestroy
     Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
     to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
     */
-    const dialogRef = this.dialog.open(NodePositionComponent, {
-      panelClass: "add-node-position-modal",
+    const dialogRef = this.dialog.open(NewNodeConfigComponent, {
       hasBackdrop: true,
-      minWidth: "350px",
-      minHeight: "350px",
       data: {
-        nodeType: node.expression.type
+        node: node.expression
       }
     });
 
-    this.dialogSubscription = dialogRef.afterClosed().subscribe((positionRes: any) =>
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((response: any) =>
     {
-      if (expression.nodeType && positionRes.isSelected)
+      if (expression.nodeType && response.isSelected)
       {
-        /*
-        If you want to add
-        */
-        if (expression.nodeType === NodeType.Number || expression.nodeType === NodeType.Variable)
-        {
-          const valueDialog = this.dialog.open(ExpressionInputComponent, {
-            panelClass: "select-node-data-modal",
-            hasBackdrop: true,
-            minWidth: "350px",
-            data: {
-              nodeType: expression.nodeType
-            }
-          });
-
-          this.dialogSubscription = valueDialog.afterClosed().subscribe((dataRes: any) =>
-          {
-            if (dataRes.isSelected && expression.nodeType)
-            {
-              this.addChild(node, expression, positionRes.isInLeftSide, dataRes.value);
-            }
-          });
-        } else
-        {
-          this.addChild(node, expression, positionRes.isInLeftSide);
-        }
+        this.addChild(node, expression, response.isInLeftSide, response.value);
       }
     });
   }
