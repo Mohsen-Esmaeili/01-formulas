@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>New expression configuration</h2>
+<h2 mat-dialog-title class="px-2">New expression configuration</h2>
+<mat-divider></mat-divider>
 <mat-dialog-content class="mat-typography">
   <mat-selection-list [multiple]="false" [formControl]="isInLeftSide">
     <ng-container *ngIf="isPower; else IsNotPower">
@@ -41,7 +42,8 @@
     </mat-form-field>
   </ng-container>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end" class="px-4 py-0">
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button mat-raised-button color="primary" cdkFocusInitial (click)="onSelect()">Select</button>
 </mat-dialog-actions>
