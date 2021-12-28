@@ -13,7 +13,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { ExpressionService } from '../../../services/expression.service';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
-import { ExpressionInputComponent } from './expression-input/expression-input.component';
 import { ExpressionListComponent } from './expression-list/expression-list.component';
 import { AdditionComponent } from './expression-type/addition/addition.component';
 import { DivisionComponent } from './expression-type/division/division.component';
@@ -29,9 +28,9 @@ import { SubtractionComponent } from './expression-type/subtraction/subtraction.
 import { ValueComponent } from './expression-type/value/value.component';
 import { VariableComponent } from './expression-type/variable/variable.component';
 import { ExpressionComponent } from './expression.component';
-import { NodePositionComponent } from './node-position/node-position.component';
+import { NewNodeConfigComponent } from './new-node-config/new-node-config.component';
 
-const COMPONENTS = [NodePositionComponent, ExpressionInputComponent, ExpressionComponent, ExpressionListComponent, EmptyComponent, AdditionComponent, SubtractionComponent, DivisionComponent,
+const COMPONENTS = [NewNodeConfigComponent, ExpressionComponent, ExpressionListComponent, EmptyComponent, AdditionComponent, SubtractionComponent, DivisionComponent,
   MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent, FunctionComponent, EComponent, PiComponent];
 const DIRECTIVES = [ExpressionHostDirective];
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
