@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormulizerModule } from './components/formulizer/formulizer.module';
 import { HomeModule } from './components/home/home.module';
+import { NotFoundModule } from './components/not-found/not-found.module';
 
 const COMPONENTS = [AppComponent];
 const BASE_MODULES = [BrowserModule, FormsModule, BrowserAnimationsModule, NgbModule];
-const FORMULA_MODULES = [HomeModule, FormulizerModule];
+const FORMULA_MODULES = [HomeModule, FormulizerModule, NotFoundModule];
 
 @NgModule({
   declarations: [
