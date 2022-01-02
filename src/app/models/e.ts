@@ -7,6 +7,16 @@ export class E extends Node
     return NodeType.E;
   }
 
+  get string(): string
+  {
+    return "E";
+  }
+
+  get result(): number
+  {
+    return Math.E;
+  }
+
   constructor()
   {
     super();
@@ -20,15 +30,5 @@ export class E extends Node
   removeChildById(id: string): Node
   {
     return this;
-  }
-
-  getString(): string
-  {
-    return "E";
-  }
-
-  getValue(): number
-  {
-    return Math.E;
   }
 }

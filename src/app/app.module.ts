@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +9,7 @@ import { HomeModule } from './components/home/home.module';
 import { NotFoundModule } from './components/not-found/not-found.module';
 
 const COMPONENTS = [AppComponent];
-const BASE_MODULES = [BrowserModule, FormsModule, BrowserAnimationsModule, NgbModule];
+const BASE_MODULES = [BrowserModule, BrowserAnimationsModule, NgbModule];
 const FORMULA_MODULES = [HomeModule, FormulizerModule, NotFoundModule];
 
 @NgModule({

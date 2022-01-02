@@ -26,7 +26,7 @@ describe('E', () =>
     const node = new E();
 
     // check
-    expect(node.getString()).toEqual('E');
+    expect(node.string).toEqual('E');
   });
 
   it('Should have correct value', () =>
@@ -35,6 +35,6 @@ describe('E', () =>
     const node = new E();
 
     //check
-    expect(node.getValue()).toEqual(Math.E);
+    expect(node.result).toEqual(Math.E);
   });
 });

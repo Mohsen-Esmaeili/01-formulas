@@ -27,7 +27,7 @@ describe('Subtraction', () =>
     const node = new Subtraction(new Value(7), new Value(10));
 
     // check
-    expect(node.getString()).toEqual('7 - 10');
+    expect(node.string).toEqual('7 - 10');
   });
 
   it('Add new node to left child', () =>

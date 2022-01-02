@@ -26,7 +26,7 @@ describe('PI', () =>
     const node = new PI();
 
     // check
-    expect(node.getString()).toEqual('PI');
+    expect(node.string).toEqual('PI');
   });
 
   it('Should have correct value', () =>
@@ -35,6 +35,6 @@ describe('PI', () =>
     const node = new PI();
 
     //check
-    expect(node.getValue()).toEqual(Math.PI);
+    expect(node.result).toEqual(Math.PI);
   });
 });

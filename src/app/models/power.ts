@@ -10,6 +10,16 @@ export class Power extends Node
     return NodeType.Power;
   }
 
+  get string(): string
+  {
+    return `${ this.expression.string } ^ ${ this.power.string }`;
+  }
+
+  get result(): number
+  {
+    return Math.pow(this.expression.result, this.power.result);
+  }
+
   constructor(public expression: Node, public power: Node)
   {
     super();
@@ -49,15 +59,5 @@ export class Power extends Node
     }
 
     return this;
-  }
-
-  getString(): string
-  {
-    return `${ this.expression.getString() } ^ ${ this.power.getString() }`;
-  }
-
-  getValue(): number
-  {
-    return Math.pow(this.expression.getValue(), this.power.getValue());
   }
 }

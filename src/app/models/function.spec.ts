@@ -29,7 +29,7 @@ describe('Function', () =>
     const node = new Function(name, [new Value(5)]);
 
     // check
-    expect(node.getString()).toEqual(`${ name }(5)`);
+    expect(node.string).toEqual(`${ name }(5)`);
   });
 
   it('Should have correct value', () =>
@@ -39,6 +39,6 @@ describe('Function', () =>
     const node = new Function(name, [new Value(9)]);
 
     //check
-    expect(node.getValue()).toEqual(Math.sqrt(9));
+    expect(node.result).toEqual(Math.sqrt(9));
   });
 });

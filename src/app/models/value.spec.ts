@@ -26,7 +26,7 @@ describe('Value', () =>
     const node = new Value(7);
 
     // check
-    expect(node.getString()).toEqual('7');
+    expect(node.string).toEqual('7');
   });
 
   it('Should have correct value', () =>
@@ -36,6 +36,6 @@ describe('Value', () =>
     const node = new Value(nodeValue);
 
     //check
-    expect(node.getValue()).toEqual(nodeValue);
+    expect(node.result).toEqual(nodeValue);
   });
 });

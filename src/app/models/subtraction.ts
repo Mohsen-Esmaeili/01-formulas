@@ -10,6 +10,16 @@ export class Subtraction extends Node
     return NodeType.Subtraction;
   }
 
+  get string(): string
+  {
+    return `${ this.left.string } - ${ this.right.string }`;
+  }
+
+  get result(): number
+  {
+    return this.left.result - this.right.result;
+  }
+
   constructor(public left: Node, public right: Node)
   {
     super();
@@ -49,15 +59,5 @@ export class Subtraction extends Node
     }
 
     return this;
-  }
-
-  getString(): string
-  {
-    return `${ this.left.getString() } - ${ this.right.getString() }`;
-  }
-
-  getValue(): number
-  {
-    return this.left.getValue() - this.right.getValue();
   }
 }

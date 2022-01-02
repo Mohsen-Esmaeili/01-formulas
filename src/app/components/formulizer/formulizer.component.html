@@ -28,7 +28,7 @@
               <mat-card-title>Formula visualization</mat-card-title>
               <mat-card-subtitle>By clicking you can add your formula</mat-card-subtitle>
             </div>
-            <div class="alert alert-primary" *ngIf="node">Final Result: {{ node.getValue().toFixed(2) }}</div>
+            <div class="alert alert-primary" *ngIf="node">Final Result: {{ node.result.toFixed(2) }}</div>
           </section>
           <pre class="visualize-content p-3" *ngIf="node">
             <mat-card>

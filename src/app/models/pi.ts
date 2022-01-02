@@ -9,6 +9,16 @@ export class PI extends Node
     return NodeType.PI;
   }
 
+  get string(): string
+  {
+    return "PI";
+  }
+
+  get result(): number
+  {
+    return Math.PI;
+  }
+
   constructor()
   {
     super();
@@ -26,15 +36,5 @@ export class PI extends Node
       return new EmptyNode();
     }
     return this;
-  }
-
-  getString(): string
-  {
-    return "PI";
-  }
-
-  getValue(): number
-  {
-    return Math.PI;
   }
 }

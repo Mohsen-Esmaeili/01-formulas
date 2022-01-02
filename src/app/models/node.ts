@@ -6,6 +6,10 @@ export abstract class Node
 
   abstract get type(): string;
 
+  abstract get string(): string;
+
+  abstract get result(): number;
+
   constructor()
   {
     this.id = uuidv4();
@@ -14,9 +18,5 @@ export abstract class Node
   abstract addChild(id: string, node: Node): Node;
 
   abstract removeChildById(id: string): Node;
-
-  abstract getString(): string;
-
-  abstract getValue(): number;
 }
 

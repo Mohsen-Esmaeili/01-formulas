@@ -26,7 +26,7 @@ describe('Variable', () =>
     const node = new Variable("$a");
 
     // check
-    expect(node.getString()).toEqual('$a');
+    expect(node.string).toEqual('$a');
   });
 
   it('Should have correct name', () =>

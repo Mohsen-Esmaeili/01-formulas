@@ -31,7 +31,7 @@ export class FormulizerComponent implements OnInit, OnDestroy
     this.update();
     this.updateEmitterSubscription = this.expressionService.updatedEmitter.subscribe(response =>
     {
-      this.formula.setValue(this.node.getString());
+      this.formula.setValue(this.node.string);
       this.update();
     });
   }
@@ -50,7 +50,7 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
     this.node = this.nodeManagerService.Load(this.formula.value);
     this.syntaxTreeJson = JSON.stringify(this.node, null, 2);
-    this.visualizerOutput = this.node.getString();
+    this.visualizerOutput = this.node.string;
   }
 
   onGoHome(): void

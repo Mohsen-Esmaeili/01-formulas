@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -33,7 +33,7 @@ import { NewNodeConfigComponent } from './new-node-config/new-node-config.compon
 const COMPONENTS = [NewNodeConfigComponent, ExpressionComponent, ExpressionListComponent, EmptyComponent, AdditionComponent, SubtractionComponent, DivisionComponent,
   MultiplicationComponent, PowerComponent, ValueComponent, VariableComponent, NodeComponent, ParenComponent, FunctionComponent, EComponent, PiComponent];
 const DIRECTIVES = [ExpressionHostDirective];
-const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
+const BASE_MODULES = [CommonModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatBadgeModule, MatFormFieldModule, MatInputModule, MatListModule];
 const SERVICES = [ExpressionService];
 

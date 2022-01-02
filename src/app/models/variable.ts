@@ -11,6 +11,16 @@ export class Variable extends Node
     return NodeType.Variable;
   }
 
+  get string(): string
+  {
+    return this.name;
+  }
+
+  get result(): number
+  {
+    return this.value ? this.value : 0;
+  }
+
   constructor(public name: string)
   {
     super();
@@ -28,15 +38,5 @@ export class Variable extends Node
       return new EmptyNode();
     }
     return this;
-  }
-
-  getString(): string
-  {
-    return this.name;
-  }
-
-  getValue(): number
-  {
-    return this.value ? this.value : 0;
   }
 }

@@ -1,5 +1,5 @@
 <mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected"
-  matBadge="{{ node.getValue().toFixed(0) }}" matBadgePosition="before" matBadgeColor="accent"
+  matBadge="{{ node.result.toFixed(0) }}" matBadgePosition="before" matBadgeColor="accent"
   [matBadgeHidden]="badgeIsHidden" class="d-flex flex-column justify-content-end">
   <div class="d-flex flex-row justify-content-end action-buttons">
     <app-expression-list (newExpressionEmitter)="onAddNew($event)" [visible]="isSelected"></app-expression-list>

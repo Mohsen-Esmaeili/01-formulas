@@ -32,7 +32,7 @@ describe('Paren', () =>
     const node = new Paren(new Addition(new Value(7), new Value(10)));
 
     // check
-    expect(node.getString()).toEqual('(7 + 10)');
+    expect(node.string).toEqual('(7 + 10)');
   });
 
   it('Get complex string', () =>
@@ -41,7 +41,7 @@ describe('Paren', () =>
     const node = new Division(new Paren(new Addition(new Paren(new Multiplication(new Value(6), new Variable('$b'))), new Paren(new Subtraction(new Variable('$a'), new Value(5))))), new Power(new Value(8), new Value(2)));
 
     // check
-    expect(node.getString()).toEqual('((6 * $b) + ($a - 5)) / 8 ^ 2');
+    expect(node.string).toEqual('((6 * $b) + ($a - 5)) / 8 ^ 2');
   });
 
   it('Remove addition expression with one level', () =>

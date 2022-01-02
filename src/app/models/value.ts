@@ -8,6 +8,16 @@ export class Value extends Node
     return NodeType.Number;
   }
 
+  get string(): string
+  {
+    return this.value.toString();
+  }
+
+  get result(): number
+  {
+    return this.value;
+  }
+
   constructor(public value: number)
   {
     super();
@@ -25,15 +35,5 @@ export class Value extends Node
       return new EmptyNode();
     }
     return this;
-  }
-
-  getString(): string
-  {
-    return this.value.toString();
-  }
-
-  getValue(): number
-  {
-    return this.value;
   }
 }

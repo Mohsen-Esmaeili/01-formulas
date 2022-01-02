@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, OnDestroy } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { NewNodeConfigComponent } from "../components/formulizer/expression/new-node-config/new-node-config.component";
 import { Addition } from "../models/addition";
 import { Division } from "../models/division";
@@ -22,7 +22,7 @@ import { Variable } from './../models/variable';
 export class ExpressionService implements OnDestroy
 {
   // For detecting the selected node
-  selectedEmitter = new EventEmitter<string>();
+  selectedEmitter = new Subject<string>();
 
   // When changing the formula we need to be aware the textarea and AST need to reload
   updatedEmitter = new EventEmitter();

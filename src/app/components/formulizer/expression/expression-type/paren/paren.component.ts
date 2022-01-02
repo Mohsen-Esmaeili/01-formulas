@@ -17,7 +17,7 @@ export class ParenComponent extends NodeComponent
 
   get badgeIsHidden(): boolean
   {
-    return this.node.getValue() === Number.MIN_VALUE;
+    return this.node.result === Number.MIN_VALUE;
   }
 
   onRemoveNode(): void
@@ -38,6 +38,6 @@ export class ParenComponent extends NodeComponent
   {
     event.stopPropagation();
 
-    this.expressionService.selectedEmitter.emit(this.node.id);
+    this.expressionService.selectedEmitter.next(this.node.id);
   }
 }

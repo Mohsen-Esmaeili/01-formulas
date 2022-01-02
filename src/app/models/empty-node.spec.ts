@@ -24,6 +24,6 @@ describe('EmptyNode', () =>
     const node = new EmptyNode();
 
     // check
-    expect(node.getString()).toEqual('_EMPTY_');
+    expect(node.string).toEqual('_EMPTY_');
   });
 });

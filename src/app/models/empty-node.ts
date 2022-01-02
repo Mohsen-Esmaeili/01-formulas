@@ -7,6 +7,16 @@ export class EmptyNode extends Node
     return NodeType.Empty;
   }
 
+  get string(): string
+  {
+    return "_EMPTY_";
+  }
+
+  get result(): number
+  {
+    return Number.MIN_VALUE;
+  }
+
   addChild(id: string, node: Node): Node
   {
     if (this.id === id)
@@ -20,15 +30,5 @@ export class EmptyNode extends Node
   removeChildById(id: string): Node
   {
     return this;
-  }
-
-  getString(): string
-  {
-    return "_EMPTY_";
-  }
-
-  getValue(): number
-  {
-    return Number.MIN_VALUE;
   }
 }

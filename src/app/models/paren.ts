@@ -9,6 +9,16 @@ export class Paren extends Node
     return NodeType.Paren;
   }
 
+  get string(): string
+  {
+    return `(${ this.expression.string })`;
+  }
+
+  get result(): number
+  {
+    return this.expression.result;
+  }
+
   constructor(public expression: Node)
   {
     super();
@@ -28,15 +38,5 @@ export class Paren extends Node
     }
 
     return this;
-  }
-
-  getString(): string
-  {
-    return `(${ this.expression.getString() })`;
-  }
-
-  getValue(): number
-  {
-    return this.expression.getValue();
   }
 }
