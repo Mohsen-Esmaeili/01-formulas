@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NodeComponent } from '../node/node.component';
 
 @Component({
@@ -8,4 +8,10 @@ import { NodeComponent } from '../node/node.component';
 })
 export class EmptyComponent extends NodeComponent
 {
+  @Output() addNewOnEmptyEmitter = new EventEmitter<string>();
+
+  onAddNew(): void
+  {
+
+  }
 }

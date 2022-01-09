@@ -6,7 +6,8 @@ import { Paren } from './../../../../../models/paren';
 
 @Component({
   selector: 'app-paren',
-  templateUrl: './paren.component.html'
+  templateUrl: './paren.component.html',
+  styleUrls: ['./paren.component.scss']
 })
 export class ParenComponent extends NodeComponent
 {

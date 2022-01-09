@@ -1,5 +1,10 @@
 .function-section {
-  background: chocolate;
   border-radius: 5px;
   padding: 5px;
+
+  .function-name {
+    color: cadetblue;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
 }

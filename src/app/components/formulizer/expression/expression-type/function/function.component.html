@@ -1,5 +1,5 @@
 <section class="d-flex flex-row function-section">
-  <div class="mb-0 alert alert-info value-member">{{ name }}</div>
+  <div class="function-name d-flex align-items-center px-1">{{ name }}</div>
   <div *ngFor="let arg of args">
     <app-expression [parentNode]="node" [node]="arg"></app-expression>
   </div>

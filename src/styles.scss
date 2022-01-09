@@ -17,3 +17,8 @@ body {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
+
+::ng-deep .mat-badge-content {
+  background-color: #eeeeee;
+  color: #020202;
+}
