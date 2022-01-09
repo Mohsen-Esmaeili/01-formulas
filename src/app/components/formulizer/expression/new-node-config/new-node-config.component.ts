@@ -18,7 +18,7 @@ export class NewNodeConfigComponent implements OnInit
   textValue = new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]);
   isInLeftSide = new FormControl('', Validators.required);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<NewNodeConfigComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public nodeType: string, private dialogRef: MatDialogRef<NewNodeConfigComponent>) { }
 
   ngOnInit(): void
   {
@@ -27,8 +27,7 @@ export class NewNodeConfigComponent implements OnInit
 
   onSelect()
   {
-    debugger;
-    if (this.isInLeftSide.invalid || (this.isVariable && this.textValue.invalid) || (this.isNumber && this.numberValue.invalid))
+    if (this.formIsInValid)
     {
       return;
     }
@@ -36,9 +35,14 @@ export class NewNodeConfigComponent implements OnInit
     this.dialogRef.close({ isSelected: true, isInLeftSide: this.isInLeftSide.value[0], value: this.isVariable ? this.textValue.value : this.numberValue.value });
   }
 
+  get formIsInValid(): boolean
+  {
+    return this.isInLeftSide.invalid || (this.isVariable && this.textValue.invalid) || (this.isNumber && this.numberValue.invalid);
+  }
+
   loadNodeType(): void
   {
-    switch (this.data?.node?.type)
+    switch (this.nodeType)
     {
       case NodeType.Number:
         this.isNumber = true;

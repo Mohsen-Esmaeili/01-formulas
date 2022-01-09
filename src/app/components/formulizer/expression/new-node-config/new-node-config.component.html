@@ -21,7 +21,7 @@
   </mat-selection-list>
 
   <ng-container *ngIf="isVariable">
-    <mat-divider></mat-divider>
+    <mat-divider class="my-2"></mat-divider>
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Variable name</mat-label>
       <input matInput placeholder="Enter variable name" [formControl]="textValue" autocomplete="off">
@@ -32,7 +32,7 @@
     </mat-form-field>
   </ng-container>
   <ng-container *ngIf="isNumber">
-    <mat-divider></mat-divider>
+    <mat-divider class="my-2"></mat-divider>
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Static value</mat-label>
       <input matInput placeholder="Enter the value" [formControl]="numberValue" autocomplete="off">
@@ -42,8 +42,8 @@
     </mat-form-field>
   </ng-container>
 </mat-dialog-content>
-<mat-divider></mat-divider>
-<mat-dialog-actions align="end" class="px-4 py-0">
+<mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" cdkFocusInitial (click)="onSelect()">Select</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="onSelect()"
+    [disabled]="formIsInValid">Select</button>
 </mat-dialog-actions>

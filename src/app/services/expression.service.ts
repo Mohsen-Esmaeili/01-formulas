@@ -44,9 +44,7 @@ export class ExpressionService implements OnDestroy
     */
     const dialogRef = this.dialog.open(NewNodeConfigComponent, {
       hasBackdrop: true,
-      data: {
-        node: node.expression
-      }
+      data: expression.nodeType
     });
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe((response: any) =>
