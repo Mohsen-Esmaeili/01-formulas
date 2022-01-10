@@ -61,7 +61,6 @@ export class Function extends Node
 
   updateNode(id: string, node: Node): Node
   {
-    debugger;
     const newArgs = new Array<Node>();
     this.args.forEach((arg: Node) =>
     {

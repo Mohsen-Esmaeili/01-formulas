@@ -1,7 +1,6 @@
 <section class="parentis-section">
   <mat-card (click)="selectable ? onSelect($event) : false" [class.selected-expression]="isSelected"
-    class="{{ parenExpression.type | lowercase }}" matBadge="{{ node.result.toFixed(0) }}" matBadgePosition="before"
-    matBadgeColor="accent" [matBadgeHidden]="badgeIsHidden" class="d-flex flex-column justify-content-center">
+    class="{{ parenExpression.type | lowercase }}" class="d-flex flex-column justify-content-center">
     <div class="d-flex flex-row justify-content-end action-buttons">
       <app-expression-list (newExpressionEmitter)="onAddNew($event)" [visible]="isSelected"></app-expression-list>
       <button mat-mini-fab color="warn" *ngIf="isSelected" (click)="onRemoveNode()">

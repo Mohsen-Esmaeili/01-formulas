@@ -2,7 +2,7 @@
   <div class="m-1">
     <app-expression [parentNode]="node" [node]="expression"></app-expression>
   </div>
-  <div class="mx-2 d-flex align-items-center operator">
+  <div class="mx-2 d-flex align-items-center operator" matTooltip="{{ node.result.toFixed(0) }}">
     ^
   </div>
   <div class="m-1">

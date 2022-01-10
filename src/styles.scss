@@ -18,7 +18,13 @@ body {
   background: transparent; /* make scrollbar transparent */
 }
 
-::ng-deep .mat-badge-content {
-  background-color: #eeeeee;
-  color: #020202;
+.mat-tooltip-panel {
+  .mat-tooltip {
+    color: #424242;
+    background-color: rgb(211, 248, 211);
+    border: 1px solid rgb(56, 243, 56);
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 10px;
+  }
 }

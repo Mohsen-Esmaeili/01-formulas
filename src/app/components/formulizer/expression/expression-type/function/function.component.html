@@ -1,7 +1,9 @@
 <section class="d-flex flex-row function-section">
   <ul class="list-group list-group-horizontal">
-    <li class="list-group-item d-flex align-items-center px-1 py-0 function-name">{{ name }}</li>
-    <li class="list-group-item d-flex align-items-center px-1 py-0" *ngFor="let arg of args">
+    <li class="list-group-item d-flex align-items-center p-1 function-name" matTooltip="{{ node.result.toFixed(0) }}">
+      {{ name }}
+    </li>
+    <li class="list-group-item d-flex align-items-center p-1" *ngFor="let arg of args">
       <app-expression [parentNode]="node" [node]="arg"></app-expression>
     </li>
   </ul>

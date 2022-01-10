@@ -16,9 +16,9 @@ export class ParenComponent extends NodeComponent
     return (<Paren>this.node).expression;
   }
 
-  get badgeIsHidden(): boolean
+  get hasResult(): boolean
   {
-    return this.node.result === Number.MIN_VALUE;
+    return !this.node.string.includes("_EMPTY_");
   }
 
   onRemoveNode(): void

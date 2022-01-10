@@ -1,9 +1,11 @@
 .expression {
   .operator {
-    font-size: 25px;
+    font-size: 1.6rem;
     font-weight: 700;
-    min-height: 45px;
-    max-width: 80px;
+    border: 1px solid #424242;
+    padding: 6px;
+    border-radius: 50%;
+    color: #424242;
   }
 
   .mat-card {
