@@ -20,7 +20,18 @@
     </ng-template>
   </mat-selection-list>
 
-  <ng-container *ngIf="isVariable">
+  <ng-container *ngIf="requiredNumber;else TextInput">
+    <mat-divider class="my-2"></mat-divider>
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>{{ valueTitle }}</mat-label>
+      <input matInput placeholder="Enter the value" [formControl]="numberValue" autocomplete="off">
+      <mat-error *ngIf="numberValue.invalid">
+        {{ valueTitle }} is required. Please enter a valid number!
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-template #TextInput>
     <mat-divider class="my-2"></mat-divider>
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Variable name</mat-label>
@@ -30,17 +41,8 @@
         Variable name is required. Please enter a valid variable name!
       </mat-error>
     </mat-form-field>
-  </ng-container>
-  <ng-container *ngIf="isNumber">
-    <mat-divider class="my-2"></mat-divider>
-    <mat-form-field appearance="fill" class="w-100">
-      <mat-label>Static value</mat-label>
-      <input matInput placeholder="Enter the value" [formControl]="numberValue" autocomplete="off">
-      <mat-error *ngIf="numberValue.invalid">
-        Value is required. Please enter a valid number!
-      </mat-error>
-    </mat-form-field>
-  </ng-container>
+  </ng-template>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Cancel</button>

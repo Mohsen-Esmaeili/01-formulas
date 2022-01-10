@@ -11,18 +11,18 @@ import { NodeType } from './../../../../constants/node-type';
 export class NewNodeConfigComponent implements OnInit
 {
   isPower: boolean = false;
-  isVariable: boolean = false;
-  isNumber: boolean = false;
+  requiredNumber: boolean = false;
 
   numberValue = new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]);
   textValue = new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]);
   isInLeftSide = new FormControl('', Validators.required);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<NewNodeConfigComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { newNodeType: NodeType, parentNodeType: NodeType, positionId: string | undefined; }, private dialogRef: MatDialogRef<NewNodeConfigComponent>) { }
 
   ngOnInit(): void
   {
-    this.loadNodeType();
+    this.requiredNumber = this.data.newNodeType === NodeType.Function || this.data.newNodeType === NodeType.Number;
+    this.isPower = this.data.parentNodeType === NodeType.Power;
   }
 
   onSelect()
@@ -32,30 +32,16 @@ export class NewNodeConfigComponent implements OnInit
       return;
     }
 
-    this.dialogRef.close({ isSelected: true, isInLeftSide: this.isInLeftSide.value[0], value: this.isVariable ? this.textValue.value : this.numberValue.value });
+    this.dialogRef.close({ isSelected: true, isInLeftSide: this.isInLeftSide.value[0], value: this.requiredNumber ? this.numberValue.value : this.textValue.value });
   }
 
   get formIsInValid(): boolean
   {
-    return (!this.data?.positionId && this.isInLeftSide.invalid) || (this.isVariable && this.textValue.invalid) || (this.isNumber && this.numberValue.invalid);
+    return (!this.data?.positionId && this.isInLeftSide.invalid) || (!this.requiredNumber && this.textValue.invalid) || (this.requiredNumber && this.numberValue.invalid);
   }
 
-  loadNodeType(): void
+  get valueTitle(): string
   {
-    switch (this.data?.nodeType)
-    {
-      case NodeType.Number:
-        this.isNumber = true;
-        break;
-      case NodeType.Power:
-        this.isPower = true;
-        break;
-      case NodeType.Variable:
-        this.isVariable = true;
-        break;
-
-      default:
-        break;
-    }
+    return this.data.newNodeType === NodeType.Number ? "Value" : "Number of arguments";
   }
 }

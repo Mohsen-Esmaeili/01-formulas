@@ -1,6 +1,8 @@
 <section class="d-flex flex-row function-section">
-  <div class="function-name d-flex align-items-center px-1">{{ name }}</div>
-  <div *ngFor="let arg of args">
-    <app-expression [parentNode]="node" [node]="arg"></app-expression>
-  </div>
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item d-flex align-items-center px-1 py-0 function-name">{{ name }}</li>
+    <li class="list-group-item d-flex align-items-center px-1 py-0" *ngFor="let arg of args">
+      <app-expression [parentNode]="node" [node]="arg"></app-expression>
+    </li>
+  </ul>
 </section>

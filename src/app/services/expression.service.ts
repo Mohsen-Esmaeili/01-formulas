@@ -33,11 +33,6 @@ export class ExpressionService implements OnDestroy
 
   public addNewNode(node: Paren, expression: Expression): void
   {
-    if (expression.nodeType === NodeType.Function)
-    {
-      this.addChild(node, expression);
-      return;
-    }
     /*
     Whenever you want to add new formula to existing formula should select position that you want to add new formula. for example, if you want to add a new subtraction
     to a addition expression, it's possible to add a new subtraction in the left or right side of the addition expression
@@ -45,7 +40,8 @@ export class ExpressionService implements OnDestroy
     const dialogRef = this.dialog.open(NewNodeConfigComponent, {
       hasBackdrop: true,
       data: {
-        nodeType: expression.nodeType
+        newNodeType: expression.nodeType,
+        parentNodeType: node.expression.type
       }
     });
 
@@ -69,7 +65,7 @@ export class ExpressionService implements OnDestroy
 
   updateNode(parentNode: Node, expression: Expression, id: string): void
   {
-    if (expression.nodeType !== NodeType.Number && expression.nodeType !== NodeType.Variable)
+    if (expression.nodeType !== NodeType.Number && expression.nodeType !== NodeType.Variable && expression.nodeType !== NodeType.Function)
     {
       this.updateNodeCore(parentNode, expression, id, undefined);
       return;
@@ -77,7 +73,8 @@ export class ExpressionService implements OnDestroy
     const dialogRef = this.dialog.open(NewNodeConfigComponent, {
       hasBackdrop: true,
       data: {
-        nodeType: expression.nodeType,
+        newNodeType: expression.nodeType,
+        parentNodeType: parentNode.type,
         positionId: id
       }
     });
@@ -114,7 +111,7 @@ export class ExpressionService implements OnDestroy
       case NodeType.Power:
         return new Paren(new Power(new EmptyNode(), new EmptyNode()));
       case NodeType.Function:
-        return new Function(expression.title, [new EmptyNode()]);
+        return new Function(expression.title, this.getArguments(Number(value)));
       case NodeType.Variable:
         return new Variable("$" + value);
       case NodeType.Number:
@@ -128,6 +125,16 @@ export class ExpressionService implements OnDestroy
       default:
         throw new Error(`Invalid node type. NodeType = ${ expression.nodeType }`);
     }
+  }
+
+  private getArguments(argCount: number): Array<Node>
+  {
+    const args = Array<Node>();
+    for (let i = 0; i < argCount; i++)
+    {
+      args.push(new EmptyNode());
+    }
+    return args;
   }
 
   private getPositionId(node: Node, isInLeftSide: boolean): string
