@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NodeComponent } from '../node/node.component';
+import { Expression } from './../../../../../models/expression';
 
 @Component({
   selector: 'app-value',
@@ -8,4 +9,8 @@ import { NodeComponent } from '../node/node.component';
 })
 export class ValueComponent extends NodeComponent
 {
+  onUpdate(expression: Expression): void
+  {
+    this.updateNodeEmitter.emit(expression);
+  }
 }

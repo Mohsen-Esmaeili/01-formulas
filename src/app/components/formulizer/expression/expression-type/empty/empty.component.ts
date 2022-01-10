@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NodeComponent } from '../node/node.component';
+import { Expression } from './../../../../../models/expression';
 
 @Component({
   selector: 'app-empty',
@@ -8,10 +9,8 @@ import { NodeComponent } from '../node/node.component';
 })
 export class EmptyComponent extends NodeComponent
 {
-  @Output() addNewOnEmptyEmitter = new EventEmitter<string>();
-
-  onAddNew(): void
+  onUpdate(expression: Expression): void
   {
-
+    this.updateNodeEmitter.emit(expression);
   }
 }

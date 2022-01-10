@@ -48,6 +48,18 @@ export class Addition extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    if (this.left.id === id)
+    {
+      this.left = node;
+    } else if (this.right.id === id)
+    {
+      this.right = node;
+    }
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     if (this.left.id === id)

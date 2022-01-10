@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 // Services
 import { NodeManagerService } from 'src/app/services/node-manager.service';
@@ -19,7 +20,7 @@ import { FormulizerComponent } from './formulizer.component';
 
 const COMPONENTS = [FormulizerComponent];
 const BASE_MODULES = [CommonModule, ReactiveFormsModule];
-const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule, MatButtonModule, MatTabsModule, MatCardModule];
+const MATERIAL_MODULES = [MatFormFieldModule, MatInputModule, MatDividerModule, MatButtonModule, MatTabsModule, MatCardModule, MatSnackBarModule];
 const FORMULA_MODULES = [ExpressionModule];
 const SERVICES = [NodeManagerService];
 

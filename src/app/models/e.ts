@@ -27,6 +27,11 @@ export class E extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     return this;

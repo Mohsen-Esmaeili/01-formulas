@@ -1,7 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Node } from '../../../../../models/node';
+import { Expression } from './../../../../../models/expression';
 import { ExpressionService } from './../../../../../services/expression.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class NodeComponent implements OnInit, OnDestroy
 
   @Input() parentNode: Node | undefined;
   @Input() node: Node;
+
+  @Output() updateNodeEmitter = new EventEmitter<Expression>();
 
   constructor(public dialog: MatDialog, public expressionService: ExpressionService) { }
 

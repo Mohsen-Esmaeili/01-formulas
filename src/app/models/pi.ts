@@ -29,6 +29,11 @@ export class PI extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     if (this.id === id)

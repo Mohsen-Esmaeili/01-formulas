@@ -1,1 +1,5 @@
-<div class="mb-0 alert alert-danger add-new-node" (click)="onAddNew()">Empty</div>
+<app-expression-list (newExpressionEmitter)="onUpdate($event)" [menuTriggerTmp]="EmptyNode" [visible]="isSelected">
+</app-expression-list>
+<ng-template #EmptyNode>
+  <div class="mb-0 alert alert-danger add-new-node">Empty</div>
+</ng-template>

@@ -59,6 +59,24 @@ export class Function extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    debugger;
+    const newArgs = new Array<Node>();
+    this.args.forEach((arg: Node) =>
+    {
+      if (arg.id === id)
+      {
+        newArgs.push(node);
+      } else
+      {
+        newArgs.push(arg);
+      }
+    });
+    this.args = newArgs;
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     this.args.forEach((arg: Node) =>

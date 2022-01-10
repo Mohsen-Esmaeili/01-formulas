@@ -1,7 +1,7 @@
 <h2 mat-dialog-title class="px-2">New expression configuration</h2>
-<mat-divider></mat-divider>
+<mat-divider *ngIf="!this.data?.positionId"></mat-divider>
 <mat-dialog-content class="mat-typography">
-  <mat-selection-list [multiple]="false" [formControl]="isInLeftSide">
+  <mat-selection-list [multiple]="false" [formControl]="isInLeftSide" *ngIf="!this.data?.positionId">
     <ng-container *ngIf="isPower; else IsNotPower">
       <mat-list-option [value]="true">
         Expression

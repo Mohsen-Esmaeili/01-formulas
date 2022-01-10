@@ -5,5 +5,14 @@
     </div>
     <input class="custom-input form-control" autocomplete="off" type="number" [formControl]="varName"
       (change)="onChangeValue()">
+    <app-expression-list (newExpressionEmitter)="onUpdate($event)" [menuTriggerTmp]="ValueNode" [visible]="isSelected">
+    </app-expression-list>
+    <ng-template #ValueNode>
+      <div class="input-group-append d-flex align-items-center">
+        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </ng-template>
   </div>
 </section>

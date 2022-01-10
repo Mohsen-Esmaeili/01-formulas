@@ -48,6 +48,19 @@ export class Power extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    if (this.expression.id === id)
+    {
+      this.expression = node;
+    } else if (this.power.id === id)
+    {
+      this.power = node;
+    }
+
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     if (this.expression.id === id)

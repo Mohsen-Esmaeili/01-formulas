@@ -1,3 +1,7 @@
 <section class="static-value">
-  <input class="form-control" readonly [value]="node?.string">
+  <app-expression-list (newExpressionEmitter)="onUpdate($event)" [menuTriggerTmp]="ENode" [visible]="isSelected">
+  </app-expression-list>
+  <ng-template #ENode>
+    <button mat-flat-button color="warn">{{ node?.string }}</button>
+  </ng-template>
 </section>

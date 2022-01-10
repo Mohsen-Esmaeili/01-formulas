@@ -44,7 +44,9 @@ export class ExpressionService implements OnDestroy
     */
     const dialogRef = this.dialog.open(NewNodeConfigComponent, {
       hasBackdrop: true,
-      data: expression.nodeType
+      data: {
+        nodeType: expression.nodeType
+      }
     });
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe((response: any) =>
@@ -58,9 +60,43 @@ export class ExpressionService implements OnDestroy
 
   private addChild(node: Paren, expression: Expression, isInLeftSide: boolean = true, requiredData: string = ""): void
   {
+    const positionId = this.getPositionId(node.expression, isInLeftSide);
+
     const newNode = this.getNode(expression, requiredData);
-    node.addChild(this.getPositionId(node.expression, isInLeftSide), newNode);
+    node.addChild(positionId, newNode);
     this.updatedEmitter.emit();
+  }
+
+  updateNode(parentNode: Node, expression: Expression, id: string): void
+  {
+    if (expression.nodeType !== NodeType.Number && expression.nodeType !== NodeType.Variable)
+    {
+      this.updateNodeCore(parentNode, expression, id, undefined);
+      return;
+    }
+    const dialogRef = this.dialog.open(NewNodeConfigComponent, {
+      hasBackdrop: true,
+      data: {
+        nodeType: expression.nodeType,
+        positionId: id
+      }
+    });
+
+    this.dialogSubscription = dialogRef.afterClosed().subscribe((response: any) =>
+    {
+      if (expression.nodeType && response.isSelected)
+      {
+        this.updateNodeCore(parentNode, expression, id, response.value);
+      }
+    });
+  }
+
+  private updateNodeCore(parentNode: Node, expression: Expression, id: string, value: string | undefined): void
+  {
+    const newNode = this.getNode(expression, value);
+    parentNode.updateNode(id, newNode);
+    this.updatedEmitter.emit();
+
   }
 
   private getNode(expression: Expression, value: string = ""): Node

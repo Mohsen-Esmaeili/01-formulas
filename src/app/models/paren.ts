@@ -30,6 +30,15 @@ export class Paren extends Node
     return this;
   }
 
+  updateNode(id: string, node: Node): Node
+  {
+    if (this.expression.id === id)
+    {
+      this.expression = node;
+    }
+    return this;
+  }
+
   removeChildById(id: string): Node
   {
     if (this.expression.id === id)

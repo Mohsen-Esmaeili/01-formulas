@@ -17,6 +17,8 @@ export abstract class Node
 
   abstract addChild(id: string, node: Node): Node;
 
+  abstract updateNode(id: string, node: Node): Node;
+
   abstract removeChildById(id: string): Node;
 }
 
