@@ -1,7 +1,12 @@
 <section class="d-flex flex-row function-section">
   <ul class="list-group list-group-horizontal">
     <li class="list-group-item d-flex align-items-center p-1 function-name" matTooltip="{{ node.result.toFixed(0) }}">
-      {{ name }}
+      <app-expression-list (newExpressionEmitter)="onUpdate($event)" [menuTriggerTmp]="EmptyNode"
+        [visible]="isSelected">
+      </app-expression-list>
+      <ng-template #EmptyNode>
+        {{ name }}
+      </ng-template>
     </li>
     <li class="list-group-item d-flex align-items-center p-1" *ngFor="let arg of args">
       <app-expression [parentNode]="node" [node]="arg"></app-expression>
