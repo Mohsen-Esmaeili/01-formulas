@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Expression } from '../../../../models/expression';
-import { ExpressionService } from '../../../../services/expression.service';
+import { NodeManagerService } from '../../../../services/node-manager.service';
 @Component({
   selector: 'app-expression-list',
   templateUrl: './expression-list.component.html',
@@ -14,7 +14,7 @@ export class ExpressionListComponent implements OnInit
   @Output() newExpressionEmitter = new EventEmitter<Expression>();
 
   expressionList: Array<Expression> = [];
-  constructor(private expressionService: ExpressionService) { }
+  constructor(private nodeManagerService: NodeManagerService) { }
 
   ngOnInit(): void
   {
@@ -23,7 +23,7 @@ export class ExpressionListComponent implements OnInit
 
   load(): void
   {
-    this.expressionList = this.expressionService.load();
+    this.expressionList = this.nodeManagerService.loadImplementedExpressions();
   }
 
   expressionDetails(id: number): Array<Expression>

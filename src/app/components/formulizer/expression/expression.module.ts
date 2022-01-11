@@ -14,7 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 // Material Modules
 import { MatTooltipModule } from '@angular/material/tooltip';
 // Services
-import { ExpressionService } from '../../../services/expression.service';
+import { NodeManagerService } from '../../../services/node-manager.service';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
 // Components
 import
@@ -31,7 +31,7 @@ const COMPONENTS = [NewNodeConfigComponent, ExpressionComponent, ExpressionListC
 const DIRECTIVES = [ExpressionHostDirective];
 const BASE_MODULES = [CommonModule, ReactiveFormsModule];
 const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatIconModule, MatMenuModule, MatDialogModule, MatDividerModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatListModule];
-const SERVICES = [ExpressionService];
+const SERVICES = [NodeManagerService];
 
 @NgModule({
   declarations: [

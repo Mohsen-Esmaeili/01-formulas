@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Node } from '../../models/node';
 import { NodeManagerService } from '../../services/node-manager.service';
-import { ExpressionService } from './../../services/expression.service';
 
 @Component({
   selector: 'app-formulizer',
@@ -25,13 +24,12 @@ export class FormulizerComponent implements OnInit, OnDestroy
 
   constructor(private nodeManagerService: NodeManagerService,
     private router: Router,
-    private expressionService: ExpressionService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit(): void
   {
     this.update();
-    this.updateEmitterSubscription = this.expressionService.updatedEmitter.subscribe(response =>
+    this.updateEmitterSubscription = this.nodeManagerService.updatedEmitter.subscribe(() =>
     {
       this.formula.setValue(this.node.string);
       if (this.node.string.includes('_EMPTY_'))

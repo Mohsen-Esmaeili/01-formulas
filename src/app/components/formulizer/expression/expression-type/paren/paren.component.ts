@@ -26,19 +26,19 @@ export class ParenComponent extends NodeComponent
     if (this.parentNode)
     {
       this.parentNode.removeChildById(this.node.id);
-      this.expressionService.updatedEmitter.emit();
+      this.nodeManagerService.updatedEmitter.emit();
     }
   }
 
   onAddNew(expression: Expression): void
   {
-    this.expressionService.addNewNode(<Paren>this.node, expression);
+    this.nodeManagerService.addNewNode(<Paren>this.node, expression);
   }
 
   onSelect(event: Event): void
   {
     event.stopPropagation();
 
-    this.expressionService.selectedEmitter.next(this.node.id);
+    this.nodeManagerService.selectedEmitter.next(this.node.id);
   }
 }

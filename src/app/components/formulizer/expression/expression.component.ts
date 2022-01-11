@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NodeManagerService } from 'src/app/services/node-manager.service';
 import { Node } from '../../../models/node';
 import { ExpressionHostDirective } from './../../../directives/expression-host.directive';
 import { Expression } from './../../../models/expression';
-import { ExpressionService } from './../../../services/expression.service';
 import GetComponent from './component.factory';
 import { NodeComponent } from './expression-type/node/node.component';
 
@@ -19,7 +19,7 @@ export class ExpressionComponent implements OnInit, OnChanges
 
   @ViewChild(ExpressionHostDirective, { static: true }) expressionHostDirective!: ExpressionHostDirective;
 
-  constructor(private expressionService: ExpressionService) { }
+  constructor(private nodeManagerService: NodeManagerService) { }
 
   ngOnInit(): void
   {
@@ -48,7 +48,7 @@ export class ExpressionComponent implements OnInit, OnChanges
     {
       if (this.parentNode)
       {
-        this.expressionService.updateNode(this.parentNode, expression, this.node.id);
+        this.nodeManagerService.updateNode(this.parentNode, expression, this.node.id);
       }
     });
   }

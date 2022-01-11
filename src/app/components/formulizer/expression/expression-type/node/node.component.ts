@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { NodeManagerService } from 'src/app/services/node-manager.service';
 import { Node } from '../../../../../models/node';
 import { Expression } from './../../../../../models/expression';
-import { ExpressionService } from './../../../../../services/expression.service';
 
 @Component({
   selector: 'app-node',
@@ -21,11 +21,11 @@ export class NodeComponent implements OnInit, OnDestroy
 
   @Output() updateNodeEmitter = new EventEmitter<Expression>();
 
-  constructor(public dialog: MatDialog, public expressionService: ExpressionService) { }
+  constructor(public dialog: MatDialog, public nodeManagerService: NodeManagerService) { }
 
   ngOnInit(): void
   {
-    this.expressionServiceSubscription = this.expressionService.selectedEmitter.subscribe((response: string) =>
+    this.expressionServiceSubscription = this.nodeManagerService.selectedEmitter.subscribe((response: string) =>
     {
       this.selectedNodeId = response;
     });
