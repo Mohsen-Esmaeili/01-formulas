@@ -1,32 +1,30 @@
 .parentis-section {
+  mat-card {
+    background-color: #f6f6f6;
+  }
+
   .addition {
-    background-color: #b1d0e0;
-    border: 1px solid #3694c4;
+    border: 2px solid #3694c4;
   }
 
   .subtraction {
-    background-color: #dcf1ee;
-    border: 1px solid #54c54c;
+    border: 2px solid #54c54c;
   }
 
   .power {
-    background-color: #fbf6f0;
-    border: 1px solid #f3bc78;
+    border: 2px solid #f3bc78;
   }
 
   .multiplication {
-    background-color: #b1bed5;
-    border: 1px solid #2b68d3;
+    border: 2px solid #2b68d3;
   }
 
   .division {
-    background-color: #f0e9d2;
-    border: 1px solid #eed276;
+    border: 2px solid #eed276;
   }
 
   .function {
-    background-color: #e4dda3;
-    border: 1px solid #e2d55d;
+    border: 2px solid #e2d55d;
   }
 
   .action-buttons {

@@ -3,8 +3,13 @@
   padding: 5px;
 
   .function-name {
-    color: cadetblue;
+    color: #005783;
     font-size: 1.3rem;
     font-weight: 700;
+    background: #b1d0e0;
+  }
+
+  ul {
+    border: 1px solid #005783;
   }
 }
