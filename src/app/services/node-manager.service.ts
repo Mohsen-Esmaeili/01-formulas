@@ -178,6 +178,26 @@ export class NodeManagerService implements OnDestroy
     }
   }
 
+  getNewNode(nodeType: NodeType, firstExpression: Node, secondExpression: Node): Node
+  {
+    switch (nodeType)
+    {
+      case NodeType.Addition:
+        return new Addition(firstExpression, secondExpression);
+      case NodeType.Subtraction:
+        return new Subtraction(firstExpression, secondExpression);
+      case NodeType.Multiplication:
+        return new Multiplication(firstExpression, secondExpression);
+      case NodeType.Division:
+        return new Division(firstExpression, secondExpression);
+      case NodeType.Power:
+        return new Power(firstExpression, secondExpression);
+
+      default:
+        throw new Error(`Invalid node type ${ nodeType }`);
+    }
+  }
+
   private getArguments(argCount: number): Array<Node>
   {
     const args = Array<Node>();
@@ -241,7 +261,7 @@ export class NodeManagerService implements OnDestroy
           },
           {
             id: 9,
-            nodeType: NodeType.Subtraction,
+            nodeType: NodeType.Division,
             icon: "device_hub",
             title: "Division (/)",
             children: []

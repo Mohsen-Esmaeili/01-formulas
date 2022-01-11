@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { Expression } from '../../../../models/expression';
 import { NodeManagerService } from '../../../../services/node-manager.service';
+import { NodeType } from './../../../../constants/node-type';
 @Component({
   selector: 'app-expression-list',
   templateUrl: './expression-list.component.html',
@@ -10,6 +11,7 @@ export class ExpressionListComponent implements OnInit
 {
   @Input() menuTriggerTmp: TemplateRef<any>;
   @Input() visible: boolean;
+  @Input() nodeType: NodeType | undefined;
 
   @Output() newExpressionEmitter = new EventEmitter<Expression>();
 
@@ -38,6 +40,12 @@ export class ExpressionListComponent implements OnInit
 
   addNew(expression: Expression): void
   {
+    debugger;
     this.newExpressionEmitter.emit(expression);
+  }
+
+  get mathExpression(): Array<Expression>
+  {
+    return this.expressionList.filter(x => x.id === 6)[0].children.filter(x => x.nodeType !== this.nodeType);
   }
 }

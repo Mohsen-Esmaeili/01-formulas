@@ -1,12 +1,12 @@
 .expression {
-  .operator {
-    font-size: 1.6rem;
-    font-weight: 700;
-    padding: 6px;
-    border-radius: 50%;
-    background-color: #e8f0f2;
-    color: #005266;
+  .operator-container {
     border: 1px solid #005266;
+    border-radius: 50%;
+    padding: 3px;
+
+    .operator {
+      font-size: 1.6rem;
+    }
   }
 
   .mat-card {

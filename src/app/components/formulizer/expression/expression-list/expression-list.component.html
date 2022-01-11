@@ -4,18 +4,29 @@
     </ng-container>
   </section>
   <mat-menu #Expressions="matMenu">
-    <ng-container *ngFor="let expression of expressionList">
-      <button mat-menu-item [matMenuTriggerFor]="SubMenu">
-        <mat-icon>{{ expression.icon }}</mat-icon>
-        {{ expression.title }}
-      </button>
-      <mat-menu #SubMenu="matMenu">
-        <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem)">
-          <mat-icon>{{ subItem.icon }}</mat-icon>
-          {{ subItem.title }}
+    <ng-container *ngIf="nodeType;else AllExpression">
+      <ng-container *ngFor="let expression of mathExpression">
+        <button mat-menu-item (click)="addNew(expression)">
+          <mat-icon>{{ expression.icon }}</mat-icon>
+          {{ expression.title }}
         </button>
-      </mat-menu>
+      </ng-container>
     </ng-container>
+
+    <ng-template #AllExpression>
+      <ng-container *ngFor="let expression of expressionList">
+        <button mat-menu-item [matMenuTriggerFor]="SubMenu">
+          <mat-icon>{{ expression.icon }}</mat-icon>
+          {{ expression.title }}
+        </button>
+        <mat-menu #SubMenu="matMenu">
+          <button *ngFor="let subItem of expressionDetails(expression.id)" mat-menu-item (click)="addNew(subItem)">
+            <mat-icon>{{ subItem.icon }}</mat-icon>
+            {{ subItem.title }}
+          </button>
+        </mat-menu>
+      </ng-container>
+    </ng-template>
   </mat-menu>
 
   <ng-template #defaultMenuTriggerTmp>
