@@ -24,7 +24,7 @@
     <mat-divider class="my-2"></mat-divider>
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>{{ valueTitle }}</mat-label>
-      <input matInput placeholder="Enter the value" [formControl]="numberValue" autocomplete="off">
+      <input matInput placeholder="Enter the value" [formControl]="numberValue" autocomplete="off" cdkFocusInitial>
       <mat-error *ngIf="numberValue.invalid">
         {{ valueTitle }} is required. Please enter a valid number!
       </mat-error>
@@ -35,7 +35,7 @@
     <mat-divider class="my-2"></mat-divider>
     <mat-form-field appearance="fill" class="w-100">
       <mat-label>Variable name</mat-label>
-      <input matInput placeholder="Enter variable name" [formControl]="textValue" autocomplete="off">
+      <input matInput placeholder="Enter variable name" [formControl]="textValue" autocomplete="off" cdkFocusInitial>
       <mat-hint>Enter a character (a or b ...)</mat-hint>
       <mat-error *ngIf="textValue.invalid">
         Variable name is required. Please enter a valid variable name!
@@ -46,6 +46,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" cdkFocusInitial (click)="onSelect()"
+  <button mat-raised-button color="primary" type="button" (click)="onSelect()"
     [disabled]="formIsInValid">Select</button>
 </mat-dialog-actions>
