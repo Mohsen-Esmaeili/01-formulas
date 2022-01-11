@@ -1,6 +1,10 @@
 .parentis-section {
   mat-card {
     background-color: #f6f6f6;
+
+    &.selected-expression {
+      background-color: #f8a1d1;
+    }
   }
 
   .addition {

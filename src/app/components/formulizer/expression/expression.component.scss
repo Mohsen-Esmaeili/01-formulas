@@ -1,6 +1,6 @@
 .expression {
   .operator-container {
-    border: 1px solid #005266;
+    border: 1px solid #d22779;
     border-radius: 50%;
     padding: 3px;
 
@@ -15,9 +15,5 @@
     flex-direction: column;
     justify-content: center;
     padding: 10px;
-  }
-
-  .selected-expression {
-    border: 1px solid red;
   }
 }
