@@ -40,7 +40,6 @@ export class ExpressionListComponent implements OnInit
 
   addNew(expression: Expression): void
   {
-    debugger;
     this.newExpressionEmitter.emit(expression);
   }
 

@@ -22,7 +22,6 @@ export class PowerComponent extends NodeComponent
 
   onUpdate(expression: Expression): void
   {
-    debugger;
     if (expression.nodeType)
     {
       const newNode = this.nodeManagerService.getNewNode(expression.nodeType, this.expression, this.power);

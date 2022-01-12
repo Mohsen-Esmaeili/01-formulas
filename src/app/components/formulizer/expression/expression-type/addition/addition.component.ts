@@ -22,7 +22,6 @@ export class AdditionComponent extends NodeComponent
 
   onUpdate(expression: Expression): void
   {
-    debugger;
     if (expression.nodeType)
     {
       const newNode = this.nodeManagerService.getNewNode(expression.nodeType, this.left, this.right);

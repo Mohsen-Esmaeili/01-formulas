@@ -19,7 +19,7 @@ export class FormulizerComponent implements OnInit, OnDestroy
   visualizerOutput: string = "";
   syntaxTreeJson: string = "";
   node: Node;
-  formula = new FormControl('($b + SQRT (SQR($b) - (4 * $a))) / (2 * $a)');
+  formula = new FormControl('(($b + SQRT (SQR($b))) / (2 * $a))');
   updateEmitterSubscription: Subscription;
 
   constructor(private nodeManagerService: NodeManagerService,
