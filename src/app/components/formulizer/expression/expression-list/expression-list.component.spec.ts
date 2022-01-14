@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { ExpressionService } from './../../../../services/expression.service';
+import { NodeManagerService } from './../../../../services/node-manager.service';
 import { ExpressionListComponent } from './expression-list.component';
 
 
@@ -15,7 +15,7 @@ describe('ExpressionListComponent', () =>
     await TestBed.configureTestingModule({
       declarations: [ExpressionListComponent],
       imports: [MatDialogModule, MatMenuModule],
-      providers: [ExpressionService]
+      providers: [NodeManagerService]
     })
       .compileComponents();
   });

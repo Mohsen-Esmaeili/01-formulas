@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ExpressionService } from './../../../../../services/expression.service';
+import { NodeManagerService } from './../../../../../services/node-manager.service';
 import { AdditionComponent } from './addition.component';
 
 
@@ -14,7 +14,7 @@ describe('AdditionComponent', () =>
     await TestBed.configureTestingModule({
       declarations: [AdditionComponent],
       imports: [MatDialogModule],
-      providers: [ExpressionService]
+      providers: [NodeManagerService]
     })
       .compileComponents();
   });
